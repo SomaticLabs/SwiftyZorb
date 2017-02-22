@@ -18,8 +18,8 @@ internal struct Identifiers {
     
     // MARK: - Moment Bluetooth Service UUIDs
     
-    /// Array of `CBUUID`s representing all services that the Moment application should advertise
-    static let ApplicationServices = [HapticTimelineServiceUUID]
+    /// Array of `CBUUID`s representing all services that Moment should advertise
+    static let AdvertisedServices = [HapticTimelineServiceUUID]
     
     /// `CBUUID` that advertises the haptic timeline service
     static let HapticTimelineServiceUUID = CBUUID(string: "00009B69-58FD-0A19-9B69-4CF88FC7B8DA")
