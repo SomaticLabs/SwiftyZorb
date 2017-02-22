@@ -1,0 +1,9 @@
+[submodule "Carthage/Checkouts/Alamofire"]
+	path = Carthage/Checkouts/Alamofire
+	url = https://github.com/Alamofire/Alamofire.git
+[submodule "Carthage/Checkouts/Permission"]
+	path = Carthage/Checkouts/Permission
+	url = https://github.com/delba/Permission.git
+[submodule "Carthage/Checkouts/SwiftyBluetooth"]
+	path = Carthage/Checkouts/SwiftyBluetooth
+	url = https://github.com/SomaticLabs/SwiftyBluetooth.git
