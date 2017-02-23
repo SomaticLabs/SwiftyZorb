@@ -1,4 +1,4 @@
-![Moment Logo](images/moment.png)
+![Moment Logo](docs/images/moment.png)
 
 # SwiftMomentSDK
 
@@ -16,7 +16,7 @@ This library is made to be used in conjuction with our [embedded Javascript SDK]
 
 To get started developing your own haptic animations, check out our [Moment simulator](https://somaticlabs.github.io/moment-sim/).
 
-![Moment Simulator](images/sim.png)
+![Moment Simulator](docs/images/sim.png)
 
 Animations and programs created in the simulator can be ran on Moment using this library, either by sending a embedding the Javascript directly in your application or by storing your scripts in [Github Gists](https://gist.github.com) and referencing those in your applications. 
 
@@ -59,7 +59,72 @@ Run `carthage update` to build the framework and drag the built `MomentSDK.frame
 
 ## Usage
 
-TODO
+### Connecting
+
+Before being able to communicate with Moment, you must establish a Bluetooth LE connection with your device.
+
+```swift 
+import MomentSDK
+
+Moment.connect { result in
+  switch result {
+  case .success:
+    // Connected succeeded
+  case .failure(let error):
+    // An error occurred during connection
+  }
+}
+```
+
+If you would like to trigger a manual disconnect, you can do so like this:
+
+```swift
+Moment.disconnect()
+```
+
+After connecting to a device for the first time, the SwiftMomentSDK saves a reference to that device for quicker reconnection in the future. If you would like to connect to a new device, you must forget the old connection.
+
+```swift
+Moment.forget()
+```
+
+Note that simply disconnecting from the device will not forget a stored connection and, likewise, forgetting a connection will not force a disconnect.
+
+### Javascript
+
+There are two ways to send Javascript to Moment to be executed on the device—by embedding it as a `String` in your application, or by passing a `URL` to a [Github Gist](https://gist.github.com) that contains your code.
+
+Additionally, the SwiftMomentSDK provides the option to optimize your Javascript using the [Google Closure Compiler](https://developers.google.com/closure/compiler/) before sending it to Moment. This is valuable because it highly compresses the number of bytes that need to be sent to Moment over BLE, dramatically decreasing the transmission time. This is especially important for longer scripts. 
+
+By default optimization is turned on, but this can be overridden if your Javascript is already optimized and you would like to prevent the additional HTTP request.
+
+To send Javascript from a script saved in a Gist:
+
+```swift
+let url = URL(string: "https://gist.github.com/jakerockland/1de44467c3eaf132a2089b6c88d680b8")!
+Moment.writeScript(at url) { result in
+  switch result {
+  case .success:
+    // Write succeeded
+  case .failure(let error):
+    // An error occurred during write
+  }
+}
+```
+
+To send Javascript from an `String` in your application:
+
+```swift
+let javascript = "Moment.LED.setColor(Moment.Color.ORANGE);"
+Moment.writeContents(of javascript, optimize: false) { result in
+  switch result {
+  case .success:
+    // Write succeeded
+  case .failure(let error):
+    // An error occurred during write
+  }
+}
+```
 
 ## License
 
