@@ -90,7 +90,7 @@ Moment.forget()
 
 Note that simply disconnecting from the device will not forget a stored connection and, likewise, forgetting a connection will not force a disconnect.
 
-### Javascript
+### Sending Javascript
 
 There are two ways to send Javascript to Moment to be executed on the device—by embedding it as a `String` in your application, or by passing a `URL` to a [Github Gist](https://gist.github.com) that contains your code.
 
