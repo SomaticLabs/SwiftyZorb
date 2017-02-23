@@ -9,12 +9,14 @@
 import SwiftyBluetooth
 import Alamofire
 
+// MARK: - SDK Functions
+
 /**
  For interacting with Moment device
  */
 final public class Moment {
     
-    // MARK: Public Bluetooth Methods
+    // MARK: Bluetooth Connection Methods
     
     /**
      Initiates a connection to an advertising Moment device
@@ -24,12 +26,28 @@ final public class Moment {
     }
     
     /**
+     Ends a connection to a connected Moment device
+     */
+    func disconnect() {
+        bluetoothManager.peripheral?.disconnect { _ in }
+    }
+    
+    /**
+     Resets stored Moment connection
+     */
+    func resetConnection() {
+        Settings.resetMomentPeripheral()
+    }
+    
+    // MARK: Bluetooth Javascript Methods
+    
+    /**
      Writes a given string of Javascript to the connected Moment device
      
      - Parameter javascript: The Javascript code to be written
-
+     
      - Parameter optimize: Boolean flag for whether or not the input Javascript should be optimized by the Google closure compiler. Default value is set to `true`, which is the recommended setting for best Bluetooth transfer speed, but can be set to false if alternative behavior is needed (one needs to avoid the extra HTTP request).
-    */
+     */
     func write(with javascript: String, optimize: Bool = true, completion: @escaping WriteRequestCallback) {
         // If optimization flag is set to true, run the Javascript through the Google closure compiler
         if optimize {

@@ -6,9 +6,8 @@
 //  Copyright © 2017 Somatic Technologies, Inc. All rights reserved.
 //
 
-import Foundation
-import Alamofire
 import CoreBluetooth
+import Alamofire
 
 // MARK: - Application Constants
 
@@ -29,9 +28,6 @@ internal struct Constants {
     
     /// Maximum amount of time, in seconds, to allow phone to attempt connection to Moment
     static let connectTimeout = 1.5
-    
-    /// Time, in nanoseconds, to delay recursively checking bluetooth state
-    static let bluetoothDelay: UInt64 = 10000000
     
     // MARK: - Web Constants
     

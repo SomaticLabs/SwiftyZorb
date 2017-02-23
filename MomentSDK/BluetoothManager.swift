@@ -8,7 +8,6 @@
 
 import SwiftyBluetooth
 import CoreBluetooth
-import UIKit
 
 // MARK: - Manager Error Enumeration
 
@@ -189,6 +188,17 @@ final internal class BluetoothManager: NSObject {
     }
     
     /**
+     Helper function to wrap a given Javascript string in an anonymous function
+     
+     - Parameter javascript: The Javascript code to wrap
+     
+     - Returns: A `String` containing the wrapped Javascript
+     */
+    func anonymizeJavascript(_ javascript: String) -> String {
+        return "(function(Moment){\(javascript)})(Moment);"
+    }
+    
+    /**
      Writes a given `String` of Javascript data to the SDK UART service
      
      - Parameter javascript: The Javascript code to be written
@@ -221,17 +231,6 @@ final internal class BluetoothManager: NSObject {
                 }
             }
         }
-    }
-    
-    /**
-     Helper function to wrap a given Javascript string in an anonymous function
-     
-     - Parameter javascript: The Javascript code to wrap
-     
-     - Returns: A `String` containing the wrapped Javascript
-     */
-    func anonymizeJavascript(_ javascript: String) -> String {
-        return "(function(Moment){\(javascript)})(Moment);"
     }
     
 }

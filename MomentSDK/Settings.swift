@@ -7,7 +7,8 @@
 //
 
 import CoreBluetooth
-import UIKit
+
+// MARK: - Settings Class
 
 /**
  For storing and retrieving settings from UserDefaults

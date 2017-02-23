@@ -11,10 +11,10 @@
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "62A7BCF8-18F5-4083-963C-FB4C37CFA3AC",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "C2FB61A49B3D6D9F4D71B5D5B456640080CE2787" : "moment-ios-sdk\/Carthage\/Checkouts\/Permission\/",
-    "DF9C2176B9A68D4454E998827BC14F42CEE154CF" : "moment-ios-sdk\/Carthage\/Checkouts\/SwiftyBluetooth\/",
-    "D427E0E0D89FB564A79389115A3C18E2334AFD72" : "moment-ios-sdk\/",
-    "67620B5EFA902936DF04070AF595B76AB0333747" : "moment-ios-sdk\/Carthage\/Checkouts\/Alamofire\/"
+    "C2FB61A49B3D6D9F4D71B5D5B456640080CE2787" : "SwiftMomentSDK\/Carthage\/Checkouts\/Permission\/",
+    "DF9C2176B9A68D4454E998827BC14F42CEE154CF" : "SwiftMomentSDK\/Carthage\/Checkouts\/SwiftyBluetooth\/",
+    "D427E0E0D89FB564A79389115A3C18E2334AFD72" : "SwiftMomentSDK\/",
+    "67620B5EFA902936DF04070AF595B76AB0333747" : "SwiftMomentSDK\/Carthage\/Checkouts\/Alamofire\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "MomentSDK",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,

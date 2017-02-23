@@ -6,7 +6,6 @@
 //  Copyright © 2017 Somatic Technologies, Inc. All rights reserved.
 //
 
-import Foundation
 import CoreBluetooth
 
 // MARK: - Identifier Constants
