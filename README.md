@@ -112,7 +112,7 @@ Moment.writeScript(at url) { result in
 }
 ```
 
-To send Javascript from an `String` in your application:
+To send Javascript from a `String` in your application:
 
 ```swift
 let javascript = "Moment.LED.setColor(Moment.Color.ORANGE);"
