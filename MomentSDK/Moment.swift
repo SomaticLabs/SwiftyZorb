@@ -54,16 +54,16 @@ final public class Moment {
     }
     
     /**
-     Resets stored Moment connection.
+     Forgets previously stored Moment connection.
      
      Usage Example:
      
      ```swift
      // After calling this method, a new Moment connection can be created
-     Moment.resetConnection()
+     Moment.forget()
      ```
      */
-    static public func resetConnection() {
+    static public func forget() {
         Settings.resetMomentPeripheral()
     }
     
