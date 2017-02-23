@@ -194,6 +194,15 @@ final internal class BluetoothManager: NSObject {
      - Parameter javascript: The Javascript code to be written
      */
     func writeJavascript(_ javascript: String, completion: @escaping WriteRequestCallback) {
+        // Ensure that we already have a reference to Moment peripheral
+        guard let peripheral = peripheral else {
+            // Treat as error and handle in completion
+            let error = ManagerError("Not connected to Moment peripheral!")
+            completion(.failure(error))
+            
+            return // Exit
+        }
+        
         // Create byte array from Javascript `String`
         let javascript = anonymizeJavascript(javascript) + "\0"
         let bytes = Array(javascript.utf8)
@@ -206,7 +215,7 @@ final internal class BluetoothManager: NSObject {
             
             // Write data to our characteristic
             let data = Data(bytes: packet)
-            self.peripheral?.writeValue(ofCharacWithUUID: Identifiers.NordicUARTRXCharacteristicUUID, fromServiceWithUUID: Identifiers.NordicUARTServiceUUID, value: data) { result in
+            peripheral.writeValue(ofCharacWithUUID: Identifiers.NordicUARTRXCharacteristicUUID, fromServiceWithUUID: Identifiers.NordicUARTServiceUUID, value: data) { result in
                 if i == ((bytes.count / 20) - 1) {
                     completion(result)
                 }
