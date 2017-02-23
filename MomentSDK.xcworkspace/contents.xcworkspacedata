@@ -20,4 +20,8 @@
       location = "group:Cartfile"
       assignedFileDataType = "public.ruby-script">
    </FileRef>
+   <FileRef
+      location = "group:Gemfile"
+      assignedFileDataType = "public.ruby-script">
+   </FileRef>
 </Workspace>
