@@ -17,7 +17,7 @@ import Alamofire
  Usage Example:
  
  ```swift
- // Attempt connection to an advertising device
+ // Attempts connection to an advertising device
  Moment.connect { result in
     switch result {
     case .success:
@@ -33,7 +33,7 @@ public func connect(completion: @escaping ConnectPeripheralCallback) {
 }
 
 /**
- Ends a connection to a connected Moment device.
+ Ends connection to a connected Moment device.
  
  Usage Example:
  
