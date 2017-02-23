@@ -1,3 +1,2 @@
 github "Alamofire/Alamofire" "4.3.0"
-github "delba/Permission" "v2.0.3"
 github "SomaticLabs/SwiftyBluetooth" "0.3.3"

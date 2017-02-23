@@ -1,3 +1,2 @@
-github "delba/Permission" ~> 2.0
 github "SomaticLabs/SwiftyBluetooth" ~> 0.3
 github "Alamofire/Alamofire" ~> 4.0
