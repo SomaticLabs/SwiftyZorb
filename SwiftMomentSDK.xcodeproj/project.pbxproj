@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		403783F71E5FDAA100B68645 /* SwiftMomentSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403783F61E5FDAA100B68645 /* SwiftMomentSDK.swift */; };
+		403783FC1E5FDAA900B68645 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403783F81E5FDAA900B68645 /* BluetoothManager.swift */; };
+		403783FD1E5FDAA900B68645 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403783F91E5FDAA900B68645 /* Constants.swift */; };
+		403783FE1E5FDAA900B68645 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403783FA1E5FDAA900B68645 /* Identifiers.swift */; };
+		403783FF1E5FDAA900B68645 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403783FB1E5FDAA900B68645 /* Settings.swift */; };
 		407350701E5D045000CA2D94 /* SwiftMomentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407350661E5D045000CA2D94 /* SwiftMomentSDK.framework */; };
 		4073508E1E5E1A6E00CA2D94 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4073508B1E5E1A6E00CA2D94 /* Alamofire.framework */; };
 		407350901E5E1A6E00CA2D94 /* SwiftyBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4073508D1E5E1A6E00CA2D94 /* SwiftyBluetooth.framework */; };
-		407350951E5E21A400CA2D94 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407350941E5E21A400CA2D94 /* Settings.swift */; };
-		407350971E5E2EF500CA2D94 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407350961E5E2EF500CA2D94 /* Identifiers.swift */; };
-		407350991E5E31A900CA2D94 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407350981E5E31A900CA2D94 /* Constants.swift */; };
-		407350A01E5E3EAC00CA2D94 /* SwiftMomentSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073509F1E5E3EAC00CA2D94 /* SwiftMomentSDK.swift */; };
-		407350A21E5E3EC300CA2D94 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407350A11E5E3EC300CA2D94 /* BluetoothManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,17 +28,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		403783F61E5FDAA100B68645 /* SwiftMomentSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftMomentSDK.swift; path = SwiftMomentSDK/SwiftMomentSDK.swift; sourceTree = SOURCE_ROOT; };
+		403783F81E5FDAA900B68645 /* BluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BluetoothManager.swift; path = SwiftMomentSDK/BluetoothManager.swift; sourceTree = SOURCE_ROOT; };
+		403783F91E5FDAA900B68645 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = SwiftMomentSDK/Constants.swift; sourceTree = SOURCE_ROOT; };
+		403783FA1E5FDAA900B68645 /* Identifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Identifiers.swift; path = SwiftMomentSDK/Identifiers.swift; sourceTree = SOURCE_ROOT; };
+		403783FB1E5FDAA900B68645 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = SwiftMomentSDK/Settings.swift; sourceTree = SOURCE_ROOT; };
 		407350661E5D045000CA2D94 /* SwiftMomentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMomentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4073506A1E5D045000CA2D94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = SwiftMomentSDK/Info.plist; sourceTree = "<group>"; };
 		4073506F1E5D045000CA2D94 /* SwiftMomentSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftMomentSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4073508B1E5E1A6E00CA2D94 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../Carthage/Checkouts/Alamofire/build/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
 		4073508C1E5E1A6E00CA2D94 /* Permission.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Permission.framework; path = "../Carthage/Checkouts/Permission/build/Debug-iphoneos/Permission.framework"; sourceTree = "<group>"; };
 		4073508D1E5E1A6E00CA2D94 /* SwiftyBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyBluetooth.framework; path = "../Carthage/Checkouts/SwiftyBluetooth/build/Debug-iphoneos/SwiftyBluetooth.framework"; sourceTree = "<group>"; };
-		407350941E5E21A400CA2D94 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = SwiftMomentSDK/Settings.swift; sourceTree = "<group>"; };
-		407350961E5E2EF500CA2D94 /* Identifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Identifiers.swift; path = SwiftMomentSDK/Identifiers.swift; sourceTree = "<group>"; };
-		407350981E5E31A900CA2D94 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = SwiftMomentSDK/Constants.swift; sourceTree = "<group>"; };
-		4073509F1E5E3EAC00CA2D94 /* SwiftMomentSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftMomentSDK.swift; path = SwiftMomentSDK/SwiftMomentSDK.swift; sourceTree = "<group>"; };
-		407350A11E5E3EC300CA2D94 /* BluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BluetoothManager.swift; path = SwiftMomentSDK/BluetoothManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,10 +104,10 @@
 		407350921E5E214B00CA2D94 /* Internal */ = {
 			isa = PBXGroup;
 			children = (
-				407350A11E5E3EC300CA2D94 /* BluetoothManager.swift */,
-				407350941E5E21A400CA2D94 /* Settings.swift */,
-				407350961E5E2EF500CA2D94 /* Identifiers.swift */,
-				407350981E5E31A900CA2D94 /* Constants.swift */,
+				403783F81E5FDAA900B68645 /* BluetoothManager.swift */,
+				403783F91E5FDAA900B68645 /* Constants.swift */,
+				403783FA1E5FDAA900B68645 /* Identifiers.swift */,
+				403783FB1E5FDAA900B68645 /* Settings.swift */,
 			);
 			name = Internal;
 			sourceTree = "<group>";
@@ -115,7 +115,7 @@
 		407350931E5E217F00CA2D94 /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				4073509F1E5E3EAC00CA2D94 /* SwiftMomentSDK.swift */,
+				403783F61E5FDAA100B68645 /* SwiftMomentSDK.swift */,
 			);
 			name = Public;
 			sourceTree = "<group>";
@@ -232,11 +232,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				407350971E5E2EF500CA2D94 /* Identifiers.swift in Sources */,
-				407350951E5E21A400CA2D94 /* Settings.swift in Sources */,
-				407350A21E5E3EC300CA2D94 /* BluetoothManager.swift in Sources */,
-				407350991E5E31A900CA2D94 /* Constants.swift in Sources */,
-				407350A01E5E3EAC00CA2D94 /* SwiftMomentSDK.swift in Sources */,
+				403783FC1E5FDAA900B68645 /* BluetoothManager.swift in Sources */,
+				403783F71E5FDAA100B68645 /* SwiftMomentSDK.swift in Sources */,
+				403783FE1E5FDAA900B68645 /* Identifiers.swift in Sources */,
+				403783FD1E5FDAA900B68645 /* Constants.swift in Sources */,
+				403783FF1E5FDAA900B68645 /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
