@@ -21,4 +21,7 @@
       location = "group:Gemfile"
       assignedFileDataType = "public.ruby-script">
    </FileRef>
+   <FileRef
+      location = "group:/Users/jakerockland/Code/somatic/_ios/SwiftMomentSDK/SwiftMomentSDK.podspec">
+   </FileRef>
 </Workspace>
