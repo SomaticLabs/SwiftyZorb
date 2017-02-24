@@ -14,7 +14,7 @@
 		407350951E5E21A400CA2D94 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407350941E5E21A400CA2D94 /* Settings.swift */; };
 		407350971E5E2EF500CA2D94 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407350961E5E2EF500CA2D94 /* Identifiers.swift */; };
 		407350991E5E31A900CA2D94 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407350981E5E31A900CA2D94 /* Constants.swift */; };
-		407350A01E5E3EAC00CA2D94 /* Moment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073509F1E5E3EAC00CA2D94 /* Moment.swift */; };
+		407350A01E5E3EAC00CA2D94 /* MomentSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073509F1E5E3EAC00CA2D94 /* MomentSDK.swift */; };
 		407350A21E5E3EC300CA2D94 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407350A11E5E3EC300CA2D94 /* BluetoothManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +40,7 @@
 		407350941E5E21A400CA2D94 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		407350961E5E2EF500CA2D94 /* Identifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
 		407350981E5E31A900CA2D94 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		4073509F1E5E3EAC00CA2D94 /* Moment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Moment.swift; sourceTree = "<group>"; };
+		4073509F1E5E3EAC00CA2D94 /* MomentSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentSDK.swift; sourceTree = "<group>"; };
 		407350A11E5E3EC300CA2D94 /* BluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,7 +127,7 @@
 		407350931E5E217F00CA2D94 /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				4073509F1E5E3EAC00CA2D94 /* Moment.swift */,
+				4073509F1E5E3EAC00CA2D94 /* MomentSDK.swift */,
 			);
 			name = Public;
 			sourceTree = "<group>";
@@ -248,7 +248,7 @@
 				407350951E5E21A400CA2D94 /* Settings.swift in Sources */,
 				407350A21E5E3EC300CA2D94 /* BluetoothManager.swift in Sources */,
 				407350991E5E31A900CA2D94 /* Constants.swift in Sources */,
-				407350A01E5E3EAC00CA2D94 /* Moment.swift in Sources */,
+				407350A01E5E3EAC00CA2D94 /* MomentSDK.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

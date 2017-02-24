@@ -32,9 +32,4 @@ internal struct Identifiers {
     /// `CBUUID` for identifying the Nordic UART RX characteristic
     static let NordicUARTRXCharacteristicUUID = CBUUID(string: "6E400002-B5A3-F393-E0A9-E50E24DCCA9E")
     
-    // MARK: - Dummy Reserved UUID
-    
-    /// `CBUUID` to be passed when reseting manager state and data
-    static let DummyUUID = CBUUID(string: "D7DBB824-D8A5-4655-BE50-7026B3FE7705")
-    
 }

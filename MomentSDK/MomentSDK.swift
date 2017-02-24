@@ -1,5 +1,5 @@
 //
-//  Moment.swift
+//  MomentSDK.swift
 //  MomentSDK
 //
 //  Created by Jacob Rockland on 2/22/17.
@@ -18,7 +18,7 @@ import Alamofire
  
  ```swift
  // Attempts connection to an advertising device
- Moment.connect { result in
+ MomentSDK.connect { result in
     switch result {
     case .success:
         // Connected succeeded
@@ -39,7 +39,7 @@ public func connect(completion: @escaping ConnectPeripheralCallback) {
  
  ```swift
  // After calling this method, Moment disconnection will be guaranteed
- Moment.disconnect()
+ MomentSDK.disconnect()
  ```
  */
 public func disconnect() {
@@ -53,7 +53,7 @@ public func disconnect() {
  
  ```swift
  // After calling this method, a new Moment connection can be created
- Moment.forget()
+ MomentSDK.forget()
  ```
  */
 public func forget() {
@@ -74,7 +74,7 @@ public func forget() {
  // However for short snippets of Javascript (under 40 bytes), 
  // such optimization may be unnecessary.
  let javascript = "Moment.LED.setColor(Moment.Color.ORANGE);"
- Moment.writeContents(of javascript, optimize: false) { result in
+ MomentSDK.writeContents(of javascript, optimize: false) { result in
     switch result {
     case .success:
         // Write succeeded
@@ -122,7 +122,7 @@ public func writeContents(of javascript: String, optimize: Bool = true, completi
  //
  // For long JS scripts, optimization is strongly recommended.
  let url = URL(string: "https://gist.github.com/jakerockland/1de44467c3eaf132a2089b6c88d680b8")!
- Moment.writeScript(at url) { result in
+ MomentSDK.writeScript(at url) { result in
     switch result {
     case .success:
         // Write succeeded
