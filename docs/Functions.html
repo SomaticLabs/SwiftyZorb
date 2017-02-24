@@ -13,13 +13,13 @@
     <a title="Functions  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">MomentSDK Docs</a> (100% documented)</p>
+        <p><a href="index.html">SwiftMomentSDK Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/SomaticLabs/SwiftMomentSDK"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
-        <a href="index.html">MomentSDK Reference</a>
+        <a href="index.html">SwiftMomentSDK Reference</a>
         <img id="carat" src="img/carat.png" />
         Functions  Reference
       </p>
@@ -31,19 +31,19 @@
             <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F9MomentSDK7connectERR">connect(completion:)</a>
+                <a href="Functions.html#/s:F14SwiftMomentSDK7connectERR">connect(completion:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F9MomentSDK10disconnectFT_T_">disconnect()</a>
+                <a href="Functions.html#/s:F14SwiftMomentSDK10disconnectFT_T_">disconnect()</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F9MomentSDK6forgetFT_T_">forget()</a>
+                <a href="Functions.html#/s:F14SwiftMomentSDK6forgetFT_T_">forget()</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F9MomentSDK13writeContentsERR">writeContents(of:optimize:completion:)</a>
+                <a href="Functions.html#/s:F14SwiftMomentSDK13writeContentsERR">writeContents(of:optimize:completion:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F9MomentSDK11writeScriptERR">writeScript(at:optimize:completion:)</a>
+                <a href="Functions.html#/s:F14SwiftMomentSDK11writeScriptERR">writeScript(at:optimize:completion:)</a>
               </li>
             </ul>
           </li>
@@ -69,9 +69,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:F9MomentSDK7connectERR"></a>
+                    <a name="/s:F14SwiftMomentSDK7connectERR"></a>
                     <a name="//apple_ref/swift/Function/connect(completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:F9MomentSDK7connectERR">connect(completion:)</a>
+                    <a class="token" href="#/s:F14SwiftMomentSDK7connectERR">connect(completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -84,7 +84,7 @@
 <p>Usage Example:</p>
 
 <pre class="highlight swift"><code><span class="c1">// Attempts connection to an advertising device</span>
-<span class="kt">Moment</span><span class="o">.</span><span class="n">connect</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+<span class="kt">MomentSDK</span><span class="o">.</span><span class="n">connect</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
    <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
    <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
        <span class="c1">// Connected succeeded</span>
@@ -109,9 +109,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:F9MomentSDK10disconnectFT_T_"></a>
+                    <a name="/s:F14SwiftMomentSDK10disconnectFT_T_"></a>
                     <a name="//apple_ref/swift/Function/disconnect()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:F9MomentSDK10disconnectFT_T_">disconnect()</a>
+                    <a class="token" href="#/s:F14SwiftMomentSDK10disconnectFT_T_">disconnect()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -124,7 +124,7 @@
 <p>Usage Example:</p>
 
 <pre class="highlight swift"><code><span class="c1">// After calling this method, Moment disconnection will be guaranteed</span>
-<span class="kt">Moment</span><span class="o">.</span><span class="nf">disconnect</span><span class="p">()</span>
+<span class="kt">MomentSDK</span><span class="o">.</span><span class="nf">disconnect</span><span class="p">()</span>
 </code></pre>
 
                       </div>
@@ -142,9 +142,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:F9MomentSDK6forgetFT_T_"></a>
+                    <a name="/s:F14SwiftMomentSDK6forgetFT_T_"></a>
                     <a name="//apple_ref/swift/Function/forget()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:F9MomentSDK6forgetFT_T_">forget()</a>
+                    <a class="token" href="#/s:F14SwiftMomentSDK6forgetFT_T_">forget()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -157,7 +157,7 @@
 <p>Usage Example:</p>
 
 <pre class="highlight swift"><code><span class="c1">// After calling this method, a new Moment connection can be created</span>
-<span class="kt">Moment</span><span class="o">.</span><span class="nf">forget</span><span class="p">()</span>
+<span class="kt">MomentSDK</span><span class="o">.</span><span class="nf">forget</span><span class="p">()</span>
 </code></pre>
 
                       </div>
@@ -186,9 +186,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:F9MomentSDK13writeContentsERR"></a>
+                    <a name="/s:F14SwiftMomentSDK13writeContentsERR"></a>
                     <a name="//apple_ref/swift/Function/writeContents(of:optimize:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:F9MomentSDK13writeContentsERR">writeContents(of:optimize:completion:)</a>
+                    <a class="token" href="#/s:F14SwiftMomentSDK13writeContentsERR">writeContents(of:optimize:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -206,7 +206,7 @@
 <span class="c1">// However for short snippets of Javascript (under 40 bytes), </span>
 <span class="c1">// such optimization may be unnecessary.</span>
 <span class="k">let</span> <span class="nv">javascript</span> <span class="o">=</span> <span class="s">"Moment.LED.setColor(Moment.Color.ORANGE);"</span>
-<span class="kt">Moment</span><span class="o">.</span><span class="nf">writeContents</span><span class="p">(</span><span class="n">of</span> <span class="n">javascript</span><span class="p">,</span> <span class="nv">optimize</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+<span class="kt">MomentSDK</span><span class="o">.</span><span class="nf">writeContents</span><span class="p">(</span><span class="n">of</span> <span class="n">javascript</span><span class="p">,</span> <span class="nv">optimize</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
    <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
    <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
        <span class="c1">// Write succeeded</span>
@@ -264,9 +264,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:F9MomentSDK11writeScriptERR"></a>
+                    <a name="/s:F14SwiftMomentSDK11writeScriptERR"></a>
                     <a name="//apple_ref/swift/Function/writeScript(at:optimize:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:F9MomentSDK11writeScriptERR">writeScript(at:optimize:completion:)</a>
+                    <a class="token" href="#/s:F14SwiftMomentSDK11writeScriptERR">writeScript(at:optimize:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -283,7 +283,7 @@
 <span class="c1">//</span>
 <span class="c1">// For long JS scripts, optimization is strongly recommended.</span>
 <span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://gist.github.com/jakerockland/1de44467c3eaf132a2089b6c88d680b8"</span><span class="p">)</span><span class="o">!</span>
-<span class="kt">Moment</span><span class="o">.</span><span class="nf">writeScript</span><span class="p">(</span><span class="n">at</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+<span class="kt">MomentSDK</span><span class="o">.</span><span class="nf">writeScript</span><span class="p">(</span><span class="n">at</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
    <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
    <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
        <span class="c1">// Write succeeded</span>

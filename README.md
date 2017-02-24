@@ -55,7 +55,7 @@ To integrate SwiftMomentSDK into your Xcode project using Carthage, specify it i
 github "SomaticLabs/SwiftMomentSDK" ~> 1.0
 ```
 
-Run `carthage update` to build the framework and drag the built `MomentSDK.framework` into your Xcode project.
+Run `carthage update` to build the framework and drag the built `SwiftMomentSDK.framework` into your Xcode project.
 
 ## Usage
 
@@ -64,9 +64,9 @@ Run `carthage update` to build the framework and drag the built `MomentSDK.frame
 Before being able to communicate with Moment, you must establish a Bluetooth LE connection with your device.
 
 ```swift 
-import MomentSDK
+import SwiftMomentSDK
 
-Moment.connect { result in
+SwiftMomentSDK.connect { result in
   switch result {
   case .success:
     // Connected succeeded
@@ -79,13 +79,13 @@ Moment.connect { result in
 If you would like to trigger a manual disconnect, you can do so like this:
 
 ```swift
-Moment.disconnect()
+SwiftMomentSDK.disconnect()
 ```
 
 After connecting to a device for the first time, the SwiftMomentSDK saves a reference to that device for quicker reconnection in the future. If you would like to connect to a new device, you must forget the old connection.
 
 ```swift
-Moment.forget()
+SwiftMomentSDK.forget()
 ```
 
 Note that simply disconnecting from the device will not forget a stored connection and, likewise, forgetting a connection will not force a disconnect.
@@ -102,7 +102,7 @@ To send Javascript from a script saved in a Gist:
 
 ```swift
 let url = URL(string: "https://gist.github.com/jakerockland/1de44467c3eaf132a2089b6c88d680b8")!
-Moment.writeScript(at url) { result in
+SwiftMomentSDK.writeScript(at url) { result in
   switch result {
   case .success:
     // Write succeeded
@@ -116,7 +116,7 @@ To send Javascript from a `String` in your application:
 
 ```swift
 let javascript = "Moment.LED.setColor(Moment.Color.ORANGE);"
-Moment.writeContents(of javascript, optimize: false) { result in
+SwiftMomentSDK.writeContents(of javascript, optimize: false) { result in
   switch result {
   case .success:
     // Write succeeded
