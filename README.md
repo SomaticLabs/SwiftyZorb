@@ -57,6 +57,8 @@ github "SomaticLabs/SwiftMomentSDK" ~> 1.0
 
 Run `carthage update` to build the framework and drag the built `SwiftMomentSDK.framework` into your Xcode project.
 
+You must also drag the built dependencies `Alamofire.framework` and `SwiftyBluetooth.framework` into your project.
+
 ## Usage
 
 ### Connecting
