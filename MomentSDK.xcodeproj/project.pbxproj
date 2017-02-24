@@ -10,7 +10,6 @@
 		407350701E5D045000CA2D94 /* MomentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407350661E5D045000CA2D94 /* MomentSDK.framework */; };
 		407350751E5D045100CA2D94 /* MomentSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407350741E5D045100CA2D94 /* MomentSDKTests.swift */; };
 		4073508E1E5E1A6E00CA2D94 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4073508B1E5E1A6E00CA2D94 /* Alamofire.framework */; };
-		4073508F1E5E1A6E00CA2D94 /* Permission.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4073508C1E5E1A6E00CA2D94 /* Permission.framework */; };
 		407350901E5E1A6E00CA2D94 /* SwiftyBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4073508D1E5E1A6E00CA2D94 /* SwiftyBluetooth.framework */; };
 		407350951E5E21A400CA2D94 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407350941E5E21A400CA2D94 /* Settings.swift */; };
 		407350971E5E2EF500CA2D94 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407350961E5E2EF500CA2D94 /* Identifiers.swift */; };
@@ -51,7 +50,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4073508E1E5E1A6E00CA2D94 /* Alamofire.framework in Frameworks */,
-				4073508F1E5E1A6E00CA2D94 /* Permission.framework in Frameworks */,
 				407350901E5E1A6E00CA2D94 /* SwiftyBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
