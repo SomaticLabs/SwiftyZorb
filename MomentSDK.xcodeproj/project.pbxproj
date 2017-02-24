@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		407350701E5D045000CA2D94 /* MomentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407350661E5D045000CA2D94 /* MomentSDK.framework */; };
 		407350751E5D045100CA2D94 /* MomentSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407350741E5D045100CA2D94 /* MomentSDKTests.swift */; };
-		407350771E5D045100CA2D94 /* MomentSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 407350691E5D045000CA2D94 /* MomentSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4073508E1E5E1A6E00CA2D94 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4073508B1E5E1A6E00CA2D94 /* Alamofire.framework */; };
 		4073508F1E5E1A6E00CA2D94 /* Permission.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4073508C1E5E1A6E00CA2D94 /* Permission.framework */; };
 		407350901E5E1A6E00CA2D94 /* SwiftyBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4073508D1E5E1A6E00CA2D94 /* SwiftyBluetooth.framework */; };
@@ -32,7 +31,6 @@
 
 /* Begin PBXFileReference section */
 		407350661E5D045000CA2D94 /* MomentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MomentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		407350691E5D045000CA2D94 /* MomentSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MomentSDK.h; sourceTree = "<group>"; };
 		4073506A1E5D045000CA2D94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4073506F1E5D045000CA2D94 /* MomentSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MomentSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		407350741E5D045100CA2D94 /* MomentSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentSDKTests.swift; sourceTree = "<group>"; };
@@ -93,7 +91,6 @@
 			children = (
 				407350931E5E217F00CA2D94 /* Public */,
 				407350921E5E214B00CA2D94 /* Internal */,
-				407350691E5D045000CA2D94 /* MomentSDK.h */,
 				4073506A1E5D045000CA2D94 /* Info.plist */,
 			);
 			path = MomentSDK;
@@ -144,7 +141,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				407350771E5D045100CA2D94 /* MomentSDK.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
