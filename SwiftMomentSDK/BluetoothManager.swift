@@ -188,17 +188,6 @@ final internal class BluetoothManager: NSObject {
     }
     
     /**
-     Helper function to wrap a given Javascript string in an anonymous function
-     
-     - Parameter javascript: The Javascript code to wrap
-     
-     - Returns: A `String` containing the wrapped Javascript
-     */
-    func anonymizeJavascript(_ javascript: String) -> String {
-        return "(function(Moment){\(javascript)})(Moment);"
-    }
-    
-    /**
      Writes a given `String` of Javascript data to the SDK UART service
      
      - Parameter javascript: The Javascript code to be written
@@ -213,24 +202,44 @@ final internal class BluetoothManager: NSObject {
             return // Exit
         }
         
+        // Wrap given Javascript string in an anonymous function and add a null terminating character
+        let javascript = "(function(Moment){\(javascript)})(Moment);\0"
+        
         // Create byte array from Javascript `String`
-        let javascript = anonymizeJavascript(javascript) + "\0"
         let bytes = Array(javascript.utf8)
         
-        // Write data in 20-byte packets
+        // Create packet list
+        var packetList = [ArraySlice<UInt8>]()
+        
+        // Split data in 20-byte packets and fill packet list
         for i in 0...(bytes.count / 20) {
             let min = i * 20
             let max = (((i + 1) * 20) < bytes.count) ? ((i + 1) * 20) : bytes.count
             let packet = bytes[min..<max]
-            
-            // Write data to our characteristic
-            let data = Data(bytes: packet)
-            peripheral.writeValue(ofCharacWithUUID: Identifiers.NordicUARTRXCharacteristicUUID, fromServiceWithUUID: Identifiers.NordicUARTServiceUUID, value: data) { result in
-                if i == ((bytes.count / 20) - 1) {
-                    completion(result)
+            packetList.append(packet)
+        }
+        
+        // Create recursive writing function
+        func recursiveWrite(_ packetList: [ArraySlice<UInt8>], completion: @escaping WriteRequestCallback) {
+            if packetList.isEmpty {
+                // Handle base case
+                completion(.success(.noValue))
+            } else {
+                // Handle recursive case
+                var packetList = packetList
+                let packet = packetList.removeFirst()
+                let data = Data(bytes: packet)
+                peripheral.writeValue(ofCharacWithUUID: Identifiers.NordicUARTRXCharacteristicUUID, fromServiceWithUUID: Identifiers.NordicUARTServiceUUID, value: data) { result in
+                    switch result {
+                    case .success:
+                        recursiveWrite(packetList, completion: completion)
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
                 }
             }
         }
-    }
-    
+        
+        // Write data to our characteristic
+        recursiveWrite(packetList) { result in completion(result) }    }
 }
