@@ -229,12 +229,14 @@ final internal class BluetoothManager: NSObject {
                 var packetList = packetList
                 let packet = packetList.removeFirst()
                 let data = Data(bytes: packet)
-                peripheral.writeValue(ofCharacWithUUID: Identifiers.NordicUARTRXCharacteristicUUID, fromServiceWithUUID: Identifiers.NordicUARTServiceUUID, value: data) { result in
-                    switch result {
-                    case .success:
-                        recursiveWrite(packetList, completion: completion)
-                    case .failure(let error):
-                        completion(.failure(error))
+                DispatchQueue.main.asyncAfter(deadline: .now() + .nanoseconds(1)) {
+                    peripheral.writeValue(ofCharacWithUUID: Identifiers.NordicUARTRXCharacteristicUUID, fromServiceWithUUID: Identifiers.NordicUARTServiceUUID, value: data) { result in
+                        switch result {
+                        case .success:
+                            recursiveWrite(packetList, completion: completion)
+                        case .failure(let error):
+                            completion(.failure(error))
+                        }
                     }
                 }
             }
