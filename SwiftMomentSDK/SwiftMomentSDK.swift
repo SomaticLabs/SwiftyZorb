@@ -137,8 +137,11 @@ public func writeContents(of javascript: String, optimize: Bool = true, completi
  - Parameter optimize: Boolean flag for whether or not the input Javascript should be optimized by the Google closure compiler. Default value is set to `true`, which is the recommended setting for best Bluetooth transfer speed, but can be set to false if alternative behavior is needed (one needs to avoid the extra HTTP request).
  */
 public func writeScript(at url: URL, optimize: Bool = true, completion: @escaping WriteRequestCallback) {
+    // Add a random query based on the current time, so that we don't have issues with source file being cached by Github
+    let randomQuery = "?".appending(String(Int(NSDate().timeIntervalSince1970)))
+    
     // Format the script URL to retrieve the raw text version
-    let url = url.appendingPathComponent("raw")
+    let url = URL(string: url.appendingPathComponent("raw").absoluteString + randomQuery)!
     
     // If optimization flag is set to true, run the Javascript through the Google closure compiler
     if optimize {
