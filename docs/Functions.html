@@ -40,6 +40,9 @@
                 <a href="Functions.html#/s:F14SwiftMomentSDK6forgetFT_T_">forget()</a>
               </li>
               <li class="nav-group-task">
+                <a href="Functions.html#/s:F14SwiftMomentSDK5resetERR">reset(completion:)</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Functions.html#/s:F14SwiftMomentSDK13writeContentsERR">writeContents(of:optimize:completion:)</a>
               </li>
               <li class="nav-group-task">
@@ -84,7 +87,7 @@
 <p>Usage Example:</p>
 
 <pre class="highlight swift"><code><span class="c1">// Attempts connection to an advertising device</span>
-<span class="kt">MomentSDK</span><span class="o">.</span><span class="n">connect</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+<span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="n">connect</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
    <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
    <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
        <span class="c1">// Connected succeeded</span>
@@ -124,7 +127,7 @@
 <p>Usage Example:</p>
 
 <pre class="highlight swift"><code><span class="c1">// After calling this method, Moment disconnection will be guaranteed</span>
-<span class="kt">MomentSDK</span><span class="o">.</span><span class="nf">disconnect</span><span class="p">()</span>
+<span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="nf">disconnect</span><span class="p">()</span>
 </code></pre>
 
                       </div>
@@ -157,7 +160,7 @@
 <p>Usage Example:</p>
 
 <pre class="highlight swift"><code><span class="c1">// After calling this method, a new Moment connection can be created</span>
-<span class="kt">MomentSDK</span><span class="o">.</span><span class="nf">forget</span><span class="p">()</span>
+<span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="nf">forget</span><span class="p">()</span>
 </code></pre>
 
                       </div>
@@ -186,6 +189,45 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:F14SwiftMomentSDK5resetERR"></a>
+                    <a name="//apple_ref/swift/Function/reset(completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:F14SwiftMomentSDK5resetERR">reset(completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Writes the appropriate string to reset Moment&rsquo;s Javascript virtual machine.</p>
+
+<p>Usage Example:</p>
+
+<pre class="highlight swift"><code><span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="n">reset</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+   <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+   <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
+       <span class="c1">// Reset succeeded</span>
+   <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+       <span class="c1">// An error occurred during reset</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">reset</span><span class="p">(</span><span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">WriteRequestCallback</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:F14SwiftMomentSDK13writeContentsERR"></a>
                     <a name="//apple_ref/swift/Function/writeContents(of:optimize:completion:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:F14SwiftMomentSDK13writeContentsERR">writeContents(of:optimize:completion:)</a>
@@ -206,7 +248,7 @@
 <span class="c1">// However for short snippets of Javascript (under 40 bytes), </span>
 <span class="c1">// such optimization may be unnecessary.</span>
 <span class="k">let</span> <span class="nv">javascript</span> <span class="o">=</span> <span class="s">"Moment.LED.setColor(Moment.Color.ORANGE);"</span>
-<span class="kt">MomentSDK</span><span class="o">.</span><span class="nf">writeContents</span><span class="p">(</span><span class="n">of</span> <span class="n">javascript</span><span class="p">,</span> <span class="nv">optimize</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+<span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="nf">writeContents</span><span class="p">(</span><span class="n">of</span> <span class="n">javascript</span><span class="p">,</span> <span class="nv">optimize</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
    <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
    <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
        <span class="c1">// Write succeeded</span>
@@ -283,7 +325,7 @@
 <span class="c1">//</span>
 <span class="c1">// For long JS scripts, optimization is strongly recommended.</span>
 <span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://gist.github.com/jakerockland/1de44467c3eaf132a2089b6c88d680b8"</span><span class="p">)</span><span class="o">!</span>
-<span class="kt">MomentSDK</span><span class="o">.</span><span class="nf">writeScript</span><span class="p">(</span><span class="n">at</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+<span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="nf">writeScript</span><span class="p">(</span><span class="n">at</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
    <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
    <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
        <span class="c1">// Write succeeded</span>
@@ -343,7 +385,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="https://wearmoment.com" target="_blank" rel="external">Somatic Labs</a>. All rights reserved. (Last updated: 2017-02-23)</p>
+          <p>&copy; 2017 <a class="link" href="https://wearmoment.com" target="_blank" rel="external">Somatic Labs</a>. All rights reserved. (Last updated: 2017-02-28)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
