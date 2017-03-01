@@ -62,6 +62,27 @@ public func forget() {
 
 // MARK: Bluetooth Javascript Methods
 
+
+/**
+ Writes the appropriate string to reset Moment's Javascript virtual machine.
+ 
+ Usage Example:
+ 
+ ```swift
+ SwiftMomentSDK.reset { result in
+    switch result {
+    case .success:
+        // Reset succeeded
+    case .failure(let error):
+        // An error occurred during reset
+    }
+ }
+ ```
+ */
+public func reset(completion: @escaping WriteRequestCallback) {
+    bluetoothManager.writeJavascript("Moment._reset_sdk();") { result in completion(result) }
+}
+
 /**
  Writes a given string of Javascript to the connected Moment device.
  
