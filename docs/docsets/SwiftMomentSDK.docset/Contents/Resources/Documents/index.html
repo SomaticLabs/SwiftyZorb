@@ -166,6 +166,17 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
+
+<p>To reset Moment&rsquo;s Javascript virtual machine:</p>
+<pre class="highlight swift"><code><span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="n">reset</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+    <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
+        <span class="c1">// Reset succeeded</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+        <span class="c1">// An error occurred during reset</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
 <a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license'>License</h2>
 
 <p>The SwiftMomentSDK is released under the <a href="https://github.com/SomaticLabs/SwiftMomentSDK/blob/master/LICENSE">MIT license</a>.</p>
