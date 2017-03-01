@@ -128,6 +128,19 @@ SwiftMomentSDK.writeContents(of javascript, optimize: false) { result in
 }
 ```
 
+To reset Moment's Javascript virtual machine:
+
+```swift
+SwiftMomentSDK.reset { result in
+    switch result {
+    case .success:
+        // Reset succeeded
+    case .failure(let error):
+        // An error occurred during reset
+    }
+}
+```
+
 ## License
 
 The SwiftMomentSDK is released under the [MIT license](https://github.com/SomaticLabs/SwiftMomentSDK/blob/master/LICENSE).
