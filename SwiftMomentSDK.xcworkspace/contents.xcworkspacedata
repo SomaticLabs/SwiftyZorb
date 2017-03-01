@@ -8,6 +8,9 @@
       location = "group:Carthage/Checkouts/Alamofire/Alamofire.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:Carthage/Checkouts/SwiftyJSON/SwiftyJSON.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "container:/Users/jakerockland/Code/somatic/_ios/SwiftMomentSDK/SwiftMomentSDK.xcodeproj">
    </FileRef>
    <FileRef

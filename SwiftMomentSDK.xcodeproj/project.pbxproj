@@ -13,8 +13,9 @@
 		403783FE1E5FDAA900B68645 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403783FA1E5FDAA900B68645 /* Identifiers.swift */; };
 		403783FF1E5FDAA900B68645 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403783FB1E5FDAA900B68645 /* Settings.swift */; };
 		407350701E5D045000CA2D94 /* SwiftMomentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407350661E5D045000CA2D94 /* SwiftMomentSDK.framework */; };
-		4073508E1E5E1A6E00CA2D94 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4073508B1E5E1A6E00CA2D94 /* Alamofire.framework */; };
-		407350901E5E1A6E00CA2D94 /* SwiftyBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4073508D1E5E1A6E00CA2D94 /* SwiftyBluetooth.framework */; };
+		40CFD8F61E66851400D001C7 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40CFD8F51E66851400D001C7 /* SwiftyJSON.framework */; };
+		40CFD8F81E66852000D001C7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40CFD8F71E66852000D001C7 /* Alamofire.framework */; };
+		40CFD8FA1E66852400D001C7 /* SwiftyBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40CFD8F91E66852400D001C7 /* SwiftyBluetooth.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,9 +37,9 @@
 		407350661E5D045000CA2D94 /* SwiftMomentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMomentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4073506A1E5D045000CA2D94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = SwiftMomentSDK/Info.plist; sourceTree = "<group>"; };
 		4073506F1E5D045000CA2D94 /* SwiftMomentSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftMomentSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4073508B1E5E1A6E00CA2D94 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../Carthage/Checkouts/Alamofire/build/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
-		4073508C1E5E1A6E00CA2D94 /* Permission.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Permission.framework; path = "../Carthage/Checkouts/Permission/build/Debug-iphoneos/Permission.framework"; sourceTree = "<group>"; };
-		4073508D1E5E1A6E00CA2D94 /* SwiftyBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyBluetooth.framework; path = "../Carthage/Checkouts/SwiftyBluetooth/build/Debug-iphoneos/SwiftyBluetooth.framework"; sourceTree = "<group>"; };
+		40CFD8F51E66851400D001C7 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../Library/Developer/Xcode/DerivedData/SwiftMomentSDK-amqywvypldncttbssfaogqdixvqd/Build/Products/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		40CFD8F71E66852000D001C7 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../Library/Developer/Xcode/DerivedData/SwiftMomentSDK-amqywvypldncttbssfaogqdixvqd/Build/Products/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
+		40CFD8F91E66852400D001C7 /* SwiftyBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyBluetooth.framework; path = "../../../../Library/Developer/Xcode/DerivedData/SwiftMomentSDK-amqywvypldncttbssfaogqdixvqd/Build/Products/Debug-iphoneos/SwiftyBluetooth.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,8 +47,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4073508E1E5E1A6E00CA2D94 /* Alamofire.framework in Frameworks */,
-				407350901E5E1A6E00CA2D94 /* SwiftyBluetooth.framework in Frameworks */,
+				40CFD8FA1E66852400D001C7 /* SwiftyBluetooth.framework in Frameworks */,
+				40CFD8F81E66852000D001C7 /* Alamofire.framework in Frameworks */,
+				40CFD8F61E66851400D001C7 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,9 +96,9 @@
 		4073508A1E5E1A6E00CA2D94 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4073508B1E5E1A6E00CA2D94 /* Alamofire.framework */,
-				4073508C1E5E1A6E00CA2D94 /* Permission.framework */,
-				4073508D1E5E1A6E00CA2D94 /* SwiftyBluetooth.framework */,
+				40CFD8F91E66852400D001C7 /* SwiftyBluetooth.framework */,
+				40CFD8F71E66852000D001C7 /* Alamofire.framework */,
+				40CFD8F51E66851400D001C7 /* SwiftyJSON.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -367,6 +369,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SwiftMomentSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -389,6 +395,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SwiftMomentSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

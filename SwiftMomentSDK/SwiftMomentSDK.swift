@@ -8,6 +8,7 @@
 
 import SwiftyBluetooth
 import Alamofire
+import SwiftyJSON
 
 // MARK: Bluetooth Management Methods
 
@@ -115,14 +116,23 @@ public func writeContents(of javascript: String, optimize: Bool = true, completi
         let params: Parameters = [
             "js_code": javascript,
             "compilation_level": "SIMPLE_OPTIMIZATIONS",
-            "output_format": "text",
+            "output_format": "json",
             "output_info": "compiled_code"
         ]
-        Alamofire.request(Constants.closureCompilerURL, method: .post, parameters: params, headers: Constants.closureCompilerHeaders).validate().responseString { response in
+        Alamofire.request(Constants.closureCompilerURL, method: .post, parameters: params, headers: Constants.closureCompilerHeaders)
+            .validate()
+            .responseJSON { response in
             // Handle response appropriately
             switch response.result {
             case .success(let value):
-                bluetoothManager.writeJavascript(value) { result in completion(result) }
+                let json = JSON(value)
+                if let errors = json["serverErrors"].array, let error = errors.first?["error"].string {
+                    completion(.failure(ManagerError("Failed to load script, \(error).")))
+                } else if let compiledCode = json["compiledCode"].string {
+                    bluetoothManager.writeJavascript(compiledCode) { result in completion(result) }
+                } else {
+                    completion(.failure(ManagerError("Failed to load script, unknown error occurred.")))
+                }
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -169,24 +179,42 @@ public func writeScript(at url: URL, optimize: Bool = true, completion: @escapin
         let params: Parameters = [
             "code_url": url.absoluteString,
             "compilation_level": "SIMPLE_OPTIMIZATIONS",
-            "output_format": "text",
+            "output_format": "json",
             "output_info": "compiled_code"
         ]
-        Alamofire.request(Constants.closureCompilerURL, method: .post, parameters: params, headers: Constants.closureCompilerHeaders).validate().responseString { response in
+        Alamofire.request(Constants.closureCompilerURL, method: .post, parameters: params, headers: Constants.closureCompilerHeaders)
+            .validate()
+            .responseJSON { response in
             // Handle response appropriately
             switch response.result {
             case .success(let value):
-                bluetoothManager.writeJavascript(value) { result in completion(result) }
+                let json = JSON(value)
+                if let errors = json["serverErrors"].array, let error = errors.first?["error"].string {
+                    completion(.failure(ManagerError("Failed to load script, \(error).")))
+                } else if let compiledCode = json["compiledCode"].string {
+                    bluetoothManager.writeJavascript(compiledCode) { result in completion(result) }
+                } else {
+                    completion(.failure(ManagerError("Failed to load script, unknown error occurred.")))
+                }
             case .failure(let error):
                 completion(.failure(error))
             }
         }
     } else {
-        Alamofire.request(url).validate().responseString { response in
+        Alamofire.request(url)
+            .validate()
+            .responseJSON { response in
             // Handle response appropriately
             switch response.result {
             case .success(let value):
-                bluetoothManager.writeJavascript(value) { result in completion(result) }
+                let json = JSON(value)
+                if let errors = json["serverErrors"].array, let error = errors.first?["error"].string {
+                    completion(.failure(ManagerError("Failed to load script, \(error).")))
+                } else if let compiledCode = json["compiledCode"].string {
+                    bluetoothManager.writeJavascript(compiledCode) { result in completion(result) }
+                } else {
+                    completion(.failure(ManagerError("Failed to load script, unknown error occurred.")))
+                }
             case .failure(let error):
                 completion(.failure(error))
             }
