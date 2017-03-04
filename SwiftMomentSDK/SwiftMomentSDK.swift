@@ -81,7 +81,7 @@ public func forget() {
  ```
  */
 public func reset(completion: @escaping WriteRequestCallback) {
-    bluetoothManager.writeJavascript("Moment._reset_sdk();") { result in completion(result) }
+    bluetoothManager.writeJavascript("Moment._reset_sdk();", anonymize: false) { result in completion(result) }
 }
 
 /**

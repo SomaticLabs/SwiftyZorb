@@ -192,7 +192,7 @@ final internal class BluetoothManager: NSObject {
      
      - Parameter javascript: The Javascript code to be written
      */
-    func writeJavascript(_ javascript: String, completion: @escaping WriteRequestCallback) {
+    func writeJavascript(_ javascript: String, anonymize: Bool = true, completion: @escaping WriteRequestCallback) {
         // Ensure that we already have a reference to Moment peripheral
         guard let peripheral = peripheral else {
             // Treat as error and handle in completion
@@ -202,8 +202,8 @@ final internal class BluetoothManager: NSObject {
             return // Exit
         }
         
-        // Wrap given Javascript string in an anonymous function and add a null terminating character
-        let javascript = "(function(Moment){\(javascript)})(Moment);\0"
+        // Wrap given Javascript string in an anonymous function (if flag set) and add a null terminating character
+        let javascript = anonymize ? "(function(Moment){\(javascript)})(Moment);\0" : "\(javascript)\0"
         
         // Create byte array from Javascript `String`
         let bytes = Array(javascript.utf8)
