@@ -16,6 +16,8 @@ This library is made to be used in conjuction with our [embedded Javascript SDK]
 
 To get started developing your own haptic animations, check out our [Moment simulator](https://somaticlabs.github.io/moment-sim/).
 
+For a simple example of the SwiftMomentSDK in action, check out [Soma](https://github.com/SomaticLabs/Soma).
+
 ![Moment Simulator](https://github.com/SomaticLabs/SwiftMomentSDK/raw/master/images/sim.png)
 
 Animations and programs created in the simulator can be ran on Moment using this library, either by sending a embedding the Javascript directly in your application or by storing your scripts in [Github Gists](https://gist.github.com) and referencing those in your applications. 
