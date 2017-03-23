@@ -33,6 +33,62 @@ final internal class ManagerError: NSError {
     
 }
 
+/// A simple FIFO (first in, first out) queue for managing data to be written to the Javascript BLE characteristic (thread safe)
+final internal class PacketQueue {
+    /// Internal array for managing queue
+    private var array = [ArraySlice<UInt8>]()
+    
+    /// Internal access queue for managing packet queue
+    private let accessQueue = DispatchQueue(label: "SynchronizedArrayAccess", attributes: .concurrent)
+    
+    /// Variable for counting the number of packet sets queued
+    var numSets = 0
+    
+    /// Variable for getting count in queue
+    var count: Int {
+        var count = 0
+        
+        accessQueue.sync {
+            count = self.array.count
+        }
+        
+        return count
+    }
+    
+    /// Variable for checking if the queue is empty
+    var isEmpty: Bool {
+        var isEmpty = true
+        
+        accessQueue.sync {
+            isEmpty = self.array.isEmpty
+        }
+        
+        return isEmpty
+    }
+    
+    /// Method for adding item to the queue
+    func enqueue(_ element: ArraySlice<UInt8>) {
+        accessQueue.async(flags:.barrier) {
+            self.array.append(element)
+        }
+    }
+    
+    /// Method for removing item from the queue
+    func dequeue() -> ArraySlice<UInt8>? {
+        var element: ArraySlice<UInt8>? = nil
+        
+        accessQueue.sync {
+            element = self.array.first
+        }
+        
+        accessQueue.async(flags:.barrier) {
+            self.array.removeFirst()
+        }
+        
+        return element
+    }
+}
+
 // MARK: - Bluetooth Manager Class
 
 /// Global variable readily allows access to singleton manager
@@ -53,6 +109,9 @@ final internal class BluetoothManager: NSObject {
     
     /// `SwiftyBluetooth` peripheral for Moment
     var peripheral: Peripheral?
+    
+    /// `PacketQueue` for storing Javascript packets to be sent
+    var packetQueue: PacketQueue
 
     // MARK: - Initialization
     
@@ -61,6 +120,7 @@ final internal class BluetoothManager: NSObject {
      */
     override private init() {
         central = Central.sharedInstance
+        packetQueue = PacketQueue()
         super.init()
     }
     
@@ -208,32 +268,37 @@ final internal class BluetoothManager: NSObject {
         // Create byte array from Javascript `String`
         let bytes = Array(javascript.utf8)
         
-        // Create packet list
-        var packetList = [ArraySlice<UInt8>]()
-        
-        // Split data in 20-byte packets and fill packet list
+        // Split data in 20-byte packets and fill packet queue
         for i in 0...(bytes.count / 20) {
             let min = i * 20
             let max = (((i + 1) * 20) < bytes.count) ? ((i + 1) * 20) : bytes.count
             let packet = bytes[min..<max]
-            packetList.append(packet)
+            if !packet.isEmpty {
+                packetQueue.enqueue(packet)
+            }
         }
         
         // Create recursive writing function
-        func recursiveWrite(_ packetList: [ArraySlice<UInt8>], completion: @escaping WriteRequestCallback) {
-            if packetList.isEmpty {
-                // Handle base case
-                completion(.success(.noValue))
-            } else {
-                // Handle recursive case
-                var packetList = packetList
-                let packet = packetList.removeFirst()
-                let data = Data(bytes: packet)
-                DispatchQueue.main.asyncAfter(deadline: .now() + .nanoseconds(1)) {
-                    peripheral.writeValue(ofCharacWithUUID: Identifiers.NordicUARTRXCharacteristicUUID, fromServiceWithUUID: Identifiers.NordicUARTServiceUUID, value: data) { result in
+        func recursiveWrite(completion: @escaping WriteRequestCallback) {
+            DispatchQueue.main.async {
+                if self.packetQueue.isEmpty {
+                    // Handle base case
+                    while self.packetQueue.numSets > 0 {
+                        completion(.success(.noValue))
+                        self.packetQueue.numSets -= 1
+                    }
+                } else {
+                    // Get data to send
+                    guard let packet = self.packetQueue.dequeue() else {
+                        return
+                    }
+                    let data = Data(bytes: packet)
+                    
+                    // Handle recursive case
+                    self.peripheral?.writeValue(ofCharacWithUUID: Identifiers.NordicUARTRXCharacteristicUUID, fromServiceWithUUID: Identifiers.NordicUARTServiceUUID, value: data) { result in
                         switch result {
                         case .success:
-                            recursiveWrite(packetList, completion: completion)
+                            recursiveWrite(completion: completion)
                         case .failure(let error):
                             completion(.failure(error))
                         }
@@ -241,7 +306,10 @@ final internal class BluetoothManager: NSObject {
                 }
             }
         }
-        
-        // Write data to our characteristic
-        recursiveWrite(packetList) { result in completion(result) }    }
+
+        // Write data to our characteristic if write not already in process of writing
+        packetQueue.numSets += 1
+        recursiveWrite() { result in completion(result) }
+    }
+    
 }
