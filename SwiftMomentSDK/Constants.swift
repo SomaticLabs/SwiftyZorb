@@ -31,11 +31,8 @@ internal struct Constants {
     
     // MARK: - Web Constants
     
-    /// Web address for the Google closure compiler API
-    static let closureCompilerURL = URL(string: "https://closure-compiler.appspot.com/compile")!
-    
-    /// Headers for accessing Google closure compiler
-    static let closureCompilerHeaders = ["Content-type": "application/x-www-form-urlencoded"]
+    /// Web address for the Somatic Labs Javascript compiler API
+    static let javascriptCompilerURL = URL(string: "https://firmware-staging.wearmoment.com/compile")!
     
     // MARK: - Misc. Constants
     

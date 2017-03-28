@@ -81,7 +81,7 @@ public func forget() {
  ```
  */
 public func reset(completion: @escaping WriteRequestCallback) {
-    bluetoothManager.writeJavascript("Moment._reset_sdk()", anonymize: false) { result in completion(result) }
+    bluetoothManager.writeJavascript(Data()) { result in completion(result) }
 }
 
 /**
@@ -110,36 +110,34 @@ public func reset(completion: @escaping WriteRequestCallback) {
  
  - Parameter optimize: Boolean flag for whether or not the input Javascript should be optimized by the Google closure compiler. Default value is set to `true`, which is the recommended setting for best Bluetooth transfer speed, but can be set to false if alternative behavior is needed (one needs to avoid the extra HTTP request).
  */
-public func writeContents(of javascript: String, optimize: Bool = true, completion: @escaping WriteRequestCallback) {
+public func writeJavascript(_ javascript: String, completion: @escaping WriteRequestCallback) {
     // If optimization flag is set to true, run the Javascript through the Google closure compiler
-    if optimize {
-        let params: Parameters = [
-            "js_code": javascript,
-            "compilation_level": "SIMPLE_OPTIMIZATIONS",
-            "output_format": "json",
-            "output_info": "compiled_code"
-        ]
-        Alamofire.request(Constants.closureCompilerURL, method: .post, parameters: params, headers: Constants.closureCompilerHeaders)
-            .validate()
-            .responseJSON { response in
-            // Handle response appropriately
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                if let errors = json["serverErrors"].array, let error = errors.first?["error"].string {
-                    completion(.failure(ManagerError("Failed to load script, \(error).")))
-                } else if let compiledCode = json["compiledCode"].string {
-                    bluetoothManager.writeJavascript(compiledCode) { result in completion(result) }
-                } else {
-                    completion(.failure(ManagerError("Failed to load script, unknown error occurred.")))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
+    let params: Parameters = [
+        "js": javascript
+    ]
+    Alamofire.request(Constants.javascriptCompilerURL, method: .post, parameters: params)
+        .validate()
+        .responseData { response in
+        // Handle response appropriately
+        switch response.result {
+        case .success(let bytes):
+            bluetoothManager.writeJavascript(bytes) { result in completion(result) }
+        case .failure(let error):
+            completion(.failure(error))
         }
-    } else {
-        bluetoothManager.writeJavascript(javascript) { result in completion(result) }
     }
+}
+
+/**
+ TODO
+ */
+public func writeBytecode(_ bytecode: String, completion: @escaping WriteRequestCallback) {
+    // If optimization flag is set to true, run the Javascript through the Google closure compiler
+    guard let bytes = Data(base64Encoded: bytecode) else {
+        completion(.failure(ManagerError("Invalid base64 encoded bytecode string.")))
+        return // Exit
+    }
+    bluetoothManager.writeJavascript(bytes) { result in completion(result) }
 }
 
 /**
@@ -167,7 +165,7 @@ public func writeContents(of javascript: String, optimize: Bool = true, completi
  
  - Parameter optimize: Boolean flag for whether or not the input Javascript should be optimized by the Google closure compiler. Default value is set to `true`, which is the recommended setting for best Bluetooth transfer speed, but can be set to false if alternative behavior is needed (one needs to avoid the extra HTTP request).
  */
-public func writeScript(at url: URL, optimize: Bool = true, completion: @escaping WriteRequestCallback) {
+public func writeJavascript(at url: URL, completion: @escaping WriteRequestCallback) {
     // Add a random query based on the current time, so that we don't have issues with source file being cached by Github
     let randomQuery = "?".appending(String(Int(NSDate().timeIntervalSince1970)))
     
@@ -175,49 +173,40 @@ public func writeScript(at url: URL, optimize: Bool = true, completion: @escapin
     let url = URL(string: url.appendingPathComponent("raw").absoluteString + randomQuery)!
     
     // If optimization flag is set to true, run the Javascript through the Google closure compiler
-    if optimize {
-        let params: Parameters = [
-            "code_url": url.absoluteString,
-            "compilation_level": "SIMPLE_OPTIMIZATIONS",
-            "output_format": "json",
-            "output_info": "compiled_code"
-        ]
-        Alamofire.request(Constants.closureCompilerURL, method: .post, parameters: params, headers: Constants.closureCompilerHeaders)
-            .validate()
-            .responseJSON { response in
-            // Handle response appropriately
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                if let errors = json["serverErrors"].array, let error = errors.first?["error"].string {
-                    completion(.failure(ManagerError("Failed to load script, \(error).")))
-                } else if let compiledCode = json["compiledCode"].string {
-                    bluetoothManager.writeJavascript(compiledCode) { result in completion(result) }
-                } else {
-                    completion(.failure(ManagerError("Failed to load script, unknown error occurred.")))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
+    let params: Parameters = [
+        "src": url.absoluteString
+    ]
+    Alamofire.request(Constants.javascriptCompilerURL, method: .post, parameters: params)
+        .validate()
+        .responseData { response in
+        // Handle response appropriately
+        switch response.result {
+        case .success(let bytes):
+            bluetoothManager.writeJavascript(bytes) { result in completion(result) }
+        case .failure(let error):
+            completion(.failure(error))
         }
-    } else {
-        Alamofire.request(url)
-            .validate()
-            .responseJSON { response in
-            // Handle response appropriately
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                if let errors = json["serverErrors"].array, let error = errors.first?["error"].string {
-                    completion(.failure(ManagerError("Failed to load script, \(error).")))
-                } else if let compiledCode = json["compiledCode"].string {
-                    bluetoothManager.writeJavascript(compiledCode) { result in completion(result) }
-                } else {
-                    completion(.failure(ManagerError("Failed to load script, unknown error occurred.")))
-                }
-            case .failure(let error):
-                completion(.failure(error))
+    }
+}
+
+/**
+ TODO
+ */
+public func writeBytecode(at url: URL, completion: @escaping WriteRequestCallback) {
+    // If optimization flag is set to true, run the Javascript through the Google closure compiler
+    Alamofire.request(url)
+        .validate()
+        .responseString { response in
+        // Handle response appropriately
+        switch response.result {
+        case .success(let bytecode):
+            guard let bytes = Data(base64Encoded: bytecode) else {
+                completion(.failure(ManagerError("Invalid base64 encoded bytecode string.")))
+                return // Exit
             }
+            bluetoothManager.writeJavascript(bytes) { result in completion(result) }
+        case .failure(let error):
+            completion(.failure(error))
         }
     }
 }
