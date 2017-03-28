@@ -265,6 +265,7 @@ final internal class BluetoothManager: NSObject {
         // If bytes are empty, send only the integer 0
         if bytes.count == 0 {
             let bytes = Data(bytes: [UInt8(0)])
+            packetQueue.enqueue(ArraySlice(bytes))
         } else {
             // Split data in 20-byte packets and fill packet list
             let packetCount = Int(ceil(Double(bytes.count + 1) / 20))
