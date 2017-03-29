@@ -252,7 +252,7 @@ final internal class BluetoothManager: NSObject {
      
      - Parameter javascript: The Javascript code to be written
      */
-    func writeJavascript(_ javascript: String, anonymize: Bool = true, completion: @escaping WriteRequestCallback) {
+    func writeJavascript(_ bytes: Data, completion: @escaping WriteRequestCallback) {
         // Ensure that we already have a reference to Moment peripheral
         guard let peripheral = peripheral else {
             // Treat as error and handle in completion
@@ -262,18 +262,18 @@ final internal class BluetoothManager: NSObject {
             return // Exit
         }
         
-        // Wrap given Javascript string in an anonymous function (if flag set) and add a null terminating character
-        let javascript = anonymize ? "(function(Moment){\(javascript)})(Moment);\0" : "\(javascript)\0"
-        
-        // Create byte array from Javascript `String`
-        let bytes = Array(javascript.utf8)
-        
-        // Split data in 20-byte packets and fill packet queue
-        for i in 0...(bytes.count / 20) {
-            let min = i * 20
-            let max = (((i + 1) * 20) < bytes.count) ? ((i + 1) * 20) : bytes.count
-            let packet = bytes[min..<max]
-            if !packet.isEmpty {
+        // If bytes are empty, send only the integer 0
+        if bytes.count == 0 {
+            let bytes = Data(bytes: [UInt8(0)])
+            packetQueue.enqueue(ArraySlice(bytes))
+        } else {
+            // Split data in 20-byte packets and fill packet list
+            let packetCount = Int(ceil(Double(bytes.count + 1) / 20))
+            let bytes = Data(bytes: [UInt8(packetCount)]) + bytes
+            for i in 0..<packetCount {
+                let min = i * 20
+                let max = (((i + 1) * 20) < bytes.count) ? ((i + 1) * 20) : bytes.count
+                let packet = ArraySlice(bytes[min..<max])
                 packetQueue.enqueue(packet)
             }
         }
