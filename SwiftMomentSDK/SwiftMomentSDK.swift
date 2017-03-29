@@ -85,18 +85,17 @@ public func reset(completion: @escaping WriteRequestCallback) {
 }
 
 /**
- Writes a given string of Javascript to the connected Moment device.
+ Writes a given string of Javascript to the connected Moment device. 
+ Using this method requires internet connection, which is used to compile the Javascript to bytecode before transmission.
  
  Usage Example:
  
  ```swift
- // Calling `writeContents` with optimization will require an extra HTTP request, 
- // but will result in much faster Bluetooth transfer. 
- //
- // However for short snippets of Javascript (under 40 bytes), 
- // such optimization may be unnecessary.
- let javascript = "Moment.LED.setColor(Moment.Color.ORANGE);"
- SwiftMomentSDK.writeContents(of javascript, optimize: false) { result in
+ let javascript = "Moment.on('timertick', function () {" +
+ "var ms = Moment.uptime();" +
+ "// do something time-related here" +
+ "});"
+ SwiftMomentSDK.writeJavascript(javascript) { result in
     switch result {
     case .success:
         // Write succeeded
@@ -107,11 +106,9 @@ public func reset(completion: @escaping WriteRequestCallback) {
  ```
  
  - Parameter javascript: The Javascript code to be written
- 
- - Parameter optimize: Boolean flag for whether or not the input Javascript should be optimized by the Google closure compiler. Default value is set to `true`, which is the recommended setting for best Bluetooth transfer speed, but can be set to false if alternative behavior is needed (one needs to avoid the extra HTTP request).
- */
+  */
 public func writeJavascript(_ javascript: String, completion: @escaping WriteRequestCallback) {
-    // If optimization flag is set to true, run the Javascript through the Google closure compiler
+    // Compile Javascript and write it to our device
     let params: Parameters = [
         "js": javascript
     ]
@@ -129,10 +126,26 @@ public func writeJavascript(_ javascript: String, completion: @escaping WriteReq
 }
 
 /**
- TODO
+ Writes a given string of base64 encoded bytecode to the connected Moment device.
+ 
+ Usage Example:
+ 
+ ```swift
+ let bytecode = "BgAAAFAAAAAsAAAAAQAAAAQAAQABAAUAAAEDBAYAAQACAAYAOwABKQIDxEYBAAAABAABACEAAwABAgMDAAAGAAgAOwECt8gARgAAAAAAAAAFAAAAAAAAAAIAb24JAHRpbWVydGljawABAHQABgBNb21lbnQGAHVwdGltZQ=="
+ SwiftMomentSDK.writeBytecode(bytecode) { result in
+    switch result {
+    case .success:
+        // Write succeeded
+    case .failure(let error):
+        // An error occurred during write
+    }
+ }
+ ```
+ 
+ - Parameter bytecode: The base64 encoded representation of pre-compiled Javascript bytecode to be written
  */
 public func writeBytecode(_ bytecode: String, completion: @escaping WriteRequestCallback) {
-    // If optimization flag is set to true, run the Javascript through the Google closure compiler
+    // Write compiled Javascript to our device
     guard let bytes = Data(base64Encoded: bytecode) else {
         completion(.failure(ManagerError("Invalid base64 encoded bytecode string.")))
         return // Exit
@@ -146,12 +159,8 @@ public func writeBytecode(_ bytecode: String, completion: @escaping WriteRequest
  Usage Example:
  
  ```swift
- // Calling `writeScript` with optimization will require an extra HTTP request, 
- // but will result in much faster Bluetooth transfer. 
- //
- // For long JS scripts, optimization is strongly recommended.
- let url = URL(string: "https://gist.github.com/jakerockland/1de44467c3eaf132a2089b6c88d680b8")!
- SwiftMomentSDK.writeScript(at url) { result in
+ let url = URL(string: "https://gist.github.com/jakerockland/1de44467c3eaf132a2089b6c88d680b8/raw")!
+ SwiftMomentSDK.writeJavascript(at url) { result in
     switch result {
     case .success:
         // Write succeeded
@@ -161,18 +170,14 @@ public func writeBytecode(_ bytecode: String, completion: @escaping WriteRequest
  }
  ```
  
- - Parameter script: A URL to the hosted Javascript script to be written
- 
- - Parameter optimize: Boolean flag for whether or not the input Javascript should be optimized by the Google closure compiler. Default value is set to `true`, which is the recommended setting for best Bluetooth transfer speed, but can be set to false if alternative behavior is needed (one needs to avoid the extra HTTP request).
+ - Parameter url: A URL to the hosted Javascript script to be written
  */
 public func writeJavascript(at url: URL, completion: @escaping WriteRequestCallback) {
-    // Add a random query based on the current time, so that we don't have issues with source file being cached by Github
+    // Add a random query based on the current time, so that we don't have issues with source file being cached
     let randomQuery = "?".appending(String(Int(NSDate().timeIntervalSince1970)))
+    let url = URL(string: url.absoluteString + randomQuery)!
     
-    // Format the script URL to retrieve the raw text version
-    let url = URL(string: url.appendingPathComponent("raw").absoluteString + randomQuery)!
-    
-    // If optimization flag is set to true, run the Javascript through the Google closure compiler
+    // Compile Javascript and write it to our device
     let params: Parameters = [
         "src": url.absoluteString
     ]
@@ -190,10 +195,26 @@ public func writeJavascript(at url: URL, completion: @escaping WriteRequestCallb
 }
 
 /**
- TODO
+ Writes the Javascript bytecode at a given URL to the connected Moment device.
+ 
+ Usage Example:
+ 
+ ```swift
+ let url = URL(string: "https://gist.github.com/jakerockland/1de44467c3eaf132a2089b6c88d680b8/raw")!
+ SwiftMomentSDK.writeBytecode(at url) { result in
+    switch result {
+    case .success:
+        // Write succeeded
+    case .failure(let error):
+        // An error occurred during write
+    }
+ }
+ ```
+ 
+ - Parameter url: A URL to the hosted Javascript bytecode script to be written
  */
 public func writeBytecode(at url: URL, completion: @escaping WriteRequestCallback) {
-    // If optimization flag is set to true, run the Javascript through the Google closure compiler
+    // Download compiled Javascript and write it to our device
     Alamofire.request(url)
         .validate()
         .responseString { response in

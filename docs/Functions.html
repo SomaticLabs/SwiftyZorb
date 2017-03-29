@@ -31,7 +31,7 @@
             <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F14SwiftMomentSDK7connectFT10completionFGO15SwiftyBluetooth6ResultOS0_7NoValue_T__T_">connect(completion:)</a>
+                <a href="Functions.html#/s:F14SwiftMomentSDK7connectERR">connect(completion:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:F14SwiftMomentSDK10disconnectFT_T_">disconnect()</a>
@@ -40,13 +40,19 @@
                 <a href="Functions.html#/s:F14SwiftMomentSDK6forgetFT_T_">forget()</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F14SwiftMomentSDK5resetFT10completionFGO15SwiftyBluetooth6ResultOS0_7NoValue_T__T_">reset(completion:)</a>
+                <a href="Functions.html#/s:F14SwiftMomentSDK5resetERR">reset(completion:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F14SwiftMomentSDK13writeContentsFT2ofSS8optimizeSb10completionFGO15SwiftyBluetooth6ResultOS0_7NoValue_T__T_">writeContents(of:optimize:completion:)</a>
+                <a href="Functions.html#/s:F14SwiftMomentSDK13writeBytecodeERR">writeBytecode(_:completion:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F14SwiftMomentSDK11writeScriptFT2atV10Foundation3URL8optimizeSb10completionFGO15SwiftyBluetooth6ResultOS2_7NoValue_T__T_">writeScript(at:optimize:completion:)</a>
+                <a href="Functions.html#/s:F14SwiftMomentSDK13writeBytecodeERR">writeBytecode(at:completion:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:F14SwiftMomentSDK15writeJavascriptERR">writeJavascript(_:completion:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:F14SwiftMomentSDK15writeJavascriptERR">writeJavascript(at:completion:)</a>
               </li>
             </ul>
           </li>
@@ -72,9 +78,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:F14SwiftMomentSDK7connectFT10completionFGO15SwiftyBluetooth6ResultOS0_7NoValue_T__T_"></a>
+                    <a name="/s:F14SwiftMomentSDK7connectERR"></a>
                     <a name="//apple_ref/swift/Function/connect(completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:F14SwiftMomentSDK7connectFT10completionFGO15SwiftyBluetooth6ResultOS0_7NoValue_T__T_">connect(completion:)</a>
+                    <a class="token" href="#/s:F14SwiftMomentSDK7connectERR">connect(completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -189,9 +195,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:F14SwiftMomentSDK5resetFT10completionFGO15SwiftyBluetooth6ResultOS0_7NoValue_T__T_"></a>
+                    <a name="/s:F14SwiftMomentSDK5resetERR"></a>
                     <a name="//apple_ref/swift/Function/reset(completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:F14SwiftMomentSDK5resetFT10completionFGO15SwiftyBluetooth6ResultOS0_7NoValue_T__T_">reset(completion:)</a>
+                    <a class="token" href="#/s:F14SwiftMomentSDK5resetERR">reset(completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -228,9 +234,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:F14SwiftMomentSDK13writeContentsFT2ofSS8optimizeSb10completionFGO15SwiftyBluetooth6ResultOS0_7NoValue_T__T_"></a>
-                    <a name="//apple_ref/swift/Function/writeContents(of:optimize:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:F14SwiftMomentSDK13writeContentsFT2ofSS8optimizeSb10completionFGO15SwiftyBluetooth6ResultOS0_7NoValue_T__T_">writeContents(of:optimize:completion:)</a>
+                    <a name="/s:F14SwiftMomentSDK15writeJavascriptERR"></a>
+                    <a name="//apple_ref/swift/Function/writeJavascript(_:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:F14SwiftMomentSDK15writeJavascriptERR">writeJavascript(_:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -238,17 +244,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Writes a given string of Javascript to the connected Moment device.</p>
+                        <p>Writes a given string of Javascript to the connected Moment device. 
+Using this method requires internet connection, which is used to compile the Javascript to bytecode before transmission.</p>
 
 <p>Usage Example:</p>
 
-<pre class="highlight swift"><code><span class="c1">// Calling `writeContents` with optimization will require an extra HTTP request, </span>
-<span class="c1">// but will result in much faster Bluetooth transfer. </span>
-<span class="c1">//</span>
-<span class="c1">// However for short snippets of Javascript (under 40 bytes), </span>
-<span class="c1">// such optimization may be unnecessary.</span>
-<span class="k">let</span> <span class="nv">javascript</span> <span class="o">=</span> <span class="s">"Moment.LED.setColor(Moment.Color.ORANGE);"</span>
-<span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="nf">writeContents</span><span class="p">(</span><span class="n">of</span> <span class="n">javascript</span><span class="p">,</span> <span class="nv">optimize</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">javascript</span> <span class="o">=</span> <span class="s">"Moment.on('timertick', function () {"</span> <span class="o">+</span>
+<span class="s">"var ms = Moment.uptime();"</span> <span class="o">+</span>
+<span class="s">"// do something time-related here"</span> <span class="o">+</span>
+<span class="s">"});"</span>
+<span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="nf">writeJavascript</span><span class="p">(</span><span class="n">javascript</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
    <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
    <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
        <span class="c1">// Write succeeded</span>
@@ -263,7 +268,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">writeContents</span><span class="p">(</span><span class="n">of</span> <span class="nv">javascript</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">optimize</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">WriteRequestCallback</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">writeJavascript</span><span class="p">(</span><span class="n">_</span> <span class="nv">javascript</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">WriteRequestCallback</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -284,19 +289,6 @@
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>optimize</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Boolean flag for whether or not the input Javascript should be optimized by the Google closure compiler. Default value is set to <code>true</code>, which is the recommended setting for best Bluetooth transfer speed, but can be set to false if alternative behavior is needed (one needs to avoid the extra HTTP request).</p>
-
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -306,9 +298,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:F14SwiftMomentSDK11writeScriptFT2atV10Foundation3URL8optimizeSb10completionFGO15SwiftyBluetooth6ResultOS2_7NoValue_T__T_"></a>
-                    <a name="//apple_ref/swift/Function/writeScript(at:optimize:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:F14SwiftMomentSDK11writeScriptFT2atV10Foundation3URL8optimizeSb10completionFGO15SwiftyBluetooth6ResultOS2_7NoValue_T__T_">writeScript(at:optimize:completion:)</a>
+                    <a name="/s:F14SwiftMomentSDK13writeBytecodeERR"></a>
+                    <a name="//apple_ref/swift/Function/writeBytecode(_:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:F14SwiftMomentSDK13writeBytecodeERR">writeBytecode(_:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -316,16 +308,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Writes the Javascript code at a given URL to the connected Moment device.</p>
+                        <p>Writes a given string of base64 encoded bytecode to the connected Moment device.</p>
 
 <p>Usage Example:</p>
 
-<pre class="highlight swift"><code><span class="c1">// Calling `writeScript` with optimization will require an extra HTTP request, </span>
-<span class="c1">// but will result in much faster Bluetooth transfer. </span>
-<span class="c1">//</span>
-<span class="c1">// For long JS scripts, optimization is strongly recommended.</span>
-<span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://gist.github.com/jakerockland/1de44467c3eaf132a2089b6c88d680b8"</span><span class="p">)</span><span class="o">!</span>
-<span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="nf">writeScript</span><span class="p">(</span><span class="n">at</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">bytecode</span> <span class="o">=</span> <span class="s">"BgAAAFAAAAAsAAAAAQAAAAQAAQABAAUAAAEDBAYAAQACAAYAOwABKQIDxEYBAAAABAABACEAAwABAgMDAAAGAAgAOwECt8gARgAAAAAAAAAFAAAAAAAAAAIAb24JAHRpbWVydGljawABAHQABgBNb21lbnQGAHVwdGltZQ=="</span>
+<span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="nf">writeBytecode</span><span class="p">(</span><span class="n">bytecode</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
    <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
    <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
        <span class="c1">// Write succeeded</span>
@@ -340,7 +328,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">writeScript</span><span class="p">(</span><span class="n">at</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">optimize</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">WriteRequestCallback</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">writeBytecode</span><span class="p">(</span><span class="n">_</span> <span class="nv">bytecode</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">WriteRequestCallback</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -351,7 +339,67 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>script</em>
+                                <em>bytecode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The base64 encoded representation of pre-compiled Javascript bytecode to be written</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:F14SwiftMomentSDK15writeJavascriptERR"></a>
+                    <a name="//apple_ref/swift/Function/writeJavascript(at:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:F14SwiftMomentSDK15writeJavascriptERR">writeJavascript(at:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Writes the Javascript code at a given URL to the connected Moment device.</p>
+
+<p>Usage Example:</p>
+
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://gist.github.com/jakerockland/1de44467c3eaf132a2089b6c88d680b8/raw"</span><span class="p">)</span><span class="o">!</span>
+<span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="nf">writeJavascript</span><span class="p">(</span><span class="n">at</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+   <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+   <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
+       <span class="c1">// Write succeeded</span>
+   <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+       <span class="c1">// An error occurred during write</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">writeJavascript</span><span class="p">(</span><span class="n">at</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">WriteRequestCallback</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
                                 </code>
                               </td>
                               <td>
@@ -361,15 +409,62 @@
                                 </div>
                               </td>
                             </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:F14SwiftMomentSDK13writeBytecodeERR"></a>
+                    <a name="//apple_ref/swift/Function/writeBytecode(at:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:F14SwiftMomentSDK13writeBytecodeERR">writeBytecode(at:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Writes the Javascript bytecode at a given URL to the connected Moment device.</p>
+
+<p>Usage Example:</p>
+
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://gist.github.com/jakerockland/1de44467c3eaf132a2089b6c88d680b8/raw"</span><span class="p">)</span><span class="o">!</span>
+<span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="nf">writeBytecode</span><span class="p">(</span><span class="n">at</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+   <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+   <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
+       <span class="c1">// Write succeeded</span>
+   <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+       <span class="c1">// An error occurred during write</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">writeBytecode</span><span class="p">(</span><span class="n">at</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">WriteRequestCallback</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
                             <tr>
                               <td>
                                 <code>
-                                <em>optimize</em>
+                                <em>url</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>Boolean flag for whether or not the input Javascript should be optimized by the Google closure compiler. Default value is set to <code>true</code>, which is the recommended setting for best Bluetooth transfer speed, but can be set to false if alternative behavior is needed (one needs to avoid the extra HTTP request).</p>
+                                  <p>A URL to the hosted Javascript bytecode script to be written</p>
 
                                 </div>
                               </td>
@@ -385,7 +480,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="https://wearmoment.com" target="_blank" rel="external">Somatic Labs</a>. All rights reserved. (Last updated: 2017-02-28)</p>
+          <p>&copy; 2017 <a class="link" href="https://wearmoment.com" target="_blank" rel="external">Somatic Labs</a>. All rights reserved. (Last updated: 2017-03-29)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
