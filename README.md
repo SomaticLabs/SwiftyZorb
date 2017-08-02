@@ -96,11 +96,24 @@ Note that simply disconnecting from the device will not forget a stored connecti
 
 ### Sending Javascript
 
-There are two ways to send Javascript to Moment to be executed on the device—by embedding it as a `String` in your application, or by passing a `URL` to a [Github Gist](https://gist.github.com) that contains your code.
+There are two ways to send Javascript to Moment to be executed on the device—by embedding it as a `String` in your application, or by passing a `URL` to a hosted file such as a [Github Gist](https://gist.github.com) that contains your code.
 
-Additionally, the SwiftMomentSDK provides the option to optimize your Javascript using the [Google Closure Compiler](https://developers.google.com/closure/compiler/) before sending it to Moment. This is valuable because it highly compresses the number of bytes that need to be sent to Moment over BLE, dramatically decreasing the transmission time. This is especially important for longer scripts.
+To send Javascript from a `String` in your application:
 
-By default optimization is turned on, but this can be overridden if your Javascript is already optimized and you would like to prevent the additional HTTP request.
+```swift
+ let javascript = "Moment.on('timertick', function () {" +
+ "var ms = Moment.uptime();" +
+ "// do something time-related here" +
+ "});"
+ SwiftMomentSDK.writeContents(of javascript, optimize: false) { result in
+  switch result {
+  case .success:
+    // Write succeeded
+  case .failure(let error):
+    // An error occurred during write
+  }
+}
+```
 
 To send Javascript from a script saved in a Gist:
 
@@ -116,19 +129,21 @@ SwiftMomentSDK.writeScript(at url) { result in
 }
 ```
 
-To send Javascript from a `String` in your application:
+Using the two above methods will always require an HTTP request to the MomentSDK Javascript compiler, which produces the Javascript bytecode that is executed on Moment's internal virtual machine. If you would like to avoid this HTTP request, you can send pre-compiled bytecode instead.
 
-```swift
-let javascript = "Moment.LED.setColor(Moment.Color.ORANGE);"
-SwiftMomentSDK.writeContents(of javascript, optimize: false) { result in
-  switch result {
-  case .success:
-    // Write succeeded
-  case .failure(let error):
-    // An error occurred during write
-  }
-}
-```
+To send pre-compiled Javascript bytecode from a `String` in your application:
+
+ ```swift
+ let bytecode = "BgAAAFAAAAAsAAAAAQAAAAQAAQABAAUAAAEDBAYAAQACAAYAOwABKQIDxEYBAAAABAABACEAAwABAgMDAAAGAAgAOwECt8gARgAAAAAAAAAFAAAAAAAAAAIAb24JAHRpbWVydGljawABAHQABgBNb21lbnQGAHVwdGltZQ=="
+ SwiftMomentSDK.writeBytecode(bytecode) { result in
+    switch result {
+    case .success:
+        // Write succeeded
+    case .failure(let error):
+        // An error occurred during write
+    }
+ }
+ ```
 
 To reset Moment's Javascript virtual machine:
 
