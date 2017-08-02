@@ -65,7 +65,7 @@ public func forget() {
 
 
 /**
- Writes the appropriate string to reset Moment's Javascript virtual machine.
+ Writes the appropriate command to reset Moment's Javascript virtual machine.
  
  Usage Example:
  
@@ -126,6 +126,47 @@ public func writeJavascript(_ javascript: String, completion: @escaping WriteReq
 }
 
 /**
+ Writes the Javascript code at a given URL to the connected Moment device.
+ 
+ Usage Example:
+ 
+ ```swift
+ let url = URL(string: "https://gist.github.com/shantanubala/1f7d0dfb9bbef3edca8d0bb164c56aa0/raw")!
+ SwiftMomentSDK.writeJavascript(at url) { result in
+     switch result {
+     case .success:
+         // Write succeeded
+     case .failure(let error):
+         // An error occurred during write
+     }
+ }
+ ```
+ 
+ - Parameter url: A URL to the hosted Javascript script to be written
+ */
+public func writeJavascript(at url: URL, completion: @escaping WriteRequestCallback) {
+    // Add a random query based on the current time, so that we don't have issues with source file being cached
+    let randomQuery = "?".appending(String(Int(NSDate().timeIntervalSince1970)))
+    let url = URL(string: url.absoluteString + randomQuery)!
+    
+    // Compile Javascript and write it to our device
+    let params: Parameters = [
+        "src": url.absoluteString
+    ]
+    Alamofire.request(Constants.javascriptCompilerURL, method: .post, parameters: params)
+        .validate()
+        .responseData { response in
+            // Handle response appropriately
+            switch response.result {
+            case .success(let bytes):
+                bluetoothManager.writeJavascript(bytes) { result in completion(result) }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+    }
+}
+
+/**
  Writes a given string of base64 encoded bytecode to the connected Moment device.
  
  Usage Example:
@@ -151,83 +192,4 @@ public func writeBytecode(_ bytecode: String, completion: @escaping WriteRequest
         return // Exit
     }
     bluetoothManager.writeJavascript(bytes) { result in completion(result) }
-}
-
-/**
- Writes the Javascript code at a given URL to the connected Moment device.
- 
- Usage Example:
- 
- ```swift
- let url = URL(string: "https://gist.github.com/jakerockland/1de44467c3eaf132a2089b6c88d680b8/raw")!
- SwiftMomentSDK.writeJavascript(at url) { result in
-    switch result {
-    case .success:
-        // Write succeeded
-    case .failure(let error):
-        // An error occurred during write
-    }
- }
- ```
- 
- - Parameter url: A URL to the hosted Javascript script to be written
- */
-public func writeJavascript(at url: URL, completion: @escaping WriteRequestCallback) {
-    // Add a random query based on the current time, so that we don't have issues with source file being cached
-    let randomQuery = "?".appending(String(Int(NSDate().timeIntervalSince1970)))
-    let url = URL(string: url.absoluteString + randomQuery)!
-    
-    // Compile Javascript and write it to our device
-    let params: Parameters = [
-        "src": url.absoluteString
-    ]
-    Alamofire.request(Constants.javascriptCompilerURL, method: .post, parameters: params)
-        .validate()
-        .responseData { response in
-        // Handle response appropriately
-        switch response.result {
-        case .success(let bytes):
-            bluetoothManager.writeJavascript(bytes) { result in completion(result) }
-        case .failure(let error):
-            completion(.failure(error))
-        }
-    }
-}
-
-/**
- Writes the Javascript bytecode at a given URL to the connected Moment device.
- 
- Usage Example:
- 
- ```swift
- let url = URL(string: "https://gist.github.com/jakerockland/1de44467c3eaf132a2089b6c88d680b8/raw")!
- SwiftMomentSDK.writeBytecode(at url) { result in
-    switch result {
-    case .success:
-        // Write succeeded
-    case .failure(let error):
-        // An error occurred during write
-    }
- }
- ```
- 
- - Parameter url: A URL to the hosted Javascript bytecode script to be written
- */
-public func writeBytecode(at url: URL, completion: @escaping WriteRequestCallback) {
-    // Download compiled Javascript and write it to our device
-    Alamofire.request(url)
-        .validate()
-        .responseString { response in
-        // Handle response appropriately
-        switch response.result {
-        case .success(let bytecode):
-            guard let bytes = Data(base64Encoded: bytecode) else {
-                completion(.failure(ManagerError("Invalid base64 encoded bytecode string.")))
-                return // Exit
-            }
-            bluetoothManager.writeJavascript(bytes) { result in completion(result) }
-        case .failure(let error):
-            completion(.failure(error))
-        }
-    }
 }
