@@ -24,6 +24,8 @@ Animations and programs created in the simulator can be ran on Moment using this
 
 For more information regarding using the Moment Javascript SDK, please refer to our [documentation](https://somaticlabs.github.io/moment-sdk/).
 
+For a quick reference to the SwiftMomentSDK documents, please refer to [this guide](https://somaticlabs.github.io/SwiftMomentSDK).
+
 ## Requirements
 
 - iOS 9.0+
