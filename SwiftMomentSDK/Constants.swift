@@ -27,16 +27,18 @@ internal struct Constants {
     static let scanTimeout = 5.0
     
     /// Maximum amount of time, in seconds, to allow phone to attempt connection to Moment
-    static let connectTimeout = 1.5
+    static let connectTimeout = 3.0
     
     // MARK: - Web Constants
     
     /// Web address for the Somatic Labs Javascript compiler API
-    static let javascriptCompilerURL = URL(string: "https://firmware-staging.wearmoment.com/compile")!
+    static let javascriptCompilerURL = URL(string: "https://firmware.wearmoment.com/compile")!
     
     // MARK: - Misc. Constants
     
     /// Web address for learning more about Moment
     static let aboutMomentURL = URL(string: "https://wearmoment.com/")!
     
+    /// Web address for getting help with Moment
+    static let helpMomentURL = URL(string: "http://help.wearmoment.com")!
 }

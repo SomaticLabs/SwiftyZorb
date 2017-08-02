@@ -163,32 +163,35 @@ final internal class BluetoothManager: NSObject {
                     }
                 }
                 return // Exit
-            } else {
-                let connectedPeripherals = central.retrieveConnectedPeripherals(withServiceUUIDs: services)
-                for peripheral in connectedPeripherals {
-                    if peripheral.identifier == uuid {
-                        peripheral.connect(withTimeout: Constants.connectTimeout) { result in
-                            switch result {
-                            case .success:
-                                // Validate name
-                                guard peripheral.name == Constants.deviceName else {
-                                    // Treat as error and handle in completion
-                                    let error = ManagerError("Unexpectedly connected to \(peripheral.name ?? "Unknown").")
-                                    completion(.failure(error))
-                                    
-                                    return // Exit
-                                }
-                                
-                                // Update internal `Peripheral` and handle in completion
-                                self.peripheral = peripheral
-                                completion(.success(.noValue))
-                            case .failure(let error):
+            }
+        } else {
+            let connectedPeripherals = central.retrieveConnectedPeripherals(withServiceUUIDs: services)
+            for peripheral in connectedPeripherals {
+                if peripheral.name == Constants.deviceName {
+                    peripheral.connect(withTimeout: Constants.connectTimeout) { result in
+                        switch result {
+                        case .success:
+                            // Validate name
+                            guard peripheral.name == Constants.deviceName else {
                                 // Treat as error and handle in completion
+                                let error = ManagerError("Unexpectedly connected to \(peripheral.name ?? "Unknown").")
                                 completion(.failure(error))
+                                
+                                return // Exit
                             }
+                            
+                            // Store peripheral as our known peripheral in settings
+                            Settings.saveMomentPeripheral(with: peripheral.identifier)
+                            
+                            // Update internal `Peripheral` and handle in completion
+                            self.peripheral = peripheral
+                            completion(.success(.noValue))
+                        case .failure(let error):
+                            // Treat as error and handle in completion
+                            completion(.failure(error))
                         }
-                        return // Exit
                     }
+                    return // Exit
                 }
             }
         }
