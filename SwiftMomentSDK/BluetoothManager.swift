@@ -156,7 +156,7 @@ final internal class BluetoothManager: NSObject {
                         
                         // Update internal `Peripheral` and handle in completion
                         self.peripheral = peripheral
-                        completion(.success(.noValue))
+                        completion(.success())
                     case .failure(let error):
                         // Treat as error and handle in completion
                         completion(.failure(error))
@@ -185,7 +185,7 @@ final internal class BluetoothManager: NSObject {
                             
                             // Update internal `Peripheral` and handle in completion
                             self.peripheral = peripheral
-                            completion(.success(.noValue))
+                            completion(.success())
                         case .failure(let error):
                             // Treat as error and handle in completion
                             completion(.failure(error))
@@ -231,7 +231,7 @@ final internal class BluetoothManager: NSObject {
                             
                             // Update internal `Peripheral` and handle in completion
                             self.peripheral = peripheral
-                            completion(.success(.noValue))
+                            completion(.success())
                         case .failure(let error):
                             // Treat as error and handle in completion
                             completion(.failure(error))
@@ -287,7 +287,7 @@ final internal class BluetoothManager: NSObject {
                 if self.packetQueue.isEmpty {
                     // Handle base case
                     while self.packetQueue.numSets > 0 {
-                        completion(.success(.noValue))
+                        completion(.success())
                         self.packetQueue.numSets -= 1
                     }
                 } else {
