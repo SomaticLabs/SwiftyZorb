@@ -73,12 +73,12 @@ Before being able to communicate with Moment, you must establish a Bluetooth LE 
 import SwiftMomentSDK
 
 SwiftMomentSDK.connect { result in
-  switch result {
-  case .success:
-    // Connected succeeded
-  case .failure(let error):
-    // An error occurred during connection
-  }
+    switch result {
+    case .success:
+        // Connected succeeded
+    case .failure(let error):
+        // An error occurred during connection
+    }
 }
 ```
 
@@ -103,31 +103,31 @@ There are two ways to send Javascript to Moment to be executed on the device—b
 To send Javascript from a `String` in your application:
 
 ```swift
- let javascript = "Moment.on('timertick', function () {" +
- "var ms = Moment.uptime();" +
- "// do something time-related here" +
- "});"
- SwiftMomentSDK.writeContents(of javascript, optimize: false) { result in
-  switch result {
-  case .success:
-    // Write succeeded
-  case .failure(let error):
-    // An error occurred during write
-  }
+let javascript = "Moment.on('timertick', function () {" +
+    "var ms = Moment.uptime();" +
+    "// do something time-related here" +
+    "});"
+SwiftMomentSDK.writeJavascript(javascript) { result in
+    switch result {
+    case .success:
+        // Write succeeded
+    case .failure(let error):
+        // An error occurred during write
+    }
 }
 ```
 
-To send Javascript from a script saved in a Gist:
+To send Javascript from a script saved in file hosted online:
 
 ```swift
-let url = URL(string: "https://gist.github.com/jakerockland/1de44467c3eaf132a2089b6c88d680b8")!
-SwiftMomentSDK.writeScript(at url) { result in
-  switch result {
-  case .success:
-    // Write succeeded
-  case .failure(let error):
-    // An error occurred during write
-  }
+let url = URL(string: "https://gist.github.com/shantanubala/1f7d0dfb9bbef3edca8d0bb164c56aa0/raw")!
+SwiftMomentSDK.writeJavascript(at url) { result in
+    switch result {
+    case .success:
+        // Write succeeded
+    case .failure(let error):
+        // An error occurred during write
+    }
 }
 ```
 
@@ -136,15 +136,15 @@ Using the two above methods will always require an HTTP request to the MomentSDK
 To send pre-compiled Javascript bytecode from a `String` in your application:
 
  ```swift
- let bytecode = "BgAAAFAAAAAsAAAAAQAAAAQAAQABAAUAAAEDBAYAAQACAAYAOwABKQIDxEYBAAAABAABACEAAwABAgMDAAAGAAgAOwECt8gARgAAAAAAAAAFAAAAAAAAAAIAb24JAHRpbWVydGljawABAHQABgBNb21lbnQGAHVwdGltZQ=="
- SwiftMomentSDK.writeBytecode(bytecode) { result in
+let bytecode = "BgAAAFAAAAAsAAAAAQAAAAQAAQABAAUAAAEDBAYAAQACAAYAOwABKQIDxEYBAAAABAABACEAAwABAgMDAAAGAAgAOwECt8gARgAAAAAAAAAFAAAAAAAAAAIAb24JAHRpbWVydGljawABAHQABgBNb21lbnQGAHVwdGltZQ=="
+SwiftMomentSDK.writeBytecode(bytecode) { result in
     switch result {
     case .success:
         // Write succeeded
     case .failure(let error):
         // An error occurred during write
     }
- }
+}
  ```
 
 To reset Moment's Javascript virtual machine:

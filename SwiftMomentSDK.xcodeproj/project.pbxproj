@@ -40,6 +40,10 @@
 		40CFD8F51E66851400D001C7 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../Library/Developer/Xcode/DerivedData/SwiftMomentSDK-amqywvypldncttbssfaogqdixvqd/Build/Products/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		40CFD8F71E66852000D001C7 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../Library/Developer/Xcode/DerivedData/SwiftMomentSDK-amqywvypldncttbssfaogqdixvqd/Build/Products/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
 		40CFD8F91E66852400D001C7 /* SwiftyBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyBluetooth.framework; path = "../../../../Library/Developer/Xcode/DerivedData/SwiftMomentSDK-amqywvypldncttbssfaogqdixvqd/Build/Products/Debug-iphoneos/SwiftyBluetooth.framework"; sourceTree = "<group>"; };
+		40DF5BF01F6877060016F1AF /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
+		40DF5BF11F6877060016F1AF /* Gemfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Gemfile; sourceTree = SOURCE_ROOT; };
+		40DF5BF21F6877060016F1AF /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
+		40DF5BF31F6877060016F1AF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,10 @@
 		4073505C1E5D045000CA2D94 = {
 			isa = PBXGroup;
 			children = (
+				40DF5BF31F6877060016F1AF /* README.md */,
+				40DF5BF21F6877060016F1AF /* LICENSE */,
+				40DF5BF01F6877060016F1AF /* Cartfile */,
+				40DF5BF11F6877060016F1AF /* Gemfile */,
 				407350681E5D045000CA2D94 /* SwiftMomentSDK */,
 				407350671E5D045000CA2D94 /* Products */,
 				4073508A1E5E1A6E00CA2D94 /* Frameworks */,

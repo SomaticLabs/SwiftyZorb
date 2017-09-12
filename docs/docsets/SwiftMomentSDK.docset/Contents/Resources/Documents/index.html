@@ -31,7 +31,7 @@
             <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F14SwiftMomentSDK7connectFT10completionFGO15SwiftyBluetooth6ResultOS0_7NoValue_T__T_">connect(completion:)</a>
+                <a href="Functions.html#/s:F14SwiftMomentSDK7connectFT10completionFGO15SwiftyBluetooth6ResultT__T__T_">connect(completion:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:F14SwiftMomentSDK10disconnectFT_T_">disconnect()</a>
@@ -40,16 +40,16 @@
                 <a href="Functions.html#/s:F14SwiftMomentSDK6forgetFT_T_">forget()</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F14SwiftMomentSDK5resetFT10completionFGO15SwiftyBluetooth6ResultOS0_7NoValue_T__T_">reset(completion:)</a>
+                <a href="Functions.html#/s:F14SwiftMomentSDK5resetFT10completionFGO15SwiftyBluetooth6ResultT__T__T_">reset(completion:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F14SwiftMomentSDK13writeBytecodeFTSS10completionFGO15SwiftyBluetooth6ResultOS0_7NoValue_T__T_">writeBytecode(_:completion:)</a>
+                <a href="Functions.html#/s:F14SwiftMomentSDK13writeBytecodeFTSS10completionFGO15SwiftyBluetooth6ResultT__T__T_">writeBytecode(_:completion:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F14SwiftMomentSDK15writeJavascriptFTSS10completionFGO15SwiftyBluetooth6ResultOS0_7NoValue_T__T_">writeJavascript(_:completion:)</a>
+                <a href="Functions.html#/s:F14SwiftMomentSDK15writeJavascriptFTSS10completionFGO15SwiftyBluetooth6ResultT__T__T_">writeJavascript(_:completion:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F14SwiftMomentSDK15writeJavascriptFT2atV10Foundation3URL10completionFGO15SwiftyBluetooth6ResultOS2_7NoValue_T__T_">writeJavascript(at:completion:)</a>
+                <a href="Functions.html#/s:F14SwiftMomentSDK15writeJavascriptFT2atV10Foundation3URL10completionFGO15SwiftyBluetooth6ResultT__T__T_">writeJavascript(at:completion:)</a>
               </li>
             </ul>
           </li>
@@ -82,6 +82,8 @@
 <p>Animations and programs created in the simulator can be ran on Moment using this library, either by sending a embedding the Javascript directly in your application or by storing your scripts in <a href="https://gist.github.com">Github Gists</a> and referencing those in your applications.</p>
 
 <p>For more information regarding using the Moment Javascript SDK, please refer to our <a href="https://somaticlabs.github.io/moment-sdk/">documentation</a>.</p>
+
+<p>For a quick reference to the SwiftMomentSDK documents, please refer to <a href="https://somaticlabs.github.io/SwiftMomentSDK">this guide</a>.</p>
 <a href='#requirements' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='requirements'>Requirements</h2>
 
 <ul>
@@ -122,12 +124,12 @@
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">SwiftMomentSDK</span>
 
 <span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="n">connect</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
-  <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-  <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
-    <span class="c1">// Connected succeeded</span>
-  <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
-    <span class="c1">// An error occurred during connection</span>
-  <span class="p">}</span>
+    <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
+        <span class="c1">// Connected succeeded</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+        <span class="c1">// An error occurred during connection</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
 
@@ -145,44 +147,44 @@
 <p>There are two ways to send Javascript to Moment to be executed on the device—by embedding it as a <code>String</code> in your application, or by passing a <code>URL</code> to a hosted file such as a <a href="https://gist.github.com">Github Gist</a> that contains your code.</p>
 
 <p>To send Javascript from a <code>String</code> in your application:</p>
-<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">javascript</span> <span class="o">=</span> <span class="s">"Moment.on('timertick', function () {"</span> <span class="o">+</span>
- <span class="s">"var ms = Moment.uptime();"</span> <span class="o">+</span>
- <span class="s">"// do something time-related here"</span> <span class="o">+</span>
- <span class="s">"});"</span>
- <span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="nf">writeContents</span><span class="p">(</span><span class="n">of</span> <span class="n">javascript</span><span class="p">,</span> <span class="nv">optimize</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
-  <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-  <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
-    <span class="c1">// Write succeeded</span>
-  <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
-    <span class="c1">// An error occurred during write</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-
-<p>To send Javascript from a script saved in a Gist:</p>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://gist.github.com/jakerockland/1de44467c3eaf132a2089b6c88d680b8"</span><span class="p">)</span><span class="o">!</span>
-<span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="nf">writeScript</span><span class="p">(</span><span class="n">at</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
-  <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
-  <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
-    <span class="c1">// Write succeeded</span>
-  <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
-    <span class="c1">// An error occurred during write</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-
-<p>Using the two above methods will always require an HTTP request to the MomentSDK Javascript compiler, which produces the Javascript bytecode that is executed on Moment&rsquo;s internal virtual machine. If you would like to avoid this HTTP request, you can send pre-compiled bytecode instead.</p>
-
-<p>To send pre-compiled Javascript bytecode from a <code>String</code> in your application:</p>
-<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">bytecode</span> <span class="o">=</span> <span class="s">"BgAAAFAAAAAsAAAAAQAAAAQAAQABAAUAAAEDBAYAAQACAAYAOwABKQIDxEYBAAAABAABACEAAwABAgMDAAAGAAgAOwECt8gARgAAAAAAAAAFAAAAAAAAAAIAb24JAHRpbWVydGljawABAHQABgBNb21lbnQGAHVwdGltZQ=="</span>
- <span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="nf">writeBytecode</span><span class="p">(</span><span class="n">bytecode</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">javascript</span> <span class="o">=</span> <span class="s">"Moment.on('timertick', function () {"</span> <span class="o">+</span>
+    <span class="s">"var ms = Moment.uptime();"</span> <span class="o">+</span>
+    <span class="s">"// do something time-related here"</span> <span class="o">+</span>
+    <span class="s">"});"</span>
+<span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="nf">writeJavascript</span><span class="p">(</span><span class="n">javascript</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
     <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
     <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
         <span class="c1">// Write succeeded</span>
     <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
         <span class="c1">// An error occurred during write</span>
     <span class="p">}</span>
- <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>To send Javascript from a script saved in file hosted online:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://gist.github.com/shantanubala/1f7d0dfb9bbef3edca8d0bb164c56aa0/raw"</span><span class="p">)</span><span class="o">!</span>
+<span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="nf">writeJavascript</span><span class="p">(</span><span class="n">at</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+    <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
+        <span class="c1">// Write succeeded</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+        <span class="c1">// An error occurred during write</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Using the two above methods will always require an HTTP request to the MomentSDK Javascript compiler, which produces the Javascript bytecode that is executed on Moment&rsquo;s internal virtual machine. If you would like to avoid this HTTP request, you can send pre-compiled bytecode instead.</p>
+
+<p>To send pre-compiled Javascript bytecode from a <code>String</code> in your application:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">bytecode</span> <span class="o">=</span> <span class="s">"BgAAAFAAAAAsAAAAAQAAAAQAAQABAAUAAAEDBAYAAQACAAYAOwABKQIDxEYBAAAABAABACEAAwABAgMDAAAGAAgAOwECt8gARgAAAAAAAAAFAAAAAAAAAAIAb24JAHRpbWVydGljawABAHQABgBNb21lbnQGAHVwdGltZQ=="</span>
+<span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="nf">writeBytecode</span><span class="p">(</span><span class="n">bytecode</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+    <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
+        <span class="c1">// Write succeeded</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+        <span class="c1">// An error occurred during write</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 
 <p>To reset Moment&rsquo;s Javascript virtual machine:</p>
@@ -202,7 +204,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="https://wearmoment.com" target="_blank" rel="external">Somatic Labs</a>. All rights reserved. (Last updated: 2017-08-02)</p>
+          <p>&copy; 2017 <a class="link" href="https://wearmoment.com" target="_blank" rel="external">Somatic Labs</a>. All rights reserved. (Last updated: 2017-09-12)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
