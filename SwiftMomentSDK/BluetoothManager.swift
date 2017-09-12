@@ -20,7 +20,7 @@ final internal class ManagerError: NSError {
      Error initializer, sets localized description to `String` passed in
      */
     init(_ localizedDescription: String) {
-        super.init(domain: "com.SomaticLabs.Moment", code: 404, userInfo: [NSLocalizedDescriptionKey: localizedDescription])
+        super.init(domain: "com.SomaticLabs.SwiftMomentSDK", code: 404, userInfo: [NSLocalizedDescriptionKey: localizedDescription])
     }
     
     /**
@@ -33,62 +33,6 @@ final internal class ManagerError: NSError {
     
 }
 
-/// A simple FIFO (first in, first out) queue for managing data to be written to the Javascript BLE characteristic (thread safe)
-final internal class PacketQueue {
-    /// Internal array for managing queue
-    private var array = [ArraySlice<UInt8>]()
-    
-    /// Internal access queue for managing packet queue
-    private let accessQueue = DispatchQueue(label: "SynchronizedArrayAccess", attributes: .concurrent)
-    
-    /// Variable for counting the number of packet sets queued
-    var numSets = 0
-    
-    /// Variable for getting count in queue
-    var count: Int {
-        var count = 0
-        
-        accessQueue.sync {
-            count = self.array.count
-        }
-        
-        return count
-    }
-    
-    /// Variable for checking if the queue is empty
-    var isEmpty: Bool {
-        var isEmpty = true
-        
-        accessQueue.sync {
-            isEmpty = self.array.isEmpty
-        }
-        
-        return isEmpty
-    }
-    
-    /// Method for adding item to the queue
-    func enqueue(_ element: ArraySlice<UInt8>) {
-        accessQueue.async(flags:.barrier) {
-            self.array.append(element)
-        }
-    }
-    
-    /// Method for removing item from the queue
-    func dequeue() -> ArraySlice<UInt8>? {
-        var element: ArraySlice<UInt8>? = nil
-        
-        accessQueue.sync {
-            element = self.array.first
-        }
-        
-        accessQueue.async(flags:.barrier) {
-            self.array.removeFirst()
-        }
-        
-        return element
-    }
-}
-
 // MARK: - Bluetooth Manager Class
 
 /// Global variable readily allows access to singleton manager
@@ -98,6 +42,64 @@ internal let bluetoothManager = BluetoothManager.sharedInstance
  Creates a singleton-based wrapper for `CoreBluetooth` framework, to prevent issue of multiple `CBCentralManager` instances
  */
 final internal class BluetoothManager: NSObject {
+    
+    // MARK: - Packet Queue
+    
+    /// A simple FIFO (first in, first out) queue for managing data to be written to the Javascript BLE characteristic (thread safe)
+    final internal class PacketQueue {
+        /// Internal array for managing queue
+        private var array = [ArraySlice<UInt8>]()
+        
+        /// Internal access queue for managing packet queue
+        private let accessQueue = DispatchQueue(label: "SynchronizedArrayAccess", attributes: .concurrent)
+        
+        /// Variable for counting the number of packet sets queued
+        var numSets = 0
+        
+        /// Variable for getting count in queue
+        var count: Int {
+            var count = 0
+            
+            accessQueue.sync {
+                count = self.array.count
+            }
+            
+            return count
+        }
+        
+        /// Variable for checking if the queue is empty
+        var isEmpty: Bool {
+            var isEmpty = true
+            
+            accessQueue.sync {
+                isEmpty = self.array.isEmpty
+            }
+            
+            return isEmpty
+        }
+        
+        /// Method for adding item to the queue
+        func enqueue(_ element: ArraySlice<UInt8>) {
+            accessQueue.async(flags:.barrier) {
+                self.array.append(element)
+            }
+        }
+        
+        /// Method for removing item from the queue
+        func dequeue() -> ArraySlice<UInt8>? {
+            var element: ArraySlice<UInt8>? = nil
+            
+            accessQueue.sync {
+                element = self.array.first
+            }
+            
+            accessQueue.async(flags:.barrier) {
+                self.array.removeFirst()
+            }
+            
+            return element
+        }
+    }
 
     // MARK: - Singleton Properties
     
