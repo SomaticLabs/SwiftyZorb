@@ -133,7 +133,7 @@ SwiftMomentSDK.writeJavascript(at url) { result in
 
 Using the two above methods will always require an HTTP request to the MomentSDK Javascript compiler, which produces the Javascript bytecode that is executed on Moment's internal virtual machine. If you would like to avoid this HTTP request, you can send pre-compiled bytecode instead.
 
-To send pre-compiled Javascript bytecode from a `String` in your application:
+To send pre-compiled Javascript bytecode as a base64 encoded `String` in your application:
 
  ```swift
 let bytecode = "BgAAAFAAAAAsAAAAAQAAAAQAAQABAAUAAAEDBAYAAQACAAYAOwABKQIDxEYBAAAABAABACEAAwABAgMDAAAGAAgAOwECt8gARgAAAAAAAAAFAAAAAAAAAAIAb24JAHRpbWVydGljawABAHQABgBNb21lbnQGAHVwdGltZQ=="
