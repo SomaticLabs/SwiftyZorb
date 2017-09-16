@@ -117,7 +117,14 @@ public func reset(completion: @escaping WriteRequestCallback) {
  Usage Example:
  
  ```swift
- TODO
+ SwiftMomentSDK.writeSettings(wristOrientation: .left, buttonOrientation: .left, intensityLevel: .high) { result in
+     switch result {
+     case .success:
+         // Settings update succeeded
+     case .failure(let error):
+         // An error occurred during settings update
+     }
+ }
  ```
  
  - Parameter wristOrientation: The wrist that Moment is being worn on, either `.left` or `.right`
