@@ -28,28 +28,42 @@
       <nav class="sidebar">
         <ul class="nav-groups">
           <li class="nav-group-name">
+            <a href="Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/Intensity.html">Intensity</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/Orientation.html">Orientation</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F14SwiftMomentSDK7connectFT10completionFGO15SwiftyBluetooth6ResultT__T__T_">connect(completion:)</a>
+                <a href="Functions.html#/s:14SwiftMomentSDK7connectyy15SwiftyBluetooth6ResultOyytGc10completion_tF">connect(completion:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F14SwiftMomentSDK10disconnectFT_T_">disconnect()</a>
+                <a href="Functions.html#/s:14SwiftMomentSDK10disconnectyyF">disconnect()</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F14SwiftMomentSDK6forgetFT_T_">forget()</a>
+                <a href="Functions.html#/s:14SwiftMomentSDK6forgetyyF">forget()</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F14SwiftMomentSDK5resetFT10completionFGO15SwiftyBluetooth6ResultT__T__T_">reset(completion:)</a>
+                <a href="Functions.html#/s:14SwiftMomentSDK5resetyy15SwiftyBluetooth6ResultOyytGc10completion_tF">reset(completion:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F14SwiftMomentSDK13writeBytecodeFTSS10completionFGO15SwiftyBluetooth6ResultT__T__T_">writeBytecode(_:completion:)</a>
+                <a href="Functions.html#/s:14SwiftMomentSDK13writeBytecodeySS_y15SwiftyBluetooth6ResultOyytGc10completiontF">writeBytecode(_:completion:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F14SwiftMomentSDK15writeJavascriptFTSS10completionFGO15SwiftyBluetooth6ResultT__T__T_">writeJavascript(_:completion:)</a>
+                <a href="Functions.html#/s:14SwiftMomentSDK15writeJavascriptySS_y15SwiftyBluetooth6ResultOyytGc10completiontF">writeJavascript(_:completion:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F14SwiftMomentSDK15writeJavascriptFT2atV10Foundation3URL10completionFGO15SwiftyBluetooth6ResultT__T__T_">writeJavascript(at:completion:)</a>
+                <a href="Functions.html#/s:14SwiftMomentSDK15writeJavascripty10Foundation3URLV2at_y15SwiftyBluetooth6ResultOyytGc10completiontF">writeJavascript(at:completion:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:14SwiftMomentSDK13writeSettingsyAA11OrientationO05wristF0_AD06buttonF0AA9IntensityO14intensityLevely15SwiftyBluetooth6ResultOyytGc10completiontF">writeSettings(wristOrientation:buttonOrientation:intensityLevel:completion:)</a>
               </li>
             </ul>
           </li>
@@ -175,7 +189,7 @@
 
 <p>Using the two above methods will always require an HTTP request to the MomentSDK Javascript compiler, which produces the Javascript bytecode that is executed on Moment&rsquo;s internal virtual machine. If you would like to avoid this HTTP request, you can send pre-compiled bytecode instead.</p>
 
-<p>To send pre-compiled Javascript bytecode from a <code>String</code> in your application:</p>
+<p>To send pre-compiled Javascript bytecode as a base64 encoded <code>String</code> in your application:</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">bytecode</span> <span class="o">=</span> <span class="s">"BgAAAFAAAAAsAAAAAQAAAAQAAQABAAUAAAEDBAYAAQACAAYAOwABKQIDxEYBAAAABAABACEAAwABAgMDAAAGAAgAOwECt8gARgAAAAAAAAAFAAAAAAAAAAIAb24JAHRpbWVydGljawABAHQABgBNb21lbnQGAHVwdGltZQ=="</span>
 <span class="kt">SwiftMomentSDK</span><span class="o">.</span><span class="nf">writeBytecode</span><span class="p">(</span><span class="n">bytecode</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
     <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
@@ -204,7 +218,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="https://wearmoment.com" target="_blank" rel="external">Somatic Labs</a>. All rights reserved. (Last updated: 2017-09-12)</p>
+          <p>&copy; 2017 <a class="link" href="https://wearmoment.com" target="_blank" rel="external">Somatic Labs</a>. All rights reserved. (Last updated: 2017-09-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
