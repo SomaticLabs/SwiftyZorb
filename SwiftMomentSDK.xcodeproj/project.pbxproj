@@ -29,19 +29,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		403783F61E5FDAA100B68645 /* SwiftMomentSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftMomentSDK.swift; path = SwiftMomentSDK/SwiftMomentSDK.swift; sourceTree = SOURCE_ROOT; };
-		403783F81E5FDAA900B68645 /* BluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BluetoothManager.swift; path = SwiftMomentSDK/BluetoothManager.swift; sourceTree = SOURCE_ROOT; };
-		403783F91E5FDAA900B68645 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = SwiftMomentSDK/Constants.swift; sourceTree = SOURCE_ROOT; };
-		403783FA1E5FDAA900B68645 /* Identifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Identifiers.swift; path = SwiftMomentSDK/Identifiers.swift; sourceTree = SOURCE_ROOT; };
-		403783FB1E5FDAA900B68645 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = SwiftMomentSDK/Settings.swift; sourceTree = SOURCE_ROOT; };
+		403783F61E5FDAA100B68645 /* SwiftMomentSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftMomentSDK.swift; sourceTree = "<group>"; };
+		403783F81E5FDAA900B68645 /* BluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
+		403783F91E5FDAA900B68645 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		403783FA1E5FDAA900B68645 /* Identifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
+		403783FB1E5FDAA900B68645 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		404FBDE91F6CC01D00E36E37 /* SDK-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SDK-Bridging-Header.h"; sourceTree = "<group>"; };
+		404FBDEA1F6CC06D00E36E37 /* hts_settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hts_settings.h; sourceTree = "<group>"; };
 		407350661E5D045000CA2D94 /* SwiftMomentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMomentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4073506A1E5D045000CA2D94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = SwiftMomentSDK/Info.plist; sourceTree = "<group>"; };
+		4073506A1E5D045000CA2D94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4073506F1E5D045000CA2D94 /* SwiftMomentSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftMomentSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		40CFD8F51E66851400D001C7 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../Library/Developer/Xcode/DerivedData/SwiftMomentSDK-amqywvypldncttbssfaogqdixvqd/Build/Products/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		40CFD8F71E66852000D001C7 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../Library/Developer/Xcode/DerivedData/SwiftMomentSDK-amqywvypldncttbssfaogqdixvqd/Build/Products/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
 		40CFD8F91E66852400D001C7 /* SwiftyBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyBluetooth.framework; path = "../../../../Library/Developer/Xcode/DerivedData/SwiftMomentSDK-amqywvypldncttbssfaogqdixvqd/Build/Products/Debug-iphoneos/SwiftyBluetooth.framework"; sourceTree = "<group>"; };
-		40DF5BF01F6877060016F1AF /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
-		40DF5BF11F6877060016F1AF /* Gemfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Gemfile; sourceTree = SOURCE_ROOT; };
+		40DF5BF01F6877060016F1AF /* Cartfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Cartfile; sourceTree = SOURCE_ROOT; };
+		40DF5BF11F6877060016F1AF /* Gemfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Gemfile; sourceTree = SOURCE_ROOT; };
 		40DF5BF21F6877060016F1AF /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		40DF5BF31F6877060016F1AF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -68,16 +70,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		404FBDEB1F6CC21700E36E37 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				404FBDE91F6CC01D00E36E37 /* SDK-Bridging-Header.h */,
+				404FBDEA1F6CC06D00E36E37 /* hts_settings.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
 		4073505C1E5D045000CA2D94 = {
 			isa = PBXGroup;
 			children = (
-				40DF5BF31F6877060016F1AF /* README.md */,
-				40DF5BF21F6877060016F1AF /* LICENSE */,
+				4073508A1E5E1A6E00CA2D94 /* Frameworks */,
+				407350671E5D045000CA2D94 /* Products */,
+				407350681E5D045000CA2D94 /* SwiftMomentSDK */,
 				40DF5BF01F6877060016F1AF /* Cartfile */,
 				40DF5BF11F6877060016F1AF /* Gemfile */,
-				407350681E5D045000CA2D94 /* SwiftMomentSDK */,
-				407350671E5D045000CA2D94 /* Products */,
-				4073508A1E5E1A6E00CA2D94 /* Frameworks */,
+				40DF5BF21F6877060016F1AF /* LICENSE */,
+				40DF5BF31F6877060016F1AF /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,12 +104,11 @@
 		407350681E5D045000CA2D94 /* SwiftMomentSDK */ = {
 			isa = PBXGroup;
 			children = (
-				407350931E5E217F00CA2D94 /* Public */,
 				407350921E5E214B00CA2D94 /* Internal */,
+				407350931E5E217F00CA2D94 /* Public */,
 				4073506A1E5D045000CA2D94 /* Info.plist */,
 			);
-			name = SwiftMomentSDK;
-			path = MomentSDK;
+			path = SwiftMomentSDK;
 			sourceTree = "<group>";
 		};
 		4073508A1E5E1A6E00CA2D94 /* Frameworks */ = {
@@ -114,12 +124,13 @@
 		407350921E5E214B00CA2D94 /* Internal */ = {
 			isa = PBXGroup;
 			children = (
+				404FBDEB1F6CC21700E36E37 /* Headers */,
 				403783F81E5FDAA900B68645 /* BluetoothManager.swift */,
 				403783F91E5FDAA900B68645 /* Constants.swift */,
 				403783FA1E5FDAA900B68645 /* Identifiers.swift */,
 				403783FB1E5FDAA900B68645 /* Settings.swift */,
 			);
-			name = Internal;
+			path = Internal;
 			sourceTree = "<group>";
 		};
 		407350931E5E217F00CA2D94 /* Public */ = {
@@ -127,7 +138,7 @@
 			children = (
 				403783F61E5FDAA100B68645 /* SwiftMomentSDK.swift */,
 			);
-			name = Public;
+			path = Public;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,13 +197,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Somatic Technologies, Inc.";
 				TargetAttributes = {
 					407350651E5D045000CA2D94 = {
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = 6NBXW22Z9U;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					4073506E1E5D045000CA2D94 = {
@@ -277,7 +288,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -285,7 +298,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -314,6 +331,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -330,7 +348,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -338,7 +358,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -359,6 +383,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -388,6 +413,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.SomaticLabs.SwiftMomentSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftMomentSDK/Internal/Headers/SDK-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -414,6 +440,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.SomaticLabs.SwiftMomentSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftMomentSDK/Internal/Headers/SDK-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

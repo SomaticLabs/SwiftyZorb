@@ -253,9 +253,30 @@ final internal class BluetoothManager: NSObject {
     }
     
     /**
-     Writes a given `String` of Javascript data to the SDK UART service
+     Writes provided Moment settings data to the settings characteristic
      
-     - Parameter javascript: The Javascript code to be written
+     - Parameter bytes: Byte representation of the settings data to be written
+     */
+    func writeSettings(_ bytes: Data, completion: @escaping WriteRequestCallback) {
+        // Ensure that we already have a reference to Moment peripheral
+        guard let peripheral = peripheral else {
+            // Treat as error and handle in completion
+            let error = ManagerError("Not connected to Moment peripheral!")
+            completion(.failure(error))
+            
+            return // Exit
+        }
+
+        // Write data to settings characteristic
+        peripheral.writeValue(ofCharacWithUUID: Identifiers.SettingsCharacteristicUUID, fromServiceWithUUID: Identifiers.HapticTimelineServiceUUID, value: bytes) { result in
+            completion(result)
+        }
+    }
+    
+    /**
+     Writes provided Javascript bytecode data to the SDK UART service
+     
+     - Parameter bytes: Byte representation of the Javascript bytecode to be written
      */
     func writeJavascript(_ bytes: Data, completion: @escaping WriteRequestCallback) {
         // Ensure that we already have a reference to Moment peripheral
@@ -300,7 +321,7 @@ final internal class BluetoothManager: NSObject {
                     let data = Data(bytes: packet)
                     
                     // Handle recursive case
-                    self.peripheral?.writeValue(ofCharacWithUUID: Identifiers.NordicUARTRXCharacteristicUUID, fromServiceWithUUID: Identifiers.NordicUARTServiceUUID, value: data) { result in
+                    peripheral.writeValue(ofCharacWithUUID: Identifiers.NordicUARTRXCharacteristicUUID, fromServiceWithUUID: Identifiers.NordicUARTServiceUUID, value: data) { result in
                         switch result {
                         case .success:
                             recursiveWrite(completion: completion)

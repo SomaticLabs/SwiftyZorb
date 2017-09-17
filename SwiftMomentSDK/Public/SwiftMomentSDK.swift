@@ -10,6 +10,33 @@ import SwiftyBluetooth
 import Alamofire
 import SwiftyJSON
 
+// MARK: - Settings Enumerations
+
+/**
+ Enumeration of left and right, used for keeping track of wrist and button orientation - conforms to `UInt8` type
+ */
+public enum Orientation: UInt8 {
+    /// Left orientation, represented as `UInt8` of `0`
+    case left = 0
+    
+    /// Right orientation, represented as `UInt8` of `1`
+    case right = 1
+}
+
+/**
+ Enumeration of low, medium and high, used for keeping track of device intensity level - conforms to `UInt8` type
+ */
+public enum Intensity: UInt8 {
+    /// Low intensity, represented as `UInt8` of `0`
+    case low = 0
+    
+    /// Medium intensity, represented as `UInt8` of `1`
+    case medium = 1
+    
+    /// High intensity, represented as `UInt8` of `2`
+    case high = 2
+}
+
 // MARK: Bluetooth Management Methods
 
 /**
@@ -82,6 +109,52 @@ public func forget() {
  */
 public func reset(completion: @escaping WriteRequestCallback) {
     bluetoothManager.writeJavascript(Data()) { result in completion(result) }
+}
+
+/**
+ Writes desired settings to Moment device
+ 
+ Usage Example:
+ 
+ ```swift
+ SwiftMomentSDK.writeSettings(wristOrientation: .left, buttonOrientation: .left, intensityLevel: .high) { result in
+     switch result {
+     case .success:
+         // Settings update succeeded
+     case .failure(let error):
+         // An error occurred during settings update
+     }
+ }
+ ```
+ 
+ - Parameter wristOrientation: The wrist that Moment is being worn on, either `.left` or `.right`
+ 
+ - Parameter buttonOrientation: The orientation that Moment's button is on, either `.left` or `right`
+ 
+ - Parameter intensityLevel: The intensity level that Moment's vibrations will be at, either `.low`, `.medium`, or `.high`
+ */
+public func writeSettings(wristOrientation: Orientation, buttonOrientation: Orientation,  intensityLevel: Intensity, completion: @escaping WriteRequestCallback) {
+    // Create proper C level structure
+    let structure = hts_settings(
+        wrist_orientation: wristOrientation.rawValue,
+        pair_button_orientation: buttonOrientation.rawValue,
+        intensity_level: intensityLevel.rawValue
+    )
+    
+    // Pack into byte array
+    var union: hts_settings_data! = hts_settings_data()
+    union.data = structure
+    var bytes: Array<UInt8>! = Array<UInt8>()
+    let mirror = Mirror(reflecting: union.bytes)
+    for child in mirror.children {
+        bytes.append(child.value as! UInt8)
+    }
+    
+    // Create data object from byte array
+    let data = Data(bytes: bytes)
+    
+    // Write settings data to Moment device
+    bluetoothManager.writeSettings(data) { result in completion(result) }
 }
 
 /**
