@@ -108,7 +108,12 @@ public func forget() {
  ```
  */
 public func reset(completion: @escaping WriteRequestCallback) {
-    bluetoothManager.writeJavascript(Data()) { result in completion(result) }
+    bluetoothManager.writeJavascript(Data()) { result in
+        // FIXME: Having to use this dispatch queue is strange, it seems this issue stems from the firmware where the receiver callback is sent before the reset has completed, not sure if this is fixable in firmware or if this delay is the only solution
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            completion(result)
+        }
+    }
 }
 
 /**
