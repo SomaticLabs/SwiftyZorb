@@ -159,7 +159,22 @@ public func writeSettings(wristOrientation: Orientation, buttonOrientation: Orie
     let data = Data(bytes: bytes)
     
     // Write settings data to Moment device
-    bluetoothManager.writeSettings(data) { result in completion(result) }
+    bluetoothManager.writeBytes(data, to: Identifiers.SettingsCharacteristicUUID) { result in completion(result) }
+}
+
+/**
+ Writes desired actuator data to Moment device
+ 
+ TODO: Create full documentation of this method before incorporating into release
+ */
+public func writeActuators(duration: UInt16, topLeft: UInt8, topRight: UInt8, bottomLeft: UInt8, bottomRight: UInt8, completion: @escaping WriteRequestCallback) {
+    // Determine data to send
+    let duration0: UInt8 = UInt8(duration & 0x00FF)
+    let duration1: UInt8 = UInt8(duration >> 8)
+    let data = Data(bytes: [duration0, duration1, topLeft, topRight, bottomLeft, bottomRight])
+    
+    // Write settings data to Moment device
+    bluetoothManager.writeBytes(data, to: Identifiers.ActuatorCharacteristicUUID) { result in completion(result) }
 }
 
 /**

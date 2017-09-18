@@ -253,11 +253,13 @@ final internal class BluetoothManager: NSObject {
     }
     
     /**
-     Writes provided Moment settings data to the settings characteristic
+     Writes provided data to the appropriate characteristic
      
-     - Parameter bytes: Byte representation of the settings data to be written
+     - Parameter bytes: The `Data` byte representation of the settings data to be written
+     
+     - Parameter characteristic: The `UUID` of the characteristic being written to
      */
-    func writeSettings(_ bytes: Data, completion: @escaping WriteRequestCallback) {
+    func writeBytes(_ bytes: Data, to characteristic: CBUUID, completion: @escaping WriteRequestCallback) {
         // Ensure that we already have a reference to Moment peripheral
         guard let peripheral = peripheral else {
             // Treat as error and handle in completion
@@ -268,7 +270,7 @@ final internal class BluetoothManager: NSObject {
         }
 
         // Write data to settings characteristic
-        peripheral.writeValue(ofCharacWithUUID: Identifiers.SettingsCharacteristicUUID, fromServiceWithUUID: Identifiers.HapticTimelineServiceUUID, value: bytes) { result in
+        peripheral.writeValue(ofCharacWithUUID: characteristic, fromServiceWithUUID: Identifiers.HapticTimelineServiceUUID, value: bytes) { result in
             completion(result)
         }
     }
