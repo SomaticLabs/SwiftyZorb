@@ -117,6 +117,35 @@ public func reset(completion: @escaping WriteRequestCallback) {
 }
 
 /**
+ Reads version `String` from Moment device
+ */
+public func readVersion(completion: @escaping (SwiftyBluetooth.Result<String>) -> Void) {
+    bluetoothManager.readVersion { result in completion(result) }
+}
+
+/**
+ Reads serial `String` from Moment device
+ */
+public func readSerial(completion: @escaping (SwiftyBluetooth.Result<String>) -> Void) {
+    bluetoothManager.readSerial { result in completion(result) }
+}
+
+/**
+ Writes desired actuator data to Moment device
+ 
+ TODO: Create full documentation of this method before incorporating into release
+ */
+public func writeActuators(duration: UInt16, topLeft: UInt8, topRight: UInt8, bottomLeft: UInt8, bottomRight: UInt8, completion: @escaping WriteRequestCallback) {
+    // Determine data to send
+    let duration0: UInt8 = UInt8(duration & 0x00FF)
+    let duration1: UInt8 = UInt8(duration >> 8)
+    let data = Data(bytes: [duration0, duration1, topLeft, topRight, bottomLeft, bottomRight])
+    
+    // Write settings data to Moment device
+    bluetoothManager.writeBytes(data, to: Identifiers.ActuatorCharacteristicUUID) { result in completion(result) }
+}
+
+/**
  Writes desired settings to Moment device
  
  Usage Example:
@@ -160,21 +189,6 @@ public func writeSettings(wristOrientation: Orientation, buttonOrientation: Orie
     
     // Write settings data to Moment device
     bluetoothManager.writeBytes(data, to: Identifiers.SettingsCharacteristicUUID) { result in completion(result) }
-}
-
-/**
- Writes desired actuator data to Moment device
- 
- TODO: Create full documentation of this method before incorporating into release
- */
-public func writeActuators(duration: UInt16, topLeft: UInt8, topRight: UInt8, bottomLeft: UInt8, bottomRight: UInt8, completion: @escaping WriteRequestCallback) {
-    // Determine data to send
-    let duration0: UInt8 = UInt8(duration & 0x00FF)
-    let duration1: UInt8 = UInt8(duration >> 8)
-    let data = Data(bytes: [duration0, duration1, topLeft, topRight, bottomLeft, bottomRight])
-    
-    // Write settings data to Moment device
-    bluetoothManager.writeBytes(data, to: Identifiers.ActuatorCharacteristicUUID) { result in completion(result) }
 }
 
 /**

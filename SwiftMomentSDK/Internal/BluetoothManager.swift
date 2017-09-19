@@ -253,6 +253,68 @@ final internal class BluetoothManager: NSObject {
     }
     
     /**
+     Obtains the current revision version of the firmware on the device
+     */
+    func readVersion(completion: @escaping (Result<String>) -> Void) {
+        // Ensure that we already have a reference to Moment peripheral
+        guard let peripheral = peripheral else {
+            // Treat as error and handle in completion
+            let error = ManagerError("Not connected to Moment peripheral!")
+            completion(.failure(error))
+            
+            return // Exit
+        }
+        
+        // Read data from the device information service
+        peripheral.readValue(ofCharacWithUUID: Identifiers.FirmwareRevisionStringCharacteristicUUID, fromServiceWithUUID: Identifiers.DeviceInformationServiceUUID) { result in
+            switch result {
+            case .success(let data):
+                // Successfully notifying on battery characteristic
+                guard let string = String(bytes: data, encoding: String.Encoding.utf8) else {
+                    let error = ManagerError("Unable to extract string data from firmware revision string characteristic.")
+                    completion(.failure(error))
+                    return // Exit
+                }
+                completion(.success(string))
+            case .failure(let error):
+                // Treat as error and handle in completion
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    /**
+     Obtains the current serial number of the paired device
+     */
+    func readSerial(completion: @escaping (Result<String>) -> Void) {
+        // Ensure that we already have a reference to Moment peripheral
+        guard let peripheral = peripheral else {
+            // Treat as error and handle in completion
+            let error = ManagerError("Not connected to Moment peripheral!")
+            completion(.failure(error))
+            
+            return // Exit
+        }
+
+        // Read data from the device information service
+        peripheral.readValue(ofCharacWithUUID: Identifiers.SerialNumberStringCharacteristicUUID, fromServiceWithUUID: Identifiers.DeviceInformationServiceUUID) { result in
+            switch result {
+            case .success(let data):
+                // Successfully notifying on battery characteristic
+                guard let string = String(bytes: data, encoding: String.Encoding.utf8) else {
+                    let error = ManagerError("Unable to extract string data from firmware revision string characteristic.")
+                    completion(.failure(error))
+                    return // Exit
+                }
+                completion(.success(string))
+            case .failure(let error):
+                // Treat as error and handle in completion
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    /**
      Writes provided data to the appropriate characteristic
      
      - Parameter bytes: The `Data` byte representation of the settings data to be written

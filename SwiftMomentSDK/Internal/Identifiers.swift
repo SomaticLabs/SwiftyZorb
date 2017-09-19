@@ -15,7 +15,18 @@ import CoreBluetooth
  */
 internal struct Identifiers {
     
-    // MARK: - Moment Bluetooth Service UUIDs
+    // MARK: - General Bluetooth Service UUIDs
+    
+    /// `CBUUID` for identifying the standard device information service
+    static let DeviceInformationServiceUUID = CBUUID(string: "180A")
+    
+    /// `CBUUID` for identifying the firmware revision string characteristic
+    static let FirmwareRevisionStringCharacteristicUUID = CBUUID(string: "2A26")
+    
+    /// `CBUUID` for identifying the serial number string characteristic
+    static let SerialNumberStringCharacteristicUUID = CBUUID(string: "2A25")
+    
+    // MARK: - Moment Specific Bluetooth Service UUIDs
     
     /// Array of `CBUUID`s representing all services that Moment should advertise
     static let AdvertisedServices = [HapticTimelineServiceUUID]
