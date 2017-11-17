@@ -203,12 +203,13 @@
 					407350651E5D045000CA2D94 = {
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = 6NBXW22Z9U;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = "";
 						ProvisioningStyle = Automatic;
 					};
 					4073506E1E5D045000CA2D94 = {
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = 6NBXW22Z9U;
+						LastSwiftMigration = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
