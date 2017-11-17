@@ -160,6 +160,10 @@ SwiftMomentSDK.reset { result in
 }
 ```
 
+## Style Guide
+
+Contributions to this project should conform to the [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/) and [this style guide](https://github.com/github/swift-style-guide).
+
 ## License
 
 The SwiftMomentSDK is released under the [MIT license](https://github.com/SomaticLabs/SwiftMomentSDK/blob/master/LICENSE).

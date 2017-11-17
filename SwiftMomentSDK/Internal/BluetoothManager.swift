@@ -146,7 +146,7 @@ final internal class BluetoothManager: NSObject {
             if let peripheral = central.retrievePeripherals(withUUIDs: [uuid]).first {
                 peripheral.connect(withTimeout: Constants.connectTimeout) { result in
                     switch result {
-                    case .success:
+                    case .success(let value):
                         // Validate name
                         guard peripheral.name == Constants.deviceName else {
                             // Treat as error and handle in completion
@@ -158,7 +158,7 @@ final internal class BluetoothManager: NSObject {
                         
                         // Update internal `Peripheral` and handle in completion
                         self.peripheral = peripheral
-                        completion(.success())
+                        completion(.success(value))
                     case .failure(let error):
                         // Treat as error and handle in completion
                         completion(.failure(error))
@@ -172,7 +172,7 @@ final internal class BluetoothManager: NSObject {
                 if peripheral.name == Constants.deviceName {
                     peripheral.connect(withTimeout: Constants.connectTimeout) { result in
                         switch result {
-                        case .success:
+                        case .success(let value):
                             // Validate name
                             guard peripheral.name == Constants.deviceName else {
                                 // Treat as error and handle in completion
@@ -187,7 +187,7 @@ final internal class BluetoothManager: NSObject {
                             
                             // Update internal `Peripheral` and handle in completion
                             self.peripheral = peripheral
-                            completion(.success())
+                            completion(.success(value))
                         case .failure(let error):
                             // Treat as error and handle in completion
                             completion(.failure(error))
@@ -221,7 +221,7 @@ final internal class BluetoothManager: NSObject {
                     // Initiate connection to peripheral
                     peripheral.connect(withTimeout: Constants.connectTimeout) { result in
                         switch result {
-                        case .success:
+                        case .success(let value):
                             // Validate name
                             guard peripheral.name == Constants.deviceName else {
                                 // Treat as error and handle in completion
@@ -233,7 +233,7 @@ final internal class BluetoothManager: NSObject {
                             
                             // Update internal `Peripheral` and handle in completion
                             self.peripheral = peripheral
-                            completion(.success())
+                            completion(.success(value))
                         case .failure(let error):
                             // Treat as error and handle in completion
                             completion(.failure(error))
@@ -374,7 +374,7 @@ final internal class BluetoothManager: NSObject {
                 if self.packetQueue.isEmpty {
                     // Handle base case
                     while self.packetQueue.numSets > 0 {
-                        completion(.success())
+                        completion(.success(()))
                         self.packetQueue.numSets -= 1
                     }
                 } else {
