@@ -1,3 +1,3 @@
-github "SomaticLabs/SwiftyBluetooth" ~> 0.3
-github "Alamofire/Alamofire" ~> 4.0
-github "SwiftyJSON/SwiftyJSON" ~> 3.1
+github "SomaticLabs/SwiftyBluetooth" ~> 1.0
+github "Alamofire/Alamofire" ~> 4.5
+github "SwiftyJSON/SwiftyJSON" ~> 4.0
