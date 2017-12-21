@@ -117,6 +117,82 @@ public func reset(completion: @escaping WriteRequestCallback) {
 }
 
 /**
+ Reads version `String` from Moment device.
+ 
+ Usage Example:
+ 
+ ```swift
+ SwiftMomentSDK.readVersion { result in
+     switch result(let string) {
+     case .success:
+        // Reading version string succeeded
+     case .failure(let error):
+        // An error occurred during read
+     }
+ }
+ ```
+ */
+public func readVersion(completion: @escaping (SwiftyBluetooth.Result<String>) -> Void) {
+    bluetoothManager.readVersion { result in completion(result) }
+}
+
+/**
+ Reads serial `String` from Moment device.
+ 
+ Usage Example:
+ 
+ ```swift
+ SwiftMomentSDK.readSerial { result in
+     switch result(let string) {
+     case .success:
+        // Reading serial string succeeded
+     case .failure(let error):
+        // An error occurred during read
+     }
+ }
+ ```
+ */
+public func readSerial(completion: @escaping (SwiftyBluetooth.Result<String>) -> Void) {
+    bluetoothManager.readSerial { result in completion(result) }
+}
+
+/**
+ Writes desired actuator data to Moment device.
+ 
+ Usage Example:
+ 
+ ```swift
+ SwiftMomentSDK.writeActuators(duration: 100, topLeft: 0, topRight: 0, bottomLeft: 25, bottomRight: 25) { result in
+     switch result {
+     case .success:
+        // Write succeeded
+     case .failure(let error):
+        // An error occurred during write
+     }
+ }
+ ```
+ 
+ - Parameter duration: The total duration, in milliseconds for the given set of vibrations to last.
+ 
+ - Parameter topLeft: Intensity, in a range from 0 to 100, for the top left actuator to be set at.
+ 
+ - Parameter topRight: Intensity, in a range from 0 to 100, for the top right actuator to be set at.
+ 
+ - Parameter bottomLeft: Intensity, in a range from 0 to 100, for the bottom left actuator to be set at.
+ 
+ - Parameter bottomRight: Intensity, in a range from 0 to 100, for the bottom right actuator to be set at.
+ */
+public func writeActuators(duration: UInt16, topLeft: UInt8, topRight: UInt8, bottomLeft: UInt8, bottomRight: UInt8, completion: @escaping WriteRequestCallback) {
+    // Determine data to send
+    let duration0: UInt8 = UInt8(duration & 0x00FF)
+    let duration1: UInt8 = UInt8(duration >> 8)
+    let data = Data(bytes: [duration0, duration1, topLeft, topRight, bottomLeft, bottomRight])
+    
+    // Write settings data to Moment device
+    bluetoothManager.writeBytes(data, to: Identifiers.ActuatorCharacteristicUUID) { result in completion(result) }
+}
+
+/**
  Writes desired settings to Moment device
  
  Usage Example:
@@ -159,7 +235,7 @@ public func writeSettings(wristOrientation: Orientation, buttonOrientation: Orie
     let data = Data(bytes: bytes)
     
     // Write settings data to Moment device
-    bluetoothManager.writeSettings(data) { result in completion(result) }
+    bluetoothManager.writeBytes(data, to: Identifiers.SettingsCharacteristicUUID) { result in completion(result) }
 }
 
 /**
