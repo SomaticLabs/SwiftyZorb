@@ -10,34 +10,18 @@ import SwiftyBluetooth
 import Alamofire
 import SwiftyJSON
 
-// MARK: - Settings Enumerations
-
-/**
- Enumeration of left and right, used for keeping track of wrist and button orientation - conforms to `UInt8` type
- */
-public enum Orientation: UInt8 {
-    /// Left orientation, represented as `UInt8` of `0`
-    case left = 0
-    
-    /// Right orientation, represented as `UInt8` of `1`
-    case right = 1
-}
-
-/**
- Enumeration of low, medium and high, used for keeping track of device intensity level - conforms to `UInt8` type
- */
-public enum Intensity: UInt8 {
-    /// Low intensity, represented as `UInt8` of `0`
-    case low = 0
-    
-    /// Medium intensity, represented as `UInt8` of `1`
-    case medium = 1
-    
-    /// High intensity, represented as `UInt8` of `2`
-    case high = 2
-}
-
 // MARK: Bluetooth Management Methods
+
+/**
+ Scans for and retrieves a collection of available Moment devices.
+ 
+ Usage Example:
+ 
+ TODO
+ */
+public func retrieveAvailableDevices(completion: @escaping (SwiftyBluetooth.Result<[ZorbDevice]>) -> Void) {
+    bluetoothManager.retrieveAvailableDevices { result in completion(result) }
+}
 
 /**
  Initiates a connection to an advertising Moment device.
@@ -71,7 +55,7 @@ public func connect(completion: @escaping ConnectPeripheralCallback) {
  ```
  */
 public func disconnect() {
-    bluetoothManager.peripheral?.disconnect { _ in }
+    bluetoothManager.device?.disconnect()
 }
 
 /**
@@ -92,7 +76,7 @@ public func forget() {
 
 
 /**
- Writes the appropriate command to reset Moment's Javascript virtual machine.
+ Writes the appropriate command to reset connected Moment's Javascript virtual machine.
  
  Usage Example:
  
@@ -108,12 +92,7 @@ public func forget() {
  ```
  */
 public func reset(completion: @escaping WriteRequestCallback) {
-    bluetoothManager.writeJavascript(Data()) { result in
-        // FIXME: Having to use this dispatch queue is strange, it seems this issue stems from the firmware where the receiver callback is sent before the reset has completed, not sure if this is fixable in firmware or if this delay is the only solution
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
-            completion(result)
-        }
-    }
+    bluetoothManager.device?.reset { result in completion(result) }
 }
 
 /**
@@ -133,7 +112,7 @@ public func reset(completion: @escaping WriteRequestCallback) {
  ```
  */
 public func readVersion(completion: @escaping (SwiftyBluetooth.Result<String>) -> Void) {
-    bluetoothManager.readVersion { result in completion(result) }
+    bluetoothManager.device?.readVersion { result in completion(result) }
 }
 
 /**
@@ -153,7 +132,7 @@ public func readVersion(completion: @escaping (SwiftyBluetooth.Result<String>) -
  ```
  */
 public func readSerial(completion: @escaping (SwiftyBluetooth.Result<String>) -> Void) {
-    bluetoothManager.readSerial { result in completion(result) }
+    bluetoothManager.device?.readSerial { result in completion(result) }
 }
 
 /**
@@ -183,13 +162,7 @@ public func readSerial(completion: @escaping (SwiftyBluetooth.Result<String>) ->
  - Parameter bottomRight: Intensity, in a range from 0 to 100, for the bottom right actuator to be set at.
  */
 public func writeActuators(duration: UInt16, topLeft: UInt8, topRight: UInt8, bottomLeft: UInt8, bottomRight: UInt8, completion: @escaping WriteRequestCallback) {
-    // Determine data to send
-    let duration0: UInt8 = UInt8(duration & 0x00FF)
-    let duration1: UInt8 = UInt8(duration >> 8)
-    let data = Data(bytes: [duration0, duration1, topLeft, topRight, bottomLeft, bottomRight])
-    
-    // Write settings data to Moment device
-    bluetoothManager.writeBytes(data, to: Identifiers.ActuatorCharacteristicUUID) { result in completion(result) }
+    bluetoothManager.device?.writeActuators(duration: duration, topLeft: topLeft, topRight: topRight, bottomLeft: bottomLeft, bottomRight: bottomRight) { result in completion(result) }
 }
 
 /**
@@ -215,27 +188,7 @@ public func writeActuators(duration: UInt16, topLeft: UInt8, topRight: UInt8, bo
  - Parameter intensityLevel: The intensity level that Moment's vibrations will be at, either `.low`, `.medium`, or `.high`
  */
 public func writeSettings(wristOrientation: Orientation, buttonOrientation: Orientation,  intensityLevel: Intensity, completion: @escaping WriteRequestCallback) {
-    // Create proper C level structure
-    let structure = hts_settings(
-        wrist_orientation: wristOrientation.rawValue,
-        pair_button_orientation: buttonOrientation.rawValue,
-        intensity_level: intensityLevel.rawValue
-    )
-    
-    // Pack into byte array
-    var union: hts_settings_data! = hts_settings_data()
-    union.data = structure
-    var bytes: Array<UInt8>! = Array<UInt8>()
-    let mirror = Mirror(reflecting: union.bytes)
-    for child in mirror.children {
-        bytes.append(child.value as! UInt8)
-    }
-    
-    // Create data object from byte array
-    let data = Data(bytes: bytes)
-    
-    // Write settings data to Moment device
-    bluetoothManager.writeBytes(data, to: Identifiers.SettingsCharacteristicUUID) { result in completion(result) }
+    bluetoothManager.device?.writeSettings(wristOrientation: wristOrientation, buttonOrientation: buttonOrientation,  intensityLevel: intensityLevel) { result in completion(result) }
 }
 
 /**
@@ -262,21 +215,7 @@ public func writeSettings(wristOrientation: Orientation, buttonOrientation: Orie
  - Parameter javascript: The Javascript code to be written
   */
 public func writeJavascript(_ javascript: String, completion: @escaping WriteRequestCallback) {
-    // Compile Javascript and write it to our device
-    let params: Parameters = [
-        "js": javascript
-    ]
-    Alamofire.request(Constants.javascriptCompilerURL, method: .post, parameters: params)
-        .validate()
-        .responseData { response in
-        // Handle response appropriately
-        switch response.result {
-        case .success(let bytes):
-            bluetoothManager.writeJavascript(bytes) { result in completion(result) }
-        case .failure(let error):
-            completion(.failure(error))
-        }
-    }
+    bluetoothManager.device?.writeJavascript(javascript) { result in completion(result) }
 }
 
 /**
@@ -299,25 +238,7 @@ public func writeJavascript(_ javascript: String, completion: @escaping WriteReq
  - Parameter url: A URL to the hosted Javascript script to be written
  */
 public func writeJavascript(at url: URL, completion: @escaping WriteRequestCallback) {
-    // Add a random query based on the current time, so that we don't have issues with source file being cached
-    let randomQuery = "?".appending(String(Int(NSDate().timeIntervalSince1970)))
-    let url = URL(string: url.absoluteString + randomQuery)!
-    
-    // Compile Javascript and write it to our device
-    let params: Parameters = [
-        "src": url.absoluteString
-    ]
-    Alamofire.request(Constants.javascriptCompilerURL, method: .post, parameters: params)
-        .validate()
-        .responseData { response in
-            // Handle response appropriately
-            switch response.result {
-            case .success(let bytes):
-                bluetoothManager.writeJavascript(bytes) { result in completion(result) }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-    }
+    bluetoothManager.device?.writeJavascript(at: url) { result in completion(result) }
 }
 
 /**
@@ -339,11 +260,6 @@ public func writeJavascript(at url: URL, completion: @escaping WriteRequestCallb
  
  - Parameter bytecode: The base64 encoded representation of pre-compiled Javascript bytecode to be written
  */
-public func writeBytecode(_ bytecode: String, completion: @escaping WriteRequestCallback) {
-    // Write compiled Javascript to our device
-    guard let bytes = Data(base64Encoded: bytecode) else {
-        completion(.failure(ManagerError("Invalid base64 encoded bytecode string.")))
-        return // Exit
-    }
-    bluetoothManager.writeJavascript(bytes) { result in completion(result) }
+public func writeBytecodeString(_ bytecode: String, completion: @escaping WriteRequestCallback) {
+    bluetoothManager.device?.writeBytecodeString(bytecode) { result in completion(result) }
 }
