@@ -13,7 +13,7 @@ import Alamofire
 // MARK: - Zorb Device
 
 /**
- TODO
+ Class encapsulating the all necessary functions for a given device peripheral
  */
 final public class ZorbDevice {
     
@@ -116,7 +116,21 @@ final public class ZorbDevice {
      
      Usage Example:
      
-     TODO
+     ```swift
+     // Create a `ZorbDevice` object for a given Bluetooth peripheral (or this object may have
+     // already been created as in the case of using `retrieveAvailableDevices` method of SDK
+     let device = ZorbDevice(with: peripheral)
+     
+     // Attempts connection to an advertising device
+     device.connect { result in
+         switch result {
+         case .success:
+            // Connect succeeded
+         case .failure(let error):
+            // An error occurred during connection
+         }
+     }
+     ```
      */
     public func connect(completion: @escaping ConnectPeripheralCallback) {
         peripheral.connect(withTimeout: Constants.connectTimeout) { result in
@@ -129,7 +143,14 @@ final public class ZorbDevice {
      
      Usage Example:
      
-     TODO
+     ```swift
+     // Create a `ZorbDevice` object for a given Bluetooth peripheral (or this object may have
+     // already been created as in the case of using `retrieveAvailableDevices` method of SDK
+     let device = ZorbDevice(with: peripheral)
+     
+     // After calling this method, Moment disconnection will be guaranteed
+     device.disconnect()
+     ```
      */
     public func disconnect() {
         peripheral.disconnect { _ in }
@@ -141,7 +162,21 @@ final public class ZorbDevice {
      
      Usage Example:
      
-     TODO
+     ```swift
+     // Create a `ZorbDevice` object for a given Bluetooth peripheral (or this object may have
+     // already been created as in the case of using `retrieveAvailableDevices` method of SDK
+     let device = ZorbDevice(with: peripheral)
+     
+     // Reset device SDK environment
+     device.reset { result in
+         switch result {
+         case .success:
+            // Reset succeeded
+         case .failure(let error):
+            // An error occurred during reset
+         }
+     }
+     ```
      */
     public func reset(completion: @escaping WriteRequestCallback) {
         self.writeBytecode(Data()) { result in
@@ -157,7 +192,21 @@ final public class ZorbDevice {
      
      Usage Example:
      
-     TODO
+     ```swift
+     // Create a `ZorbDevice` object for a given Bluetooth peripheral (or this object may have
+     // already been created as in the case of using `retrieveAvailableDevices` method of SDK
+     let device = ZorbDevice(with: peripheral)
+     
+     // Read version from device
+     device.readVersion { result in
+         switch result {
+         case .success(let version):
+            // Reading version string succeeded
+         case .failure(let error):
+            // An error occurred during read
+         }
+     }
+     ```
      */
     public func readVersion(completion: @escaping (SwiftyBluetooth.Result<String>) -> Void) {
         // Read data from the device information service
@@ -183,7 +232,21 @@ final public class ZorbDevice {
      
      Usage Example:
      
-     TODO
+     ```swift
+     // Create a `ZorbDevice` object for a given Bluetooth peripheral (or this object may have
+     // already been created as in the case of using `retrieveAvailableDevices` method of SDK
+     let device = ZorbDevice(with: peripheral)
+     
+     // Read serial from device
+     device.readSerial { result in
+         switch result {
+         case .success(let serial):
+            // Reading version string succeeded
+         case .failure(let error):
+            // An error occurred during read
+         }
+     }
+     ```
      */
     public func readSerial(completion: @escaping (SwiftyBluetooth.Result<String>) -> Void) {
         // Read data from the device information service
@@ -209,7 +272,21 @@ final public class ZorbDevice {
      
      Usage Example:
      
-     TODO
+     ```swift
+     // Create a `ZorbDevice` object for a given Bluetooth peripheral (or this object may have
+     // already been created as in the case of using `retrieveAvailableDevices` method of SDK
+     let device = ZorbDevice(with: peripheral)
+     
+     // Write data to device actuators
+     device.writeActuators(duration: 100, topLeft: 0, topRight: 0, bottomLeft: 25, bottomRight: 25) { result in
+         switch result {
+         case .success:
+            // Write succeeded
+         case .failure(let error):
+            // An error occurred during write
+         }
+     }
+     ```
      
      - Parameter duration: The total duration, in milliseconds for the given set of vibrations to last.
      
@@ -236,7 +313,21 @@ final public class ZorbDevice {
      
      Usage Example:
      
-     TODO
+     ```swift
+     // Create a `ZorbDevice` object for a given Bluetooth peripheral (or this object may have
+     // already been created as in the case of using `retrieveAvailableDevices` method of SDK
+     let device = ZorbDevice(with: peripheral)
+     
+     // Write settings to device
+     device.writeSettings(wristOrientation: .left, buttonOrientation: .left, intensityLevel: .high) { result in
+     switch result {
+         case .success:
+            // Settings update succeeded
+         case .failure(let error):
+            // An error occurred during settings update
+         }
+     }
+     ```
      
      - Parameter wristOrientation: The wrist that Moment is being worn on, either `.left` or `.right`
      
@@ -274,7 +365,25 @@ final public class ZorbDevice {
      
      Usage Example:
      
-     TODO
+     ```swift
+     // Create a `ZorbDevice` object for a given Bluetooth peripheral (or this object may have
+     // already been created as in the case of using `retrieveAvailableDevices` method of SDK
+     let device = ZorbDevice(with: peripheral)
+     
+     // Write Javascript to device
+     let javascript = "Moment.on('timertick', function () {" +
+     "var ms = Moment.uptime();" +
+     "// do something time-related here" +
+     "});"
+     device.writeJavascript(javascript) { result in
+         switch result {
+         case .success:
+            // Write succeeded
+         case .failure(let error):
+            // An error occurred during write
+         }
+     }
+     ```
      
      - Parameter javascript: The Javascript code to be written
      */
@@ -301,7 +410,22 @@ final public class ZorbDevice {
      
      Usage Example:
      
-     TODO
+     ```swift
+     // Create a `ZorbDevice` object for a given Bluetooth peripheral (or this object may have
+     // already been created as in the case of using `retrieveAvailableDevices` method of SDK
+     let device = ZorbDevice(with: peripheral)
+     
+     // Write Javascript from url to device
+     let url = URL(string: "https://gist.github.com/shantanubala/1f7d0dfb9bbef3edca8d0bb164c56aa0/raw")!
+     device.writeJavascript(at url) { result in
+         switch result {
+         case .success:
+            // Write succeeded
+         case .failure(let error):
+            // An error occurred during write
+         }
+     }
+     ```
      
      - Parameter url: A URL to the hosted Javascript script to be written
      */
@@ -332,7 +456,22 @@ final public class ZorbDevice {
      
      Usage Example:
      
-     TODO
+     ```swift
+     // Create a `ZorbDevice` object for a given Bluetooth peripheral (or this object may have
+     // already been created as in the case of using `retrieveAvailableDevices` method of SDK
+     let device = ZorbDevice(with: peripheral)
+     
+     // Write bytecode to device
+     let bytecode = "BgAAAFAAAAAsAAAAAQAAAAQAAQABAAUAAAEDBAYAAQACAAYAOwABKQIDxEYBAAAABAABACEAAwABAgMDAAAGAAgAOwECt8gARgAAAAAAAAAFAAAAAAAAAAIAb24JAHRpbWVydGljawABAHQABgBNb21lbnQGAHVwdGltZQ=="
+     device.writeBytecode(bytecode) { result in
+         switch result {
+         case .success:
+            // Write succeeded
+         case .failure(let error):
+            // An error occurred during write
+         }
+     }
+     ```
      
      - Parameter bytecode: The base64 encoded representation of pre-compiled Javascript bytecode to be written
      */

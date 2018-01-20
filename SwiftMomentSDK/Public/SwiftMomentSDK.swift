@@ -13,11 +13,24 @@ import SwiftyJSON
 // MARK: Bluetooth Management Methods
 
 /**
- Scans for and retrieves a collection of available Moment devices.
+ Scans for and retrieves a collection of available Zorb devices.
  
  Usage Example:
  
- TODO
+ ```swift
+ // Retrieves a list all available devices as an array of `ZorbDevice` objects.
+ SwiftMomentSDK.retrieveAvailableDevices { result in
+    switch result {
+    case .success(let devices):
+        // Retrieval succeeded
+        for device in devices {
+            // Do something with devices
+        }
+    case .failure(let error):
+        // An error occurred during retrieval
+    }
+ }
+ ```
  */
 public func retrieveAvailableDevices(completion: @escaping (SwiftyBluetooth.Result<[ZorbDevice]>) -> Void) {
     bluetoothManager.retrieveAvailableDevices { result in completion(result) }
@@ -33,7 +46,7 @@ public func retrieveAvailableDevices(completion: @escaping (SwiftyBluetooth.Resu
  SwiftMomentSDK.connect { result in
     switch result {
     case .success:
-        // Connected succeeded
+        // Connect succeeded
     case .failure(let error):
         // An error occurred during connection
     }
@@ -74,7 +87,6 @@ public func forget() {
 
 // MARK: Bluetooth Javascript Methods
 
-
 /**
  Writes the appropriate command to reset connected Moment's Javascript virtual machine.
  
@@ -102,8 +114,8 @@ public func reset(completion: @escaping WriteRequestCallback) {
  
  ```swift
  SwiftMomentSDK.readVersion { result in
-     switch result(let string) {
-     case .success:
+     switch result {
+     case .success(let version):
         // Reading version string succeeded
      case .failure(let error):
         // An error occurred during read
@@ -122,8 +134,8 @@ public func readVersion(completion: @escaping (SwiftyBluetooth.Result<String>) -
  
  ```swift
  SwiftMomentSDK.readSerial { result in
-     switch result(let string) {
-     case .success:
+     switch result {
+     case .success(let serial):
         // Reading serial string succeeded
      case .failure(let error):
         // An error occurred during read
