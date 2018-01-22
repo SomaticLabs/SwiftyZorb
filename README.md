@@ -1,16 +1,16 @@
-![Moment Logo](https://github.com/SomaticLabs/SwiftMomentSDK/raw/master/images/moment.png)
+![Moment Logo](https://github.com/SomaticLabs/SwiftyZorb/raw/master/images/moment.png)
 
-# SwiftMomentSDK
+# SwiftyZorb
 
 *iOS development kit for [Moment](https://wearmoment.com)*
 
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/SomaticLabs/SwiftMomentSDK/blob/master/LICENSE)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/SomaticLabs/SwiftyZorb/blob/master/LICENSE)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Twitter](https://img.shields.io/badge/twitter-@SomaticLabs-orange.svg?style=flat)](http://twitter.com/SomaticLabs)
 
 ## About
 
-The SwiftMomentSDK allows developers to build iOS applications that communicate with Moment, the first wearable that communicates entirely through your sense of touch.
+The SwiftyZorb allows developers to build iOS applications that communicate with Moment, the first wearable that communicates entirely through your sense of touch.
 
 This library is made to be used in conjuction with our [embedded Javascript SDK](https://github.com/somaticlabs/moment-sdk).
 
@@ -20,7 +20,7 @@ Animations and programs created in the simulator can be ran on Moment using this
 
 For more information regarding using the Moment Javascript SDK, please refer to our [documentation](https://somaticlabs.github.io/moment-sdk/).
 
-For a quick reference to the SwiftMomentSDK documents, please refer to [this guide](https://somaticlabs.github.io/SwiftMomentSDK).
+For a quick reference to the SwiftyZorb documents, please refer to [this guide](https://somaticlabs.github.io/SwiftyZorb).
 
 ## Requirements
 
@@ -49,13 +49,13 @@ $ brew update
 $ brew install carthage
 ```
 
-To integrate SwiftMomentSDK into your Xcode project using Carthage, specify it in your `Cartfile`:
+To integrate SwiftyZorb into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "SomaticLabs/SwiftMomentSDK" ~> 1.0
+github "SomaticLabs/SwiftyZorb" ~> 1.0
 ```
 
-Run `carthage update` to build the framework and drag the built `SwiftMomentSDK.framework` into your Xcode project.
+Run `carthage update` to build the framework and drag the built `SwiftyZorb.framework` into your Xcode project.
 
 You must also drag the built dependencies `Alamofire.framework`, `SwiftyBluetooth.framework`, and `SwiftyJSON.framework` into your project.
 
@@ -66,9 +66,9 @@ You must also drag the built dependencies `Alamofire.framework`, `SwiftyBluetoot
 Before being able to communicate with Moment, you must establish a Bluetooth LE connection with your device.
 
 ```swift
-import SwiftMomentSDK
+import SwiftyZorb
 
-SwiftMomentSDK.connect { result in
+SwiftyZorb.connect { result in
     switch result {
     case .success:
         // Connected succeeded
@@ -81,13 +81,13 @@ SwiftMomentSDK.connect { result in
 If you would like to trigger a manual disconnect, you can do so like this:
 
 ```swift
-SwiftMomentSDK.disconnect()
+SwiftyZorb.disconnect()
 ```
 
-After connecting to a device for the first time, the SwiftMomentSDK saves a reference to that device for quicker reconnection in the future. If you would like to connect to a new device, you must forget the old connection.
+After connecting to a device for the first time, the SwiftyZorb saves a reference to that device for quicker reconnection in the future. If you would like to connect to a new device, you must forget the old connection.
 
 ```swift
-SwiftMomentSDK.forget()
+SwiftyZorb.forget()
 ```
 
 Note that simply disconnecting from the device will not forget a stored connection and, likewise, forgetting a connection will not force a disconnect.
@@ -103,7 +103,7 @@ let javascript = "Moment.on('timertick', function () {" +
     "var ms = Moment.uptime();" +
     "// do something time-related here" +
     "});"
-SwiftMomentSDK.writeJavascript(javascript) { result in
+SwiftyZorb.writeJavascript(javascript) { result in
     switch result {
     case .success:
         // Write succeeded
@@ -117,7 +117,7 @@ To send Javascript from a script saved in file hosted online:
 
 ```swift
 let url = URL(string: "https://gist.github.com/shantanubala/1f7d0dfb9bbef3edca8d0bb164c56aa0/raw")!
-SwiftMomentSDK.writeJavascript(at url) { result in
+SwiftyZorb.writeJavascript(at url) { result in
     switch result {
     case .success:
         // Write succeeded
@@ -133,7 +133,7 @@ To send pre-compiled Javascript bytecode as a base64 encoded `String` in your ap
 
  ```swift
 let bytecode = "BgAAAFAAAAAsAAAAAQAAAAQAAQABAAUAAAEDBAYAAQACAAYAOwABKQIDxEYBAAAABAABACEAAwABAgMDAAAGAAgAOwECt8gARgAAAAAAAAAFAAAAAAAAAAIAb24JAHRpbWVydGljawABAHQABgBNb21lbnQGAHVwdGltZQ=="
-SwiftMomentSDK.writeBytecode(bytecode) { result in
+SwiftyZorb.writeBytecode(bytecode) { result in
     switch result {
     case .success:
         // Write succeeded
@@ -146,7 +146,7 @@ SwiftMomentSDK.writeBytecode(bytecode) { result in
 To reset Moment's Javascript virtual machine:
 
 ```swift
-SwiftMomentSDK.reset { result in
+SwiftyZorb.reset { result in
     switch result {
     case .success:
         // Reset succeeded
@@ -162,4 +162,4 @@ Contributions to this project should conform to the [Swift API Design Guidelines
 
 ## License
 
-The SwiftMomentSDK is released under the [MIT license](https://github.com/SomaticLabs/SwiftMomentSDK/blob/master/LICENSE).
+The SwiftyZorb is released under the [MIT license](https://github.com/SomaticLabs/SwiftyZorb/blob/master/LICENSE).
