@@ -130,10 +130,10 @@
 <p>You must also drag the built dependencies <code>Alamofire.framework</code>, <code>SwiftyBluetooth.framework</code>, and <code>SwiftyJSON.framework</code> into your project.</p>
 <h2 id='single-device-usage' class='heading'>Single Device Usage</h2>
 
-<p>There are two ways to use this libary. If you intend to connect and reconnect to one Zorb peripheral device,</p>
+<p>There are two ways to use this libary. If you intend to connect and reconnect to one Zorb peripheral device, use the following methods.</p>
 <h3 id='connecting' class='heading'>Connecting</h3>
 
-<p>Before being able to communicate with Moment, you must establish a Bluetooth LE connection with your device.</p>
+<p>Before being able to communicate with a Zorb peripheral device, you must establish a Bluetooth LE connection with your device.</p>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">SwiftyZorb</span>
 
 <span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">connect</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
@@ -157,13 +157,14 @@
 <p>Note that simply disconnecting from the device will not forget a stored connection and, likewise, forgetting a connection will not force a disconnect.</p>
 <h3 id='sending-javascript' class='heading'>Sending Javascript</h3>
 
-<p>There are two ways to send Javascript to Moment to be executed on the device—by embedding it as a <code>String</code> in your application, or by passing a <code>URL</code> to a hosted file such as a <a href="https://gist.github.com">Github Gist</a> that contains your code.</p>
+<p>There are two ways to send Javascript to be executed on the device—by embedding it as a <code>String</code> in your application, or by passing a <code>URL</code> to a hosted file such as a <a href="https://gist.github.com">Github Gist</a> that contains your code.</p>
 
 <p>To send Javascript from a <code>String</code> in your application:</p>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">javascript</span> <span class="o">=</span> <span class="s">"Moment.on('timertick', function () {"</span> <span class="o">+</span>
-    <span class="s">"var ms = Moment.uptime();"</span> <span class="o">+</span>
-    <span class="s">"// do something time-related here"</span> <span class="o">+</span>
-    <span class="s">"});"</span>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">javascript</span> <span class="o">=</span> <span class="s">"new Zorb.Vibration("</span> <span class="o">+</span>
+    <span class="s">"0,"</span> <span class="o">+</span>
+    <span class="s">"new Zorb.Effect(0,100,11,250),"</span> <span class="o">+</span>
+    <span class="s">"213"</span> <span class="o">+</span>
+    <span class="s">").start();"</span>
 <span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">writeJavascript</span><span class="p">(</span><span class="n">javascript</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
     <span class="k">switch</span> <span class="nf">result</span> <span class="p">{</span>
     <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
@@ -175,7 +176,7 @@
 </code></pre>
 
 <p>To send Javascript from a script saved in file hosted online:</p>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="nf">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://gist.github.com/shantanubala/1f7d0dfb9bbef3edca8d0bb164c56aa0/raw"</span><span class="p">)</span><span class="o">!</span>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="nf">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://gist.githubusercontent.com/jakerockland/17cb9cbfda0e09fa8251fc7666e2c4dc/raw"</span><span class="p">)</span><span class="o">!</span>
 <span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">writeJavascript</span><span class="p">(</span><span class="n">at</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
     <span class="k">switch</span> <span class="nf">result</span> <span class="p">{</span>
     <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
@@ -186,7 +187,7 @@
 <span class="p">}</span>
 </code></pre>
 
-<p>Using the two above methods will always require an HTTP request to the MomentSDK Javascript compiler, which produces the Javascript bytecode that is executed on Moment&rsquo;s internal virtual machine. If you would like to avoid this HTTP request, you can send pre-compiled bytecode instead.</p>
+<p>Using the two above methods will always require an HTTP request to the ZorbSDK Javascript compiler, which produces the Javascript bytecode that is executed on the Zorb device&rsquo;s internal virtual machine. If you would like to avoid this HTTP request, you can send pre-compiled bytecode instead.</p>
 
 <p>To send pre-compiled Javascript bytecode as a base64 encoded <code>String</code> in your application:</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">bytecode</span> <span class="o">=</span> <span class="s">"BgAAAFAAAAAsAAAAAQAAAAQAAQABAAUAAAEDBAYAAQACAAYAOwABKQIDxEYBAAAABAABACEAAwABAgMDAAAGAAgAOwECt8gARgAAAAAAAAAFAAAAAAAAAAIAb24JAHRpbWVydGljawABAHQABgBNb21lbnQGAHVwdGltZQ=="</span>
@@ -200,13 +201,58 @@
 <span class="p">}</span>
 </code></pre>
 
-<p>To reset Moment&rsquo;s Javascript virtual machine:</p>
+<p>To reset the Zorb device&rsquo;s Javascript virtual machine:</p>
 <pre class="highlight swift"><code><span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">reset</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
     <span class="k">switch</span> <span class="nf">result</span> <span class="p">{</span>
     <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
         <span class="c1">// Reset succeeded</span>
     <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
         <span class="c1">// An error occurred during reset</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h2 id='multiple-device-usage' class='heading'>Multiple Device Usage</h2>
+
+<p>If you would like to manage connections with multiple Zorb peripheral devices, you may do so by first retrieving a list of the available devices:</p>
+<pre class="highlight swift"><code><span class="c1">// Retrieves a list all available devices as an array of `ZorbDevice` objects.</span>
+<span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">retrieveAvailableDevices</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+    <span class="k">switch</span> <span class="nf">result</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">devices</span><span class="p">):</span>
+        <span class="c1">// Retrieval succeeded</span>
+        <span class="k">for</span> <span class="n">device</span> <span class="k">in</span> <span class="nf">devices</span> <span class="p">{</span>
+            <span class="c1">// Do something with devices</span>
+        <span class="p">}</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+        <span class="c1">// An error occurred during retrieval</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>After filtering for the devices of interest, a given device can be connected to and intereacted with using commands similar to those used in the single-device usage.</p>
+
+<p>For example, to connect and send a pattern at a given url:</p>
+<pre class="highlight swift"><code><span class="c1">// Create a `ZorbDevice` object for a given Bluetooth peripheral (or this object may have</span>
+<span class="c1">// already been created as in the case of using `retrieveAvailableDevices` method of SDK</span>
+<span class="k">let</span> <span class="nv">device</span> <span class="o">=</span> <span class="nf">ZorbDevice</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">peripheral</span><span class="p">)</span>
+
+<span class="c1">// Attempts connection to an advertising device</span>
+<span class="n">device</span><span class="o">.</span><span class="nf">connect</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+    <span class="k">switch</span> <span class="nf">result</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
+        <span class="c1">// Connect succeeded</span>
+
+        <span class="c1">// Write Javascript from url to device</span>
+        <span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="nf">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://gist.githubusercontent.com/jakerockland/17cb9cbfda0e09fa8251fc7666e2c4dc/raw"</span><span class="p">)</span><span class="o">!</span>
+        <span class="n">device</span><span class="o">.</span><span class="nf">writeJavascript</span><span class="p">(</span><span class="n">at</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+        <span class="k">switch</span> <span class="nf">result</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
+                <span class="c1">// Write succeeded</span>
+            <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+                <span class="c1">// An error occurred during write</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+        <span class="c1">// An error occurred during connection</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>

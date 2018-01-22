@@ -439,11 +439,11 @@ Using this method requires internet connection, which is used to compile the Jav
 <span class="k">let</span> <span class="nv">device</span> <span class="o">=</span> <span class="nf">ZorbDevice</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">peripheral</span><span class="p">)</span>
 
 <span class="c1">// Write Javascript to device</span>
-<span class="c1">// FIXME: Replace with better example</span>
-<span class="k">let</span> <span class="nv">javascript</span> <span class="o">=</span> <span class="s">"Zorb.on('timertick', function () {"</span> <span class="o">+</span>
-<span class="s">"var ms = Zorb.uptime();"</span> <span class="o">+</span>
-<span class="s">"// do something time-related here"</span> <span class="o">+</span>
-<span class="s">"});"</span>
+<span class="k">let</span> <span class="nv">javascript</span> <span class="o">=</span> <span class="s">"new Zorb.Vibration("</span> <span class="o">+</span>
+    <span class="s">"0,"</span> <span class="o">+</span>
+    <span class="s">"new Zorb.Effect(0,100,11,250),"</span> <span class="o">+</span>
+    <span class="s">"213"</span> <span class="o">+</span>
+    <span class="s">").start();"</span>
 <span class="n">device</span><span class="o">.</span><span class="nf">writeJavascript</span><span class="p">(</span><span class="n">javascript</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
     <span class="k">switch</span> <span class="nf">result</span> <span class="p">{</span>
     <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
@@ -506,8 +506,7 @@ Using this method requires internet connection, which is used to compile the Jav
 <span class="k">let</span> <span class="nv">device</span> <span class="o">=</span> <span class="nf">ZorbDevice</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">peripheral</span><span class="p">)</span>
 
 <span class="c1">// Write Javascript from url to device</span>
-<span class="c1">// FIXME: Replace with better example</span>
-<span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="nf">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://gist.github.com/shantanubala/1f7d0dfb9bbef3edca8d0bb164c56aa0/raw"</span><span class="p">)</span><span class="o">!</span>
+<span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="nf">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://gist.githubusercontent.com/jakerockland/17cb9cbfda0e09fa8251fc7666e2c4dc/raw"</span><span class="p">)</span><span class="o">!</span>
 <span class="n">device</span><span class="o">.</span><span class="nf">writeJavascript</span><span class="p">(</span><span class="n">at</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
     <span class="k">switch</span> <span class="nf">result</span> <span class="p">{</span>
     <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
@@ -570,7 +569,6 @@ Using this method requires internet connection, which is used to compile the Jav
 <span class="k">let</span> <span class="nv">device</span> <span class="o">=</span> <span class="nf">ZorbDevice</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">peripheral</span><span class="p">)</span>
 
 <span class="c1">// Write bytecode to device</span>
-<span class="c1">// FIXME: Replace with better example</span>
 <span class="k">let</span> <span class="nv">bytecode</span> <span class="o">=</span> <span class="s">"BgAAAFAAAAAsAAAAAQAAAAQAAQABAAUAAAEDBAYAAQACAAYAOwABKQIDxEYBAAAABAABACEAAwABAgMDAAAGAAgAOwECt8gARgAAAAAAAAAFAAAAAAAAAAIAb24JAHRpbWVydGljawABAHQABgBNb21lbnQGAHVwdGltZQ=="</span>
 <span class="n">device</span><span class="o">.</span><span class="nf">writeBytecode</span><span class="p">(</span><span class="n">bytecode</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
     <span class="k">switch</span> <span class="nf">result</span> <span class="p">{</span>
