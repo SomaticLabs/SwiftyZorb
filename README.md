@@ -1,8 +1,6 @@
-![Moment Logo](https://github.com/SomaticLabs/SwiftyZorb/raw/master/images/moment.png)
-
 # SwiftyZorb
 
-*iOS development kit for [Moment](https://wearmoment.com)*
+*iOS development kit for integrating with the [Somatic Zorb Engine](https://somaticlabs.io)*
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/SomaticLabs/SwiftyZorb/blob/master/LICENSE)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
@@ -10,15 +8,11 @@
 
 ## About
 
-The SwiftyZorb allows developers to build iOS applications that communicate with Moment, the first wearable that communicates entirely through your sense of touch.
+SwiftyZorb allows developers to build iOS applications that communicate with devices powered by Somatic Labs' Zorb Engine, enabling new user experiences that allow communication entirely through your sense of touch.
 
-This library is made to be used in conjuction with our [embedded Javascript SDK](https://github.com/somaticlabs/moment-sdk).
+This library is made to be used in conjuction with our embedded Javascript SDK. To get started developing your own haptic animations, check out our [Zorb Design Studio](https://zorbtouch.com)..
 
-To get started developing your own haptic animations, check out our [Moment simulator](https://somaticlabs.github.io/moment-sim/).
-
-Animations and programs created in the simulator can be ran on Moment using this library, either by sending a embedding the Javascript directly in your application or by storing your scripts in [Github Gists](https://gist.github.com) and referencing those in your applications.
-
-For more information regarding using the Moment Javascript SDK, please refer to our [documentation](https://somaticlabs.github.io/moment-sdk/).
+Animations and programs created in the design studio can be ran on ZorbEngine powered devices using this library, either by sending a embedding the Javascript directly in your application or by storing your scripts somewhere with a publicly accessible URL (such as in a Github gist) that can be referenced from within your application.
 
 For a quick reference to the SwiftyZorb documents, please refer to [this guide](https://somaticlabs.github.io/SwiftyZorb).
 
@@ -26,7 +20,7 @@ For a quick reference to the SwiftyZorb documents, please refer to [this guide](
 
 - iOS 9.0+
 - Xcode 8.1+
-- Swift 3.0+
+- Swift 4.0+
 
 ## Troubleshooting & Contributions
 
@@ -60,6 +54,8 @@ Run `carthage update` to build the framework and drag the built `SwiftyZorb.fram
 You must also drag the built dependencies `Alamofire.framework`, `SwiftyBluetooth.framework`, and `SwiftyJSON.framework` into your project.
 
 ## Usage
+
+There are two ways to use this libary. If you intend FIXME
 
 ### Connecting
 

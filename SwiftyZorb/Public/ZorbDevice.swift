@@ -148,7 +148,7 @@ final public class ZorbDevice {
      // already been created as in the case of using `retrieveAvailableDevices` method of SDK
      let device = ZorbDevice(with: peripheral)
      
-     // After calling this method, Moment disconnection will be guaranteed
+     // After calling this method, device disconnection will be guaranteed
      device.disconnect()
      ```
      */
@@ -304,59 +304,8 @@ final public class ZorbDevice {
         let duration1: UInt8 = UInt8(duration >> 8)
         let data = Data(bytes: [duration0, duration1, topLeft, topRight, bottomLeft, bottomRight])
         
-        // Write settings data to Moment device
+        // Write settings data to Zorb device
         self.writeBytes(data, to: Identifiers.ActuatorCharacteristicUUID) { result in completion(result) }
-    }
-    
-    /**
-     Writes desired settings to Moment device
-     
-     Usage Example:
-     
-     ```swift
-     // Create a `ZorbDevice` object for a given Bluetooth peripheral (or this object may have
-     // already been created as in the case of using `retrieveAvailableDevices` method of SDK
-     let device = ZorbDevice(with: peripheral)
-     
-     // Write settings to device
-     device.writeSettings(wristOrientation: .left, buttonOrientation: .left, intensityLevel: .high) { result in
-     switch result {
-         case .success:
-            // Settings update succeeded
-         case .failure(let error):
-            // An error occurred during settings update
-         }
-     }
-     ```
-     
-     - Parameter wristOrientation: The wrist that Moment is being worn on, either `.left` or `.right`
-     
-     - Parameter buttonOrientation: The orientation that Moment's button is on, either `.left` or `right`
-     
-     - Parameter intensityLevel: The intensity level that Moment's vibrations will be at, either `.low`, `.medium`, or `.high`
-     */
-    public func writeSettings(wristOrientation: Orientation, buttonOrientation: Orientation,  intensityLevel: Intensity, completion: @escaping WriteRequestCallback) {
-        // Create proper C level structure
-        let structure = hts_settings(
-            wrist_orientation: wristOrientation.rawValue,
-            pair_button_orientation: buttonOrientation.rawValue,
-            intensity_level: intensityLevel.rawValue
-        )
-        
-        // Pack into byte array
-        var union: hts_settings_data! = hts_settings_data()
-        union.data = structure
-        var bytes: Array<UInt8>! = Array<UInt8>()
-        let mirror = Mirror(reflecting: union.bytes)
-        for child in mirror.children {
-            bytes.append(child.value as! UInt8)
-        }
-        
-        // Create data object from byte array
-        let data = Data(bytes: bytes)
-        
-        // Write settings data to Moment device
-        self.writeBytes(data, to: Identifiers.SettingsCharacteristicUUID) { result in completion(result) }
     }
     
     /**
@@ -371,8 +320,9 @@ final public class ZorbDevice {
      let device = ZorbDevice(with: peripheral)
      
      // Write Javascript to device
-     let javascript = "Moment.on('timertick', function () {" +
-     "var ms = Moment.uptime();" +
+     // FIXME: Replace with better example
+     let javascript = "Zorb.on('timertick', function () {" +
+     "var ms = Zorb.uptime();" +
      "// do something time-related here" +
      "});"
      device.writeJavascript(javascript) { result in
@@ -416,6 +366,7 @@ final public class ZorbDevice {
      let device = ZorbDevice(with: peripheral)
      
      // Write Javascript from url to device
+     // FIXME: Replace with better example
      let url = URL(string: "https://gist.github.com/shantanubala/1f7d0dfb9bbef3edca8d0bb164c56aa0/raw")!
      device.writeJavascript(at url) { result in
          switch result {
@@ -462,6 +413,7 @@ final public class ZorbDevice {
      let device = ZorbDevice(with: peripheral)
      
      // Write bytecode to device
+     // FIXME: Replace with better example
      let bytecode = "BgAAAFAAAAAsAAAAAQAAAAQAAQABAAUAAAEDBAYAAQACAAYAOwABKQIDxEYBAAAABAABACEAAwABAgMDAAAGAAgAOwECt8gARgAAAAAAAAAFAAAAAAAAAAIAb24JAHRpbWVydGljawABAHQABgBNb21lbnQGAHVwdGltZQ=="
      device.writeBytecode(bytecode) { result in
          switch result {

@@ -18,32 +18,32 @@ final internal class Settings: NSObject {
     // MARK: - Peripheral Settings
     
     /**
-     Gets the stored Moment peripheral `UUID` from UserDefaults
+     Gets the stored peripheral `UUID` from UserDefaults
      
-     - Returns: `UUID` object associated with last Moment peripheral that was previously discovered
+     - Returns: `UUID` object associated with last peripheral that was previously discovered
      */
-    static func getMomentPeripheral() -> UUID? {
-        guard let uuidString = UserDefaults.standard.string(forKey: "moment-peripheral") else {
+    static func getZorbPeripheral() -> UUID? {
+        guard let uuidString = UserDefaults.standard.string(forKey: "zorb-peripheral") else {
             return nil
         }
         return UUID(uuidString: uuidString)
     }
     
     /**
-     Resets stored Moment peripheral to `nil`
+     Resets stored peripheral to `nil`
      */
-    static func resetMomentPeripheral() {
-        UserDefaults.standard.set(nil, forKey: "moment-peripheral")
+    static func resetZorbPeripheral() {
+        UserDefaults.standard.set(nil, forKey: "zorb-peripheral")
         UserDefaults.standard.synchronize()
     }
     
     /**
-     Stores a given `UUID` to store a Moment peripheral
+     Stores a given `UUID` to store a peripheral
      
-     - Parameter identifier: `UUID` associated with a Moment peripheral
+     - Parameter identifier: `UUID` associated with a peripheral
      */
-    static func saveMomentPeripheral(with identifier: UUID) {
-        UserDefaults.standard.set(identifier.uuidString, forKey: "moment-peripheral")
+    static func saveZorbPeripheral(with identifier: UUID) {
+        UserDefaults.standard.set(identifier.uuidString, forKey: "zorb-peripheral")
         UserDefaults.standard.synchronize()
     }
 
