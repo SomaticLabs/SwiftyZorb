@@ -178,32 +178,6 @@ public func writeActuators(duration: UInt16, topLeft: UInt8, topRight: UInt8, bo
 }
 
 /**
- Writes desired settings to Zorb device
- 
- Usage Example:
- 
- ```swift
- SwiftyZorb.writeSettings(wristOrientation: .left, buttonOrientation: .left, intensityLevel: .high) { result in
-     switch result {
-     case .success:
-         // Settings update succeeded
-     case .failure(let error):
-         // An error occurred during settings update
-     }
- }
- ```
- 
- - Parameter wristOrientation: The wrist that device is being worn on, either `.left` or `.right`
- 
- - Parameter buttonOrientation: The orientation that device's button is on, either `.left` or `right`
- 
- - Parameter intensityLevel: The intensity level that device's vibrations will be at, either `.low`, `.medium`, or `.high`
- */
-public func writeSettings(wristOrientation: Orientation, buttonOrientation: Orientation,  intensityLevel: Intensity, completion: @escaping WriteRequestCallback) {
-    bluetoothManager.device?.writeSettings(wristOrientation: wristOrientation, buttonOrientation: buttonOrientation,  intensityLevel: intensityLevel) { result in completion(result) }
-}
-
-/**
  Writes a given string of Javascript to the connected Zorb device.
  Using this method requires internet connection, which is used to compile the Javascript to bytecode before transmission.
  
