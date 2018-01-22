@@ -42,7 +42,7 @@ final public class ZorbDevice {
     /**
      Writes provided data to the appropriate characteristic
      
-     - Parameter bytes: The `Data` byte representation of the settings data to be written
+     - Parameter bytes: The `Data` byte representation of the data to be written
      
      - Parameter characteristic: The `UUID` of the characteristic being written to
      */
@@ -304,7 +304,7 @@ final public class ZorbDevice {
         let duration1: UInt8 = UInt8(duration >> 8)
         let data = Data(bytes: [duration0, duration1, topLeft, topRight, bottomLeft, bottomRight])
         
-        // Write settings data to Zorb device
+        // Write actuator data to Zorb device
         self.writeBytes(data, to: Identifiers.ActuatorCharacteristicUUID) { result in completion(result) }
     }
     
