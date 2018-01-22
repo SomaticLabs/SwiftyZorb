@@ -320,11 +320,11 @@ final public class ZorbDevice {
      let device = ZorbDevice(with: peripheral)
      
      // Write Javascript to device
-     // FIXME: Replace with better example
-     let javascript = "Zorb.on('timertick', function () {" +
-     "var ms = Zorb.uptime();" +
-     "// do something time-related here" +
-     "});"
+     let javascript = "new Zorb.Vibration(" +
+         "0," +
+         "new Zorb.Effect(0,100,11,250)," +
+         "213" +
+         ").start();"
      device.writeJavascript(javascript) { result in
          switch result {
          case .success:
@@ -366,8 +366,7 @@ final public class ZorbDevice {
      let device = ZorbDevice(with: peripheral)
      
      // Write Javascript from url to device
-     // FIXME: Replace with better example
-     let url = URL(string: "https://gist.github.com/shantanubala/1f7d0dfb9bbef3edca8d0bb164c56aa0/raw")!
+     let url = URL(string: "https://gist.githubusercontent.com/jakerockland/17cb9cbfda0e09fa8251fc7666e2c4dc/raw")!
      device.writeJavascript(at url) { result in
          switch result {
          case .success:
@@ -413,7 +412,6 @@ final public class ZorbDevice {
      let device = ZorbDevice(with: peripheral)
      
      // Write bytecode to device
-     // FIXME: Replace with better example
      let bytecode = "BgAAAFAAAAAsAAAAAQAAAAQAAQABAAUAAAEDBAYAAQACAAYAOwABKQIDxEYBAAAABAABACEAAwABAgMDAAAGAAgAOwECt8gARgAAAAAAAAAFAAAAAAAAAAIAb24JAHRpbWVydGljawABAHQABgBNb21lbnQGAHVwdGltZQ=="
      device.writeBytecode(bytecode) { result in
          switch result {

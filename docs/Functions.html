@@ -36,17 +36,6 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="Enums.html">Enumerations</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Enums/Intensity.html">Intensity</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Enums/Orientation.html">Orientation</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
             <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -81,9 +70,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:10SwiftyZorb15writeJavascripty10Foundation3URLV2at_y0A9Bluetooth6ResultOyytGc10completiontF">writeJavascript(at:completion:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:10SwiftyZorb13writeSettingsyAA11OrientationO05wristE0_AD06buttonE0AA9IntensityO14intensityLevely0A9Bluetooth6ResultOyytGc10completiontF">writeSettings(wristOrientation:buttonOrientation:intensityLevel:completion:)</a>
               </li>
             </ul>
           </li>
@@ -161,7 +147,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initiates a connection to an advertising Moment device.</p>
+                        <p>Initiates a connection to an advertising Zorb device.</p>
 
 <p>Usage Example:</p>
 <pre class="highlight swift"><code><span class="c1">// Attempts connection to an advertising device</span>
@@ -200,10 +186,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Ends connection to a connected Moment device.</p>
+                        <p>Ends connection to a connected Zorb device.</p>
 
 <p>Usage Example:</p>
-<pre class="highlight swift"><code><span class="c1">// After calling this method, Moment disconnection will be guaranteed</span>
+<pre class="highlight swift"><code><span class="c1">// After calling this method, device disconnection will be guaranteed</span>
 <span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">disconnect</span><span class="p">()</span>
 </code></pre>
 
@@ -232,10 +218,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Forgets previously stored Moment connection.</p>
+                        <p>Forgets previously stored device connection.</p>
 
 <p>Usage Example:</p>
-<pre class="highlight swift"><code><span class="c1">// After calling this method, a new Moment connection can be created</span>
+<pre class="highlight swift"><code><span class="c1">// After calling this method, a new device connection can be created</span>
 <span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">forget</span><span class="p">()</span>
 </code></pre>
 
@@ -275,7 +261,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Writes the appropriate command to reset connected Moment&rsquo;s Javascript virtual machine.</p>
+                        <p>Writes the appropriate command to reset connected Zorb device&rsquo;s Javascript virtual machine.</p>
 
 <p>Usage Example:</p>
 <pre class="highlight swift"><code><span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">reset</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
@@ -313,7 +299,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Reads version <code>String</code> from Moment device.</p>
+                        <p>Reads version <code>String</code> from Zorb device.</p>
 
 <p>Usage Example:</p>
 <pre class="highlight swift"><code><span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">readVersion</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
@@ -351,7 +337,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Reads serial <code>String</code> from Moment device.</p>
+                        <p>Reads serial <code>String</code> from Zorb device.</p>
 
 <p>Usage Example:</p>
 <pre class="highlight swift"><code><span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">readSerial</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
@@ -389,7 +375,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Writes desired actuator data to Moment device.</p>
+                        <p>Writes desired actuator data to Zorb device.</p>
 
 <p>Usage Example:</p>
 <pre class="highlight swift"><code><span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">writeActuators</span><span class="p">(</span><span class="nv">duration</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="nv">topLeft</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">topRight</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">bottomLeft</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="nv">bottomRight</span><span class="p">:</span> <span class="mi">25</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
@@ -484,87 +470,6 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftyZorb13writeSettingsyAA11OrientationO05wristE0_AD06buttonE0AA9IntensityO14intensityLevely0A9Bluetooth6ResultOyytGc10completiontF"></a>
-                    <a name="//apple_ref/swift/Function/writeSettings(wristOrientation:buttonOrientation:intensityLevel:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftyZorb13writeSettingsyAA11OrientationO05wristE0_AD06buttonE0AA9IntensityO14intensityLevely0A9Bluetooth6ResultOyytGc10completiontF">writeSettings(wristOrientation:buttonOrientation:intensityLevel:completion:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Writes desired settings to Moment device</p>
-
-<p>Usage Example:</p>
-<pre class="highlight swift"><code><span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">writeSettings</span><span class="p">(</span><span class="nv">wristOrientation</span><span class="p">:</span> <span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="nv">buttonOrientation</span><span class="p">:</span> <span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="nv">intensityLevel</span><span class="p">:</span> <span class="o">.</span><span class="n">high</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
-    <span class="k">switch</span> <span class="nf">result</span> <span class="p">{</span>
-    <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
-        <span class="c1">// Settings update succeeded</span>
-    <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
-        <span class="c1">// An error occurred during settings update</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">writeSettings</span><span class="p">(</span><span class="nv">wristOrientation</span><span class="p">:</span> <span class="kt"><a href="Enums/Orientation.html">Orientation</a></span><span class="p">,</span> <span class="nv">buttonOrientation</span><span class="p">:</span> <span class="kt"><a href="Enums/Orientation.html">Orientation</a></span><span class="p">,</span>  <span class="nv">intensityLevel</span><span class="p">:</span> <span class="kt"><a href="Enums/Intensity.html">Intensity</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">WriteRequestCallback</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>wristOrientation</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The wrist that Moment is being worn on, either <code>.left</code> or <code>.right</code></p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>buttonOrientation</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The orientation that Moment&rsquo;s button is on, either <code>.left</code> or <code>right</code></p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>intensityLevel</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The intensity level that Moment&rsquo;s vibrations will be at, either <code>.low</code>, <code>.medium</code>, or <code>.high</code></p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:10SwiftyZorb15writeJavascriptySS_y0A9Bluetooth6ResultOyytGc10completiontF"></a>
                     <a name="//apple_ref/swift/Function/writeJavascript(_:completion:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:10SwiftyZorb15writeJavascriptySS_y0A9Bluetooth6ResultOyytGc10completiontF">writeJavascript(_:completion:)</a>
@@ -575,12 +480,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Writes a given string of Javascript to the connected Moment device. 
+                        <p>Writes a given string of Javascript to the connected Zorb device.
 Using this method requires internet connection, which is used to compile the Javascript to bytecode before transmission.</p>
 
 <p>Usage Example:</p>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">javascript</span> <span class="o">=</span> <span class="s">"Moment.on('timertick', function () {"</span> <span class="o">+</span>
-<span class="s">"var ms = Moment.uptime();"</span> <span class="o">+</span>
+<pre class="highlight swift"><code><span class="c1">// FIXME: Replace with better example</span>
+<span class="k">let</span> <span class="nv">javascript</span> <span class="o">=</span> <span class="s">"Zorb.on('timertick', function () {"</span> <span class="o">+</span>
+<span class="s">"var ms = Zorb.uptime();"</span> <span class="o">+</span>
 <span class="s">"// do something time-related here"</span> <span class="o">+</span>
 <span class="s">"});"</span>
 <span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">writeJavascript</span><span class="p">(</span><span class="n">javascript</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
@@ -637,10 +543,11 @@ Using this method requires internet connection, which is used to compile the Jav
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Writes the Javascript code at a given URL to the connected Moment device.</p>
+                        <p>Writes the Javascript code at a given URL to the connected Zorb device.</p>
 
 <p>Usage Example:</p>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="nf">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://gist.github.com/shantanubala/1f7d0dfb9bbef3edca8d0bb164c56aa0/raw"</span><span class="p">)</span><span class="o">!</span>
+<pre class="highlight swift"><code><span class="c1">// FIXME: Replace with better example</span>
+<span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="nf">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://gist.github.com/shantanubala/1f7d0dfb9bbef3edca8d0bb164c56aa0/raw"</span><span class="p">)</span><span class="o">!</span>
 <span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">writeJavascript</span><span class="p">(</span><span class="n">at</span> <span class="n">url</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
     <span class="k">switch</span> <span class="nf">result</span> <span class="p">{</span>
     <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
@@ -695,7 +602,7 @@ Using this method requires internet connection, which is used to compile the Jav
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Writes a given string of base64 encoded bytecode to the connected Moment device.</p>
+                        <p>Writes a given string of base64 encoded bytecode to the connected Zorb device.</p>
 
 <p>Usage Example:</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">bytecode</span> <span class="o">=</span> <span class="s">"BgAAAFAAAAAsAAAAAQAAAAQAAQABAAUAAAEDBAYAAQACAAYAOwABKQIDxEYBAAAABAABACEAAwABAgMDAAAGAAgAOwECt8gARgAAAAAAAAAFAAAAAAAAAAIAb24JAHRpbWVydGljawABAHQABgBNb21lbnQGAHVwdGltZQ=="</span>

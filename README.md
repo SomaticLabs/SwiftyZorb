@@ -53,13 +53,13 @@ Run `carthage update` to build the framework and drag the built `SwiftyZorb.fram
 
 You must also drag the built dependencies `Alamofire.framework`, `SwiftyBluetooth.framework`, and `SwiftyJSON.framework` into your project.
 
-## Usage
+## Single Device Usage
 
-There are two ways to use this libary. If you intend FIXME
+There are two ways to use this libary. If you intend to connect and reconnect to one Zorb peripheral device, use the following methods.
 
 ### Connecting
 
-Before being able to communicate with Moment, you must establish a Bluetooth LE connection with your device.
+Before being able to communicate with a Zorb peripheral device, you must establish a Bluetooth LE connection with your device.
 
 ```swift
 import SwiftyZorb
@@ -90,15 +90,16 @@ Note that simply disconnecting from the device will not forget a stored connecti
 
 ### Sending Javascript
 
-There are two ways to send Javascript to Moment to be executed on the device—by embedding it as a `String` in your application, or by passing a `URL` to a hosted file such as a [Github Gist](https://gist.github.com) that contains your code.
+There are two ways to send Javascript to be executed on the device—by embedding it as a `String` in your application, or by passing a `URL` to a hosted file such as a [Github Gist](https://gist.github.com) that contains your code.
 
 To send Javascript from a `String` in your application:
 
 ```swift
-let javascript = "Moment.on('timertick', function () {" +
-    "var ms = Moment.uptime();" +
-    "// do something time-related here" +
-    "});"
+let javascript = "new Zorb.Vibration(" +
+    "0," +
+    "new Zorb.Effect(0,100,11,250)," +
+    "213" +
+    ").start();"
 SwiftyZorb.writeJavascript(javascript) { result in
     switch result {
     case .success:
@@ -112,7 +113,7 @@ SwiftyZorb.writeJavascript(javascript) { result in
 To send Javascript from a script saved in file hosted online:
 
 ```swift
-let url = URL(string: "https://gist.github.com/shantanubala/1f7d0dfb9bbef3edca8d0bb164c56aa0/raw")!
+let url = URL(string: "https://gist.githubusercontent.com/jakerockland/17cb9cbfda0e09fa8251fc7666e2c4dc/raw")!
 SwiftyZorb.writeJavascript(at url) { result in
     switch result {
     case .success:
@@ -123,7 +124,7 @@ SwiftyZorb.writeJavascript(at url) { result in
 }
 ```
 
-Using the two above methods will always require an HTTP request to the MomentSDK Javascript compiler, which produces the Javascript bytecode that is executed on Moment's internal virtual machine. If you would like to avoid this HTTP request, you can send pre-compiled bytecode instead.
+Using the two above methods will always require an HTTP request to the ZorbSDK Javascript compiler, which produces the Javascript bytecode that is executed on the Zorb device's internal virtual machine. If you would like to avoid this HTTP request, you can send pre-compiled bytecode instead.
 
 To send pre-compiled Javascript bytecode as a base64 encoded `String` in your application:
 
@@ -139,7 +140,7 @@ SwiftyZorb.writeBytecode(bytecode) { result in
 }
  ```
 
-To reset Moment's Javascript virtual machine:
+To reset the Zorb device's Javascript virtual machine:
 
 ```swift
 SwiftyZorb.reset { result in

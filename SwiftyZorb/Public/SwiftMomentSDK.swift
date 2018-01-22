@@ -184,11 +184,11 @@ public func writeActuators(duration: UInt16, topLeft: UInt8, topRight: UInt8, bo
  Usage Example:
  
  ```swift
- // FIXME: Replace with better example
- let javascript = "Zorb.on('timertick', function () {" +
- "var ms = Zorb.uptime();" +
- "// do something time-related here" +
- "});"
+ let javascript = "new Zorb.Vibration(" +
+     "0," +
+     "new Zorb.Effect(0,100,11,250)," +
+     "213" +
+     ").start();"
  SwiftyZorb.writeJavascript(javascript) { result in
     switch result {
     case .success:
@@ -211,8 +211,7 @@ public func writeJavascript(_ javascript: String, completion: @escaping WriteReq
  Usage Example:
  
  ```swift
- // FIXME: Replace with better example
- let url = URL(string: "https://gist.github.com/shantanubala/1f7d0dfb9bbef3edca8d0bb164c56aa0/raw")!
+ let url = URL(string: "https://gist.githubusercontent.com/jakerockland/17cb9cbfda0e09fa8251fc7666e2c4dc/raw")!
  SwiftyZorb.writeJavascript(at url) { result in
      switch result {
      case .success:
