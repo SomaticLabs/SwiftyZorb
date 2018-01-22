@@ -153,6 +153,56 @@ SwiftyZorb.reset { result in
 }
 ```
 
+## Multiple Device Usage
+
+If you would like to manage connections with multiple Zorb peripheral devices, you may do so by first retrieving a list of the available devices:
+
+```swift
+// Retrieves a list all available devices as an array of `ZorbDevice` objects.
+SwiftyZorb.retrieveAvailableDevices { result in
+    switch result {
+    case .success(let devices):
+        // Retrieval succeeded
+        for device in devices {
+            // Do something with devices
+        }
+    case .failure(let error):
+        // An error occurred during retrieval
+    }
+}
+```
+
+After filtering for the devices of interest, a given device can be connected to and intereacted with using commands similar to those used in the single-device usage.
+
+For example, to connect and send a pattern at a given url:
+
+```swift
+// Create a `ZorbDevice` object for a given Bluetooth peripheral (or this object may have
+// already been created as in the case of using `retrieveAvailableDevices` method of SDK
+let device = ZorbDevice(with: peripheral)
+
+// Attempts connection to an advertising device
+device.connect { result in
+    switch result {
+    case .success:
+        // Connect succeeded
+        
+        // Write Javascript from url to device
+        let url = URL(string: "https://gist.githubusercontent.com/jakerockland/17cb9cbfda0e09fa8251fc7666e2c4dc/raw")!
+        device.writeJavascript(at url) { result in
+        switch result {
+            case .success:
+                // Write succeeded
+            case .failure(let error):
+                // An error occurred during write
+            }
+        }
+    case .failure(let error):
+        // An error occurred during connection
+    }
+}
+```
+
 ## Style Guide
 
 Contributions to this project should conform to the [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/) and [this style guide](https://github.com/github/swift-style-guide).
