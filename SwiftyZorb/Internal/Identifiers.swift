@@ -1,6 +1,6 @@
 //
 //  Identifiers.swift
-//  SwiftMomentSDK
+//  SwiftyZorb
 //
 //  Created by Jacob Rockland on 2/22/17.
 //  Copyright © 2017 Somatic Technologies, Inc. All rights reserved.

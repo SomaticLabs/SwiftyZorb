@@ -1,6 +1,6 @@
 //
 //  ManagerError.swift
-//  SwiftMomentSDK
+//  SwiftyZorb
 //
 //  Created by Jacob Rockland on 12/22/17.
 //  Copyright © 2017 Somatic Technologies, Inc. All rights reserved.
@@ -19,7 +19,7 @@ final internal class ManagerError: NSError {
      Error initializer, sets localized description to `String` passed in
      */
     init(_ localizedDescription: String) {
-        super.init(domain: "com.SomaticLabs.SwiftMomentSDK", code: 404, userInfo: [NSLocalizedDescriptionKey: localizedDescription])
+        super.init(domain: "com.SomaticLabs.SwiftyZorb", code: 404, userInfo: [NSLocalizedDescriptionKey: localizedDescription])
     }
     
     /**

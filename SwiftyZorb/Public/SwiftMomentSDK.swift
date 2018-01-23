@@ -1,6 +1,6 @@
 //
-//  SwiftMomentSDK.swift
-//  SwiftMomentSDK
+//  SwiftyZorb.swift
+//  SwiftyZorb
 //
 //  Created by Jacob Rockland on 2/22/17.
 //  Copyright © 2017 Somatic Technologies, Inc. All rights reserved.
@@ -19,7 +19,7 @@ import SwiftyJSON
  
  ```swift
  // Retrieves a list all available devices as an array of `ZorbDevice` objects.
- SwiftMomentSDK.retrieveAvailableDevices { result in
+ SwiftyZorb.retrieveAvailableDevices { result in
     switch result {
     case .success(let devices):
         // Retrieval succeeded
@@ -43,7 +43,7 @@ public func retrieveAvailableDevices(completion: @escaping (SwiftyBluetooth.Resu
  
  ```swift
  // Attempts connection to an advertising device
- SwiftMomentSDK.connect { result in
+ SwiftyZorb.connect { result in
     switch result {
     case .success:
         // Connect succeeded
@@ -64,7 +64,7 @@ public func connect(completion: @escaping ConnectPeripheralCallback) {
  
  ```swift
  // After calling this method, Moment disconnection will be guaranteed
- SwiftMomentSDK.disconnect()
+ SwiftyZorb.disconnect()
  ```
  */
 public func disconnect() {
@@ -78,7 +78,7 @@ public func disconnect() {
  
  ```swift
  // After calling this method, a new Moment connection can be created
- SwiftMomentSDK.forget()
+ SwiftyZorb.forget()
  ```
  */
 public func forget() {
@@ -93,7 +93,7 @@ public func forget() {
  Usage Example:
  
  ```swift
- SwiftMomentSDK.reset { result in
+ SwiftyZorb.reset { result in
     switch result {
     case .success:
         // Reset succeeded
@@ -113,7 +113,7 @@ public func reset(completion: @escaping WriteRequestCallback) {
  Usage Example:
  
  ```swift
- SwiftMomentSDK.readVersion { result in
+ SwiftyZorb.readVersion { result in
      switch result {
      case .success(let version):
         // Reading version string succeeded
@@ -133,7 +133,7 @@ public func readVersion(completion: @escaping (SwiftyBluetooth.Result<String>) -
  Usage Example:
  
  ```swift
- SwiftMomentSDK.readSerial { result in
+ SwiftyZorb.readSerial { result in
      switch result {
      case .success(let serial):
         // Reading serial string succeeded
@@ -153,7 +153,7 @@ public func readSerial(completion: @escaping (SwiftyBluetooth.Result<String>) ->
  Usage Example:
  
  ```swift
- SwiftMomentSDK.writeActuators(duration: 100, topLeft: 0, topRight: 0, bottomLeft: 25, bottomRight: 25) { result in
+ SwiftyZorb.writeActuators(duration: 100, topLeft: 0, topRight: 0, bottomLeft: 25, bottomRight: 25) { result in
      switch result {
      case .success:
         // Write succeeded
@@ -183,7 +183,7 @@ public func writeActuators(duration: UInt16, topLeft: UInt8, topRight: UInt8, bo
  Usage Example:
  
  ```swift
- SwiftMomentSDK.writeSettings(wristOrientation: .left, buttonOrientation: .left, intensityLevel: .high) { result in
+ SwiftyZorb.writeSettings(wristOrientation: .left, buttonOrientation: .left, intensityLevel: .high) { result in
      switch result {
      case .success:
          // Settings update succeeded
@@ -214,7 +214,7 @@ public func writeSettings(wristOrientation: Orientation, buttonOrientation: Orie
  "var ms = Moment.uptime();" +
  "// do something time-related here" +
  "});"
- SwiftMomentSDK.writeJavascript(javascript) { result in
+ SwiftyZorb.writeJavascript(javascript) { result in
     switch result {
     case .success:
         // Write succeeded
@@ -237,7 +237,7 @@ public func writeJavascript(_ javascript: String, completion: @escaping WriteReq
  
  ```swift
  let url = URL(string: "https://gist.github.com/shantanubala/1f7d0dfb9bbef3edca8d0bb164c56aa0/raw")!
- SwiftMomentSDK.writeJavascript(at url) { result in
+ SwiftyZorb.writeJavascript(at url) { result in
      switch result {
      case .success:
          // Write succeeded
@@ -260,7 +260,7 @@ public func writeJavascript(at url: URL, completion: @escaping WriteRequestCallb
  
  ```swift
  let bytecode = "BgAAAFAAAAAsAAAAAQAAAAQAAQABAAUAAAEDBAYAAQACAAYAOwABKQIDxEYBAAAABAABACEAAwABAgMDAAAGAAgAOwECt8gARgAAAAAAAAAFAAAAAAAAAAIAb24JAHRpbWVydGljawABAHQABgBNb21lbnQGAHVwdGltZQ=="
- SwiftMomentSDK.writeBytecode(bytecode) { result in
+ SwiftyZorb.writeBytecode(bytecode) { result in
     switch result {
     case .success:
         // Write succeeded

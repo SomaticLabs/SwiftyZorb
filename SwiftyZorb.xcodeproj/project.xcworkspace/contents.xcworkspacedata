@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:MomentSDK.xcodeproj">
+      location = "self:/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb.xcodeproj">
    </FileRef>
 </Workspace>

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "407350651E5D045000CA2D94"
-               BuildableName = "SwiftMomentSDK.framework"
-               BlueprintName = "SwiftMomentSDK"
-               ReferencedContainer = "container:SwiftMomentSDK.xcodeproj">
+               BuildableName = "SwiftyZorb.framework"
+               BlueprintName = "SwiftyZorb"
+               ReferencedContainer = "container:SwiftyZorb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,9 +34,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "407350651E5D045000CA2D94"
-            BuildableName = "SwiftMomentSDK.framework"
-            BlueprintName = "SwiftMomentSDK"
-            ReferencedContainer = "container:SwiftMomentSDK.xcodeproj">
+            BuildableName = "SwiftyZorb.framework"
+            BlueprintName = "SwiftyZorb"
+            ReferencedContainer = "container:SwiftyZorb.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "407350651E5D045000CA2D94"
-            BuildableName = "SwiftMomentSDK.framework"
-            BlueprintName = "SwiftMomentSDK"
-            ReferencedContainer = "container:SwiftMomentSDK.xcodeproj">
+            BuildableName = "SwiftyZorb.framework"
+            BlueprintName = "SwiftyZorb"
+            ReferencedContainer = "container:SwiftyZorb.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "407350651E5D045000CA2D94"
-            BuildableName = "SwiftMomentSDK.framework"
-            BlueprintName = "SwiftMomentSDK"
-            ReferencedContainer = "container:SwiftMomentSDK.xcodeproj">
+            BuildableName = "SwiftyZorb.framework"
+            BlueprintName = "SwiftyZorb"
+            ReferencedContainer = "container:SwiftyZorb.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

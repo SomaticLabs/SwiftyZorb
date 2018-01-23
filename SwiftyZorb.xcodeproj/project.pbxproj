@@ -29,7 +29,7 @@
 		403783FB1E5FDAA900B68645 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		404FBDE91F6CC01D00E36E37 /* SDK-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SDK-Bridging-Header.h"; sourceTree = "<group>"; };
 		404FBDEA1F6CC06D00E36E37 /* hts_settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hts_settings.h; sourceTree = "<group>"; };
-		407350661E5D045000CA2D94 /* SwiftMomentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMomentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		407350661E5D045000CA2D94 /* SwiftyZorb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyZorb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4073506A1E5D045000CA2D94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		409911721FEDCC350079C73C /* ZorbDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZorbDevice.swift; sourceTree = "<group>"; };
 		409911741FEDCCF60079C73C /* PacketQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketQueue.swift; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 			children = (
 				4073508A1E5E1A6E00CA2D94 /* Frameworks */,
 				407350671E5D045000CA2D94 /* Products */,
-				407350681E5D045000CA2D94 /* SwiftMomentSDK */,
+				407350681E5D045000CA2D94 /* SwiftyZorb */,
 				40DF5BF01F6877060016F1AF /* Cartfile */,
 				40DF5BF11F6877060016F1AF /* Gemfile */,
 				40DF5BF21F6877060016F1AF /* LICENSE */,
@@ -83,19 +83,19 @@
 		407350671E5D045000CA2D94 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				407350661E5D045000CA2D94 /* SwiftMomentSDK.framework */,
+				407350661E5D045000CA2D94 /* SwiftyZorb.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		407350681E5D045000CA2D94 /* SwiftMomentSDK */ = {
+		407350681E5D045000CA2D94 /* SwiftyZorb */ = {
 			isa = PBXGroup;
 			children = (
 				407350921E5E214B00CA2D94 /* Internal */,
 				407350931E5E217F00CA2D94 /* Public */,
 				4073506A1E5D045000CA2D94 /* Info.plist */,
 			);
-			path = SwiftMomentSDK;
+			path = SwiftyZorb;
 			sourceTree = "<group>";
 		};
 		4073508A1E5E1A6E00CA2D94 /* Frameworks */ = {
@@ -145,9 +145,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		407350651E5D045000CA2D94 /* SwiftMomentSDK */ = {
+		407350651E5D045000CA2D94 /* SwiftyZorb */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4073507A1E5D045100CA2D94 /* Build configuration list for PBXNativeTarget "SwiftMomentSDK" */;
+			buildConfigurationList = 4073507A1E5D045100CA2D94 /* Build configuration list for PBXNativeTarget "SwiftyZorb" */;
 			buildPhases = (
 				407350611E5D045000CA2D94 /* Sources */,
 				407350621E5D045000CA2D94 /* Frameworks */,
@@ -158,9 +158,9 @@
 			);
 			dependencies = (
 			);
-			name = SwiftMomentSDK;
+			name = SwiftyZorb;
 			productName = MomentSDK;
-			productReference = 407350661E5D045000CA2D94 /* SwiftMomentSDK.framework */;
+			productReference = 407350661E5D045000CA2D94 /* SwiftyZorb.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -181,7 +181,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 407350601E5D045000CA2D94 /* Build configuration list for PBXProject "SwiftMomentSDK" */;
+			buildConfigurationList = 407350601E5D045000CA2D94 /* Build configuration list for PBXProject "SwiftyZorb" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -193,7 +193,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				407350651E5D045000CA2D94 /* SwiftMomentSDK */,
+				407350651E5D045000CA2D94 /* SwiftyZorb */,
 			);
 		};
 /* End PBXProject section */
@@ -355,14 +355,14 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = SwiftMomentSDK/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftyZorb/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.SomaticLabs.SwiftMomentSDK;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SomaticLabs.SwiftyZorb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "SwiftMomentSDK/Internal/Headers/SDK-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftyZorb/Internal/Headers/SDK-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -383,14 +383,14 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = SwiftMomentSDK/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftyZorb/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.SomaticLabs.SwiftMomentSDK;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SomaticLabs.SwiftyZorb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "SwiftMomentSDK/Internal/Headers/SDK-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftyZorb/Internal/Headers/SDK-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -399,7 +399,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		407350601E5D045000CA2D94 /* Build configuration list for PBXProject "SwiftMomentSDK" */ = {
+		407350601E5D045000CA2D94 /* Build configuration list for PBXProject "SwiftyZorb" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				407350781E5D045100CA2D94 /* Debug */,
@@ -408,7 +408,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4073507A1E5D045100CA2D94 /* Build configuration list for PBXNativeTarget "SwiftMomentSDK" */ = {
+		4073507A1E5D045100CA2D94 /* Build configuration list for PBXNativeTarget "SwiftyZorb" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4073507B1E5D045100CA2D94 /* Debug */,
