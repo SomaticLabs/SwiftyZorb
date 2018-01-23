@@ -1,8 +1,6 @@
-![Moment Logo](https://github.com/SomaticLabs/SwiftyZorb/raw/master/images/moment.png)
-
 # SwiftyZorb
 
-*iOS development kit for [Moment](https://wearmoment.com)*
+*iOS development kit for integrating with the [Somatic Zorb Engine](https://somaticlabs.io)*
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/SomaticLabs/SwiftyZorb/blob/master/LICENSE)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
@@ -10,15 +8,11 @@
 
 ## About
 
-The SwiftyZorb allows developers to build iOS applications that communicate with Moment, the first wearable that communicates entirely through your sense of touch.
+SwiftyZorb allows developers to build iOS applications that communicate with devices powered by Somatic Labs' Zorb Engine, enabling new user experiences that allow communication entirely through your sense of touch.
 
-This library is made to be used in conjuction with our [embedded Javascript SDK](https://github.com/somaticlabs/moment-sdk).
+This library is made to be used in conjuction with our embedded Javascript SDK. To get started developing your own haptic animations, check out our [Zorb Design Studio](https://zorbtouch.com)..
 
-To get started developing your own haptic animations, check out our [Moment simulator](https://somaticlabs.github.io/moment-sim/).
-
-Animations and programs created in the simulator can be ran on Moment using this library, either by sending a embedding the Javascript directly in your application or by storing your scripts in [Github Gists](https://gist.github.com) and referencing those in your applications.
-
-For more information regarding using the Moment Javascript SDK, please refer to our [documentation](https://somaticlabs.github.io/moment-sdk/).
+Animations and programs created in the design studio can be ran on ZorbEngine powered devices using this library, either by sending a embedding the Javascript directly in your application or by storing your scripts somewhere with a publicly accessible URL (such as in a Github gist) that can be referenced from within your application.
 
 For a quick reference to the SwiftyZorb documents, please refer to [this guide](https://somaticlabs.github.io/SwiftyZorb).
 
@@ -26,7 +20,7 @@ For a quick reference to the SwiftyZorb documents, please refer to [this guide](
 
 - iOS 9.0+
 - Xcode 8.1+
-- Swift 3.0+
+- Swift 4.0+
 
 ## Troubleshooting & Contributions
 
@@ -59,11 +53,13 @@ Run `carthage update` to build the framework and drag the built `SwiftyZorb.fram
 
 You must also drag the built dependencies `Alamofire.framework`, `SwiftyBluetooth.framework`, and `SwiftyJSON.framework` into your project.
 
-## Usage
+## Single Device Usage
+
+There are two ways to use this libary. If you intend to connect and reconnect to one Zorb peripheral device, use the following methods.
 
 ### Connecting
 
-Before being able to communicate with Moment, you must establish a Bluetooth LE connection with your device.
+Before being able to communicate with a Zorb peripheral device, you must establish a Bluetooth LE connection with your device.
 
 ```swift
 import SwiftyZorb
@@ -94,15 +90,16 @@ Note that simply disconnecting from the device will not forget a stored connecti
 
 ### Sending Javascript
 
-There are two ways to send Javascript to Moment to be executed on the device—by embedding it as a `String` in your application, or by passing a `URL` to a hosted file such as a [Github Gist](https://gist.github.com) that contains your code.
+There are two ways to send Javascript to be executed on the device—by embedding it as a `String` in your application, or by passing a `URL` to a hosted file such as a [Github Gist](https://gist.github.com) that contains your code.
 
 To send Javascript from a `String` in your application:
 
 ```swift
-let javascript = "Moment.on('timertick', function () {" +
-    "var ms = Moment.uptime();" +
-    "// do something time-related here" +
-    "});"
+let javascript = "new Zorb.Vibration(" +
+    "0," +
+    "new Zorb.Effect(0,100,11,250)," +
+    "213" +
+    ").start();"
 SwiftyZorb.writeJavascript(javascript) { result in
     switch result {
     case .success:
@@ -116,7 +113,7 @@ SwiftyZorb.writeJavascript(javascript) { result in
 To send Javascript from a script saved in file hosted online:
 
 ```swift
-let url = URL(string: "https://gist.github.com/shantanubala/1f7d0dfb9bbef3edca8d0bb164c56aa0/raw")!
+let url = URL(string: "https://gist.githubusercontent.com/jakerockland/17cb9cbfda0e09fa8251fc7666e2c4dc/raw")!
 SwiftyZorb.writeJavascript(at url) { result in
     switch result {
     case .success:
@@ -127,7 +124,7 @@ SwiftyZorb.writeJavascript(at url) { result in
 }
 ```
 
-Using the two above methods will always require an HTTP request to the MomentSDK Javascript compiler, which produces the Javascript bytecode that is executed on Moment's internal virtual machine. If you would like to avoid this HTTP request, you can send pre-compiled bytecode instead.
+Using the two above methods will always require an HTTP request to the ZorbSDK Javascript compiler, which produces the Javascript bytecode that is executed on the Zorb device's internal virtual machine. If you would like to avoid this HTTP request, you can send pre-compiled bytecode instead.
 
 To send pre-compiled Javascript bytecode as a base64 encoded `String` in your application:
 
@@ -143,7 +140,7 @@ SwiftyZorb.writeBytecode(bytecode) { result in
 }
  ```
 
-To reset Moment's Javascript virtual machine:
+To reset the Zorb device's Javascript virtual machine:
 
 ```swift
 SwiftyZorb.reset { result in
@@ -152,6 +149,56 @@ SwiftyZorb.reset { result in
         // Reset succeeded
     case .failure(let error):
         // An error occurred during reset
+    }
+}
+```
+
+## Multiple Device Usage
+
+If you would like to manage connections with multiple Zorb peripheral devices, you may do so by first retrieving a list of the available devices:
+
+```swift
+// Retrieves a list all available devices as an array of `ZorbDevice` objects.
+SwiftyZorb.retrieveAvailableDevices { result in
+    switch result {
+    case .success(let devices):
+        // Retrieval succeeded
+        for device in devices {
+            // Do something with devices
+        }
+    case .failure(let error):
+        // An error occurred during retrieval
+    }
+}
+```
+
+After filtering for the devices of interest, a given device can be connected to and intereacted with using commands similar to those used in the single-device usage.
+
+For example, to connect and send a pattern at a given url:
+
+```swift
+// Create a `ZorbDevice` object for a given Bluetooth peripheral (or this object may have
+// already been created as in the case of using `retrieveAvailableDevices` method of SDK
+let device = ZorbDevice(with: peripheral)
+
+// Attempts connection to an advertising device
+device.connect { result in
+    switch result {
+    case .success:
+        // Connect succeeded
+        
+        // Write Javascript from url to device
+        let url = URL(string: "https://gist.githubusercontent.com/jakerockland/17cb9cbfda0e09fa8251fc7666e2c4dc/raw")!
+        device.writeJavascript(at url) { result in
+        switch result {
+            case .success:
+                // Write succeeded
+            case .failure(let error):
+                // An error occurred during write
+            }
+        }
+    case .failure(let error):
+        // An error occurred during connection
     }
 }
 ```

@@ -27,7 +27,7 @@ final internal class BluetoothManager: NSObject {
     /// `SwiftyBluetooth` central manager
     var central: Central
     
-    /// `ZorbDevice` for stored Moment device
+    /// `ZorbDevice` for stored peripheral device
     var device: ZorbDevice?
     
     /// `PacketQueue` for storing Javascript packets to be sent
@@ -47,7 +47,7 @@ final internal class BluetoothManager: NSObject {
     // MARK: - Connection and Transmission Functions
 
     /**
-     Called to initiate connection with Moment, handles reconnection process based on this logical diagram: ![Reconnection flow chart](https://developer.apple.com/library/content/documentation/NetworkingInternetWeb/Conceptual/CoreBluetooth_concepts/Art/ReconnectingToAPeripheral_2x.png "Reconnection workflow")
+     Called to initiate connection with Zorb peripheral, handles reconnection process based on this logical diagram: ![Reconnection flow chart](https://developer.apple.com/library/content/documentation/NetworkingInternetWeb/Conceptual/CoreBluetooth_concepts/Art/ReconnectingToAPeripheral_2x.png "Reconnection workflow")
      */
     func connect(completion: @escaping ConnectPeripheralCallback) {
         // Identifier and services for device of interest
@@ -55,7 +55,7 @@ final internal class BluetoothManager: NSObject {
         let services: [CBUUID]
         
         // Check if we have connected to this peripheral before, and get it's UUID and associated services
-        uuid = Settings.getMomentPeripheral()
+        uuid = Settings.getZorbPeripheral()
         services = Identifiers.AdvertisedServices
         
         // If we do, try to connect to it
@@ -101,7 +101,7 @@ final internal class BluetoothManager: NSObject {
                             }
                             
                             // Store peripheral as our known peripheral in settings
-                            Settings.saveMomentPeripheral(with: peripheral.identifier)
+                            Settings.saveZorbPeripheral(with: peripheral.identifier)
                             
                             // Update internal `ZorbDevice` and handle in completion
                             self.device = ZorbDevice(with: peripheral)
@@ -134,7 +134,7 @@ final internal class BluetoothManager: NSObject {
                     SwiftyBluetooth.stopScan()
                     
                     // Store peripheral as our known peripheral in settings
-                    Settings.saveMomentPeripheral(with: peripheral.identifier)
+                    Settings.saveZorbPeripheral(with: peripheral.identifier)
                     
                     // Initiate connection to peripheral
                     peripheral.connect(withTimeout: Constants.connectTimeout) { result in
@@ -162,7 +162,7 @@ final internal class BluetoothManager: NSObject {
                 // The scan stopped, an error is passed if the scan stopped unexpectedly
                 guard error == nil else {
                     // Treat as error and handle in completion
-                    completion(.failure(error ?? ManagerError("Failed to discover Moment peripheral.")))
+                    completion(.failure(error ?? ManagerError("Failed to discover Zorb peripheral.")))
                     
                     return // Exit
                 }
@@ -171,13 +171,13 @@ final internal class BluetoothManager: NSObject {
     }
     
     /**
-     Scans for and retrieves a collection of available Moment devices
+     Scans for and retrieves a collection of available Zorb devices
     */
     func retrieveAvailableDevices(completion: @escaping (Result<[ZorbDevice]>) -> Void) {
         // Initialize collection of available peripherals
         var peripherals: [ZorbDevice] = []
         
-        // Get associated Moment device services
+        // Get associated Zorb device services
         let services = Identifiers.AdvertisedServices
         
         // First add any already connected peripherals to our collection
@@ -209,7 +209,7 @@ final internal class BluetoothManager: NSObject {
                 // The scan stopped, an error is passed if the scan stopped unexpectedly
                 guard error == nil else {
                     // Treat as error and handle in completion
-                    completion(.failure(error ?? ManagerError("Failed to discover Moment peripheral.")))
+                    completion(.failure(error ?? ManagerError("Failed to discover Zorb peripheral.")))
                     
                     return // Exit
                 }

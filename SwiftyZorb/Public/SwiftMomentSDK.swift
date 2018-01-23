@@ -37,7 +37,7 @@ public func retrieveAvailableDevices(completion: @escaping (SwiftyBluetooth.Resu
 }
 
 /**
- Initiates a connection to an advertising Moment device.
+ Initiates a connection to an advertising Zorb device.
  
  Usage Example:
  
@@ -58,12 +58,12 @@ public func connect(completion: @escaping ConnectPeripheralCallback) {
 }
 
 /**
- Ends connection to a connected Moment device.
+ Ends connection to a connected Zorb device.
  
  Usage Example:
  
  ```swift
- // After calling this method, Moment disconnection will be guaranteed
+ // After calling this method, device disconnection will be guaranteed
  SwiftyZorb.disconnect()
  ```
  */
@@ -72,23 +72,23 @@ public func disconnect() {
 }
 
 /**
- Forgets previously stored Moment connection.
+ Forgets previously stored device connection.
  
  Usage Example:
  
  ```swift
- // After calling this method, a new Moment connection can be created
+ // After calling this method, a new device connection can be created
  SwiftyZorb.forget()
  ```
  */
 public func forget() {
-    Settings.resetMomentPeripheral()
+    Settings.resetZorbPeripheral()
 }
 
 // MARK: Bluetooth Javascript Methods
 
 /**
- Writes the appropriate command to reset connected Moment's Javascript virtual machine.
+ Writes the appropriate command to reset connected Zorb device's Javascript virtual machine.
  
  Usage Example:
  
@@ -108,7 +108,7 @@ public func reset(completion: @escaping WriteRequestCallback) {
 }
 
 /**
- Reads version `String` from Moment device.
+ Reads version `String` from Zorb device.
  
  Usage Example:
  
@@ -128,7 +128,7 @@ public func readVersion(completion: @escaping (SwiftyBluetooth.Result<String>) -
 }
 
 /**
- Reads serial `String` from Moment device.
+ Reads serial `String` from Zorb device.
  
  Usage Example:
  
@@ -148,7 +148,7 @@ public func readSerial(completion: @escaping (SwiftyBluetooth.Result<String>) ->
 }
 
 /**
- Writes desired actuator data to Moment device.
+ Writes desired actuator data to Zorb device.
  
  Usage Example:
  
@@ -178,42 +178,17 @@ public func writeActuators(duration: UInt16, topLeft: UInt8, topRight: UInt8, bo
 }
 
 /**
- Writes desired settings to Moment device
- 
- Usage Example:
- 
- ```swift
- SwiftyZorb.writeSettings(wristOrientation: .left, buttonOrientation: .left, intensityLevel: .high) { result in
-     switch result {
-     case .success:
-         // Settings update succeeded
-     case .failure(let error):
-         // An error occurred during settings update
-     }
- }
- ```
- 
- - Parameter wristOrientation: The wrist that Moment is being worn on, either `.left` or `.right`
- 
- - Parameter buttonOrientation: The orientation that Moment's button is on, either `.left` or `right`
- 
- - Parameter intensityLevel: The intensity level that Moment's vibrations will be at, either `.low`, `.medium`, or `.high`
- */
-public func writeSettings(wristOrientation: Orientation, buttonOrientation: Orientation,  intensityLevel: Intensity, completion: @escaping WriteRequestCallback) {
-    bluetoothManager.device?.writeSettings(wristOrientation: wristOrientation, buttonOrientation: buttonOrientation,  intensityLevel: intensityLevel) { result in completion(result) }
-}
-
-/**
- Writes a given string of Javascript to the connected Moment device. 
+ Writes a given string of Javascript to the connected Zorb device.
  Using this method requires internet connection, which is used to compile the Javascript to bytecode before transmission.
  
  Usage Example:
  
  ```swift
- let javascript = "Moment.on('timertick', function () {" +
- "var ms = Moment.uptime();" +
- "// do something time-related here" +
- "});"
+ let javascript = "new Zorb.Vibration(" +
+     "0," +
+     "new Zorb.Effect(0,100,11,250)," +
+     "213" +
+     ").start();"
  SwiftyZorb.writeJavascript(javascript) { result in
     switch result {
     case .success:
@@ -231,12 +206,12 @@ public func writeJavascript(_ javascript: String, completion: @escaping WriteReq
 }
 
 /**
- Writes the Javascript code at a given URL to the connected Moment device.
+ Writes the Javascript code at a given URL to the connected Zorb device.
  
  Usage Example:
  
  ```swift
- let url = URL(string: "https://gist.github.com/shantanubala/1f7d0dfb9bbef3edca8d0bb164c56aa0/raw")!
+ let url = URL(string: "https://gist.githubusercontent.com/jakerockland/17cb9cbfda0e09fa8251fc7666e2c4dc/raw")!
  SwiftyZorb.writeJavascript(at url) { result in
      switch result {
      case .success:
@@ -254,7 +229,7 @@ public func writeJavascript(at url: URL, completion: @escaping WriteRequestCallb
 }
 
 /**
- Writes a given string of base64 encoded bytecode to the connected Moment device.
+ Writes a given string of base64 encoded bytecode to the connected Zorb device.
  
  Usage Example:
  

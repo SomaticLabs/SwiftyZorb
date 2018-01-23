@@ -26,9 +26,9 @@ internal struct Identifiers {
     /// `CBUUID` for identifying the serial number string characteristic
     static let SerialNumberStringCharacteristicUUID = CBUUID(string: "2A25")
     
-    // MARK: - Moment Specific Bluetooth Service UUIDs
+    // MARK: - Zorb Specific Bluetooth Service UUIDs
     
-    /// Array of `CBUUID`s representing all services that Moment should advertise
+    /// Array of `CBUUID`s representing all services that Zorb device should advertise
     static let AdvertisedServices = [HapticTimelineServiceUUID]
     
     /// `CBUUID` that advertises the haptic timeline service
