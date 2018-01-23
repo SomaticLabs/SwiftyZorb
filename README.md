@@ -10,7 +10,7 @@
 
 SwiftyZorb allows developers to build iOS applications that communicate with devices powered by Somatic Labs' Zorb Engine, enabling new user experiences that allow communication entirely through your sense of touch.
 
-This library is made to be used in conjuction with our embedded Javascript SDK. To get started developing your own haptic animations, check out our [Zorb Design Studio](https://zorbtouch.com)..
+This library is made to be used in conjuction with our embedded Javascript SDK. To get started developing your own haptic animations, check out our [Zorb Design Studio](https://zorbtouch.com).
 
 Animations and programs created in the design studio can be ran on ZorbEngine powered devices using this library, either by sending a embedding the Javascript directly in your application or by storing your scripts somewhere with a publicly accessible URL (such as in a Github gist) that can be referenced from within your application.
 
@@ -46,7 +46,7 @@ $ brew install carthage
 To integrate SwiftyZorb into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "SomaticLabs/SwiftyZorb" ~> 1.0
+github "SomaticLabs/SwiftyZorb" ~> 2.0
 ```
 
 Run `carthage update` to build the framework and drag the built `SwiftyZorb.framework` into your Xcode project.
@@ -186,7 +186,7 @@ device.connect { result in
     switch result {
     case .success:
         // Connect succeeded
-        
+
         // Write Javascript from url to device
         let url = URL(string: "https://gist.githubusercontent.com/jakerockland/17cb9cbfda0e09fa8251fc7666e2c4dc/raw")!
         device.writeJavascript(at url) { result in
