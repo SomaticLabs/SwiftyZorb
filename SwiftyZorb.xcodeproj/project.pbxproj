@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		403783F71E5FDAA100B68645 /* SwiftMomentSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403783F61E5FDAA100B68645 /* SwiftMomentSDK.swift */; };
+		403783F71E5FDAA100B68645 /* SwiftyZorb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403783F61E5FDAA100B68645 /* SwiftyZorb.swift */; };
 		403783FC1E5FDAA900B68645 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403783F81E5FDAA900B68645 /* BluetoothManager.swift */; };
 		403783FD1E5FDAA900B68645 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403783F91E5FDAA900B68645 /* Constants.swift */; };
 		403783FE1E5FDAA900B68645 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403783FA1E5FDAA900B68645 /* Identifiers.swift */; };
@@ -21,7 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		403783F61E5FDAA100B68645 /* SwiftMomentSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftMomentSDK.swift; sourceTree = "<group>"; };
+		403783F61E5FDAA100B68645 /* SwiftyZorb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyZorb.swift; sourceTree = "<group>"; };
 		403783F81E5FDAA900B68645 /* BluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		403783F91E5FDAA900B68645 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		403783FA1E5FDAA900B68645 /* Identifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 		407350931E5E217F00CA2D94 /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				403783F61E5FDAA100B68645 /* SwiftMomentSDK.swift */,
+				403783F61E5FDAA100B68645 /* SwiftyZorb.swift */,
 				409911721FEDCC350079C73C /* ZorbDevice.swift */,
 			);
 			path = Public;
@@ -199,7 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				403783FC1E5FDAA900B68645 /* BluetoothManager.swift in Sources */,
-				403783F71E5FDAA100B68645 /* SwiftMomentSDK.swift in Sources */,
+				403783F71E5FDAA100B68645 /* SwiftyZorb.swift in Sources */,
 				409911771FEDCFFD0079C73C /* ManagerError.swift in Sources */,
 				403783FE1E5FDAA900B68645 /* Identifiers.swift in Sources */,
 				409911751FEDCCF60079C73C /* PacketQueue.swift in Sources */,
