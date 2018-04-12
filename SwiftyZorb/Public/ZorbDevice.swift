@@ -434,5 +434,30 @@ final public class ZorbDevice {
         self.writeBytecode(bytes) { result in completion(result) }
     }
     
+    /**
+    Triggers a given pre-loaded pattern on the given device
+
+    Usage Example:
+
+    ```swift
+     device.triggerPattern(.🎊) { result in
+         switch result {
+         case .success:
+            // Pattern triggered successfully
+         case .failure(let error):
+            // An error occurred in triggering pattern
+         }
+     }
+    ```
+     
+     - Parameter pattern: The `Trigger` enumeration option of the given preloaded pattern to trigger
+    */
+    public func triggerPattern(_ pattern: Trigger, completion: @escaping WriteRequestCallback) {
+        let byte = Data(pattern.rawValue.utf8.map{ UInt8($0) })
+        self.writeBytes(byte, to: Identifiers.PatternTriggerCharacteristicUUID) {
+            result in completion(result)
+        }
+    }
+    
 }
 

@@ -250,3 +250,25 @@ public func writeJavascript(at url: URL, completion: @escaping WriteRequestCallb
 public func writeBytecodeString(_ bytecode: String, completion: @escaping WriteRequestCallback) {
     bluetoothManager.device?.writeBytecodeString(bytecode) { result in completion(result) }
 }
+
+/**
+ Triggers a given pre-loaded pattern on the connected Zorb device.
+ 
+ Usage Example:
+ 
+ ```swift
+ SwiftyZorb.triggerPattern(.🎊) { result in
+     switch result {
+     case .success:
+        // Pattern triggered successfully
+     case .failure(let error):
+        // An error occurred in triggering pattern
+     }
+ }
+ ```
+ 
+ - Parameter pattern: The `Trigger` enumeration option of the given preloaded pattern to trigger
+ */
+public func triggerPattern(_ pattern: Trigger, completion: @escaping WriteRequestCallback) {
+    bluetoothManager.device?.triggerPattern(pattern) { result in completion(result) }
+}

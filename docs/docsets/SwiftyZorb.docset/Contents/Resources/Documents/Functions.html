@@ -13,7 +13,7 @@
     <a title="Functions  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">SwiftyZorb Docs</a> (100% documented)</p>
+        <p><a href="index.html">SwiftyZorb Docs</a> (64% documented)</p>
         <p class="header-right"><a href="https://github.com/SomaticLabs/SwiftyZorb"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -32,6 +32,14 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Classes/ZorbDevice.html">ZorbDevice</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/Trigger.html">Trigger</a>
               </li>
             </ul>
           </li>
@@ -58,6 +66,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:10SwiftyZorb24retrieveAvailableDevicesyy0A9Bluetooth6ResultOySayAA0B6DeviceCGGc10completion_tF">retrieveAvailableDevices(completion:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:10SwiftyZorb14triggerPatternyAA7TriggerO_y0A9Bluetooth6ResultOyytGc10completiontF">triggerPattern(_:completion:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:10SwiftyZorb14writeActuatorsys6UInt16V8duration_s5UInt8V7topLeftAG0H5RightAG06bottomI0AG0kJ0y0A9Bluetooth6ResultOyytGc10completiontF">writeActuators(duration:topLeft:topRight:bottomLeft:bottomRight:completion:)</a>
@@ -646,12 +657,69 @@ Using this method requires internet connection, which is used to compile the Jav
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyZorb14triggerPatternyAA7TriggerO_y0A9Bluetooth6ResultOyytGc10completiontF"></a>
+                    <a name="//apple_ref/swift/Function/triggerPattern(_:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyZorb14triggerPatternyAA7TriggerO_y0A9Bluetooth6ResultOyytGc10completiontF">triggerPattern(_:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Triggers a given pre-loaded pattern on the connected Zorb device.</p>
+
+<p>Usage Example:</p>
+<pre class="highlight swift"><code><span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">triggerPattern</span><span class="p">(</span><span class="o">.</span><span class="n">🎊</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+    <span class="k">switch</span> <span class="nf">result</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
+       <span class="c1">// Pattern triggered successfully</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+       <span class="c1">// An error occurred in triggering pattern</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">triggerPattern</span><span class="p">(</span><span class="n">_</span> <span class="nv">pattern</span><span class="p">:</span> <span class="kt"><a href="Enums/Trigger.html">Trigger</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">WriteRequestCallback</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>pattern</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code><a href="Enums/Trigger.html">Trigger</a></code> enumeration option of the given preloaded pattern to trigger</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://somaticlabs.io" target="_blank" rel="external">Somatic Labs</a>. All rights reserved. (Last updated: 2018-01-22)</p>
+          <p>&copy; 2018 <a class="link" href="https://somaticlabs.io" target="_blank" rel="external">Somatic Labs</a>. All rights reserved. (Last updated: 2018-04-12)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
