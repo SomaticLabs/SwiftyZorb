@@ -1,6 +1,96 @@
 {
   "warnings": [
-
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Public/Trigger.swift",
+      "line": 19,
+      "symbol": "Trigger.🎊",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Public/Trigger.swift",
+      "line": 22,
+      "symbol": "Trigger.👈",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Public/Trigger.swift",
+      "line": 25,
+      "symbol": "Trigger.👉",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Public/Trigger.swift",
+      "line": 28,
+      "symbol": "Trigger.🤛",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Public/Trigger.swift",
+      "line": 31,
+      "symbol": "Trigger.🤜",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Public/Trigger.swift",
+      "line": 34,
+      "symbol": "Trigger.🙌",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Public/Trigger.swift",
+      "line": 37,
+      "symbol": "Trigger.👋",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Public/Trigger.swift",
+      "line": 40,
+      "symbol": "Trigger.😯",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Public/Trigger.swift",
+      "line": 43,
+      "symbol": "Trigger.😳",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Public/Trigger.swift",
+      "line": 46,
+      "symbol": "Trigger.😬",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Public/Trigger.swift",
+      "line": 49,
+      "symbol": "Trigger.😊",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Public/Trigger.swift",
+      "line": 52,
+      "symbol": "Trigger.😄",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Public/Trigger.swift",
+      "line": 55,
+      "symbol": "Trigger.🤣",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    }
   ],
   "source_directory": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb"
 }

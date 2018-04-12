@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4035C710207F10A5003964B7 /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035C70F207F10A5003964B7 /* Trigger.swift */; };
 		403783F71E5FDAA100B68645 /* SwiftyZorb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403783F61E5FDAA100B68645 /* SwiftyZorb.swift */; };
 		403783FC1E5FDAA900B68645 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403783F81E5FDAA900B68645 /* BluetoothManager.swift */; };
 		403783FD1E5FDAA900B68645 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403783F91E5FDAA900B68645 /* Constants.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4035C70F207F10A5003964B7 /* Trigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
 		403783F61E5FDAA100B68645 /* SwiftyZorb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyZorb.swift; sourceTree = "<group>"; };
 		403783F81E5FDAA900B68645 /* BluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		403783F91E5FDAA900B68645 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				403783F61E5FDAA100B68645 /* SwiftyZorb.swift */,
+				4035C70F207F10A5003964B7 /* Trigger.swift */,
 				409911721FEDCC350079C73C /* ZorbDevice.swift */,
 			);
 			path = Public;
@@ -203,6 +206,7 @@
 				409911771FEDCFFD0079C73C /* ManagerError.swift in Sources */,
 				403783FE1E5FDAA900B68645 /* Identifiers.swift in Sources */,
 				409911751FEDCCF60079C73C /* PacketQueue.swift in Sources */,
+				4035C710207F10A5003964B7 /* Trigger.swift in Sources */,
 				403783FD1E5FDAA900B68645 /* Constants.swift in Sources */,
 				409911731FEDCC350079C73C /* ZorbDevice.swift in Sources */,
 				403783FF1E5FDAA900B68645 /* Settings.swift in Sources */,

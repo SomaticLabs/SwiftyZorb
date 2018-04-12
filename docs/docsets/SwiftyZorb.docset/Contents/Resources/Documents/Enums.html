@@ -13,7 +13,7 @@
     <a title="Enumerations  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">SwiftyZorb Docs</a> (100% documented)</p>
+        <p><a href="index.html">SwiftyZorb Docs</a> (64% documented)</p>
         <p class="header-right"><a href="https://github.com/SomaticLabs/SwiftyZorb"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -39,10 +39,7 @@
             <a href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Enums/Intensity.html">Intensity</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Enums/Orientation.html">Orientation</a>
+                <a href="Enums/Trigger.html">Trigger</a>
               </li>
             </ul>
           </li>
@@ -71,6 +68,9 @@
                 <a href="Functions.html#/s:10SwiftyZorb24retrieveAvailableDevicesyy0A9Bluetooth6ResultOySayAA0B6DeviceCGGc10completion_tF">retrieveAvailableDevices(completion:)</a>
               </li>
               <li class="nav-group-task">
+                <a href="Functions.html#/s:10SwiftyZorb14triggerPatternyAA7TriggerO_y0A9Bluetooth6ResultOyytGc10completiontF">triggerPattern(_:completion:)</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Functions.html#/s:10SwiftyZorb14writeActuatorsys6UInt16V8duration_s5UInt8V7topLeftAG0H5RightAG06bottomI0AG0kJ0y0A9Bluetooth6ResultOyytGc10completiontF">writeActuators(duration:topLeft:topRight:bottomLeft:bottomRight:completion:)</a>
               </li>
               <li class="nav-group-task">
@@ -81,9 +81,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:10SwiftyZorb15writeJavascripty10Foundation3URLV2at_y0A9Bluetooth6ResultOyytGc10completiontF">writeJavascript(at:completion:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:10SwiftyZorb13writeSettingsyAA11OrientationO05wristE0_AD06buttonE0AA9IntensityO14intensityLevely0A9Bluetooth6ResultOyytGc10completiontF">writeSettings(wristOrientation:buttonOrientation:intensityLevel:completion:)</a>
               </li>
             </ul>
           </li>
@@ -99,19 +96,19 @@
           <section class="section task-group-section">
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Device%20Settings%20Enumerations"></a>
-                <a name="//apple_ref/swift/Section/Device Settings Enumerations" class="dashAnchor"></a>
-                <a href="#/Device%20Settings%20Enumerations">
-                  <h3 class="section-name">Device Settings Enumerations</h3>
+                <a name="/Triggerable%20Patterns"></a>
+                <a name="//apple_ref/swift/Section/Triggerable Patterns" class="dashAnchor"></a>
+                <a href="#/Triggerable%20Patterns">
+                  <h3 class="section-name">Triggerable Patterns</h3>
                 </a>
               </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftyZorb11OrientationO"></a>
-                    <a name="//apple_ref/swift/Enum/Orientation" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftyZorb11OrientationO">Orientation</a>
+                    <a name="/s:10SwiftyZorb7TriggerO"></a>
+                    <a name="//apple_ref/swift/Enum/Trigger" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyZorb7TriggerO">Trigger</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -119,43 +116,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Enumeration of left and right, used for keeping track of wrist and button orientation - conforms to <code>UInt8</code> type</p>
+                        <p>Enumeration of predefined triggerable patterns</p>
 
-                        <a href="Enums/Orientation.html" class="slightly-smaller">See more</a>
+                        <a href="Enums/Trigger.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Orientation</span><span class="p">:</span> <span class="kt">UInt8</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:10SwiftyZorb9IntensityO"></a>
-                    <a name="//apple_ref/swift/Enum/Intensity" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftyZorb9IntensityO">Intensity</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Enumeration of low, medium and high, used for keeping track of device intensity level - conforms to <code>UInt8</code> type</p>
-
-                        <a href="Enums/Intensity.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Intensity</span><span class="p">:</span> <span class="kt">UInt8</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Trigger</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -167,7 +136,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://somaticlabs.io" target="_blank" rel="external">Somatic Labs</a>. All rights reserved. (Last updated: 2018-01-22)</p>
+          <p>&copy; 2018 <a class="link" href="https://somaticlabs.io" target="_blank" rel="external">Somatic Labs</a>. All rights reserved. (Last updated: 2018-04-12)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
