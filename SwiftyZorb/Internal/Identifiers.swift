@@ -29,7 +29,7 @@ internal struct Identifiers {
     // MARK: - Zorb Specific Bluetooth Service UUIDs
     
     /// Array of `CBUUID`s representing all services that Zorb device should advertise
-    static let AdvertisedServices = [HapticTimelineServiceUUID]
+    static let AdvertisedServices = [CBUUID]() // FIXME: Eventually replace with [HapticTimelineServiceUUID]
     
     /// `CBUUID` that advertises the haptic timeline service
     static let HapticTimelineServiceUUID = CBUUID(string: "A28E9217-E9B5-4C0A-9217-1C64D051D762")
