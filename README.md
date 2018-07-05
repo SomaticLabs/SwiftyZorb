@@ -209,4 +209,4 @@ Contributions to this project should conform to the [Swift API Design Guidelines
 
 ## License
 
-The SwiftyZorb is released under the [MIT license](https://github.com/SomaticLabs/SwiftyZorb/blob/master/LICENSE).
+The SwiftyZorb is released under the [GPL license](https://github.com/SomaticLabs/SwiftyZorb/blob/master/LICENSE).
