@@ -2,7 +2,7 @@
 
 *iOS development kit for integrating with the [Somatic Zorb Engine](https://somaticlabs.io)*
 
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/SomaticLabs/SwiftyZorb/blob/master/LICENSE)
+[![license](https://img.shields.io/badge/license-GPL%203.0-green.svg)](https://github.com/SomaticLabs/SwiftyZorb/blob/master/LICENSE)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Twitter](https://img.shields.io/badge/twitter-@SomaticLabs-orange.svg?style=flat)](http://twitter.com/SomaticLabs)
 
