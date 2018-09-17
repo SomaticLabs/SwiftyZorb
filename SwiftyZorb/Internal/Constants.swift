@@ -19,7 +19,7 @@ internal struct Constants {
     // MARK: - Device Name Constants
     
     /// `String`s representing names used to recognize a Zorb device
-    static let deviceNames: Set = ["Moment", "Zorb"]
+    static let deviceNames = ["Moment", "Zorb"]
     
     // MARK: - Bluetooth Constants
     
