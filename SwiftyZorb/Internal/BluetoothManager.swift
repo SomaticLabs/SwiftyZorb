@@ -66,7 +66,7 @@ final internal class BluetoothManager: NSObject {
                     switch result {
                     case .success(let value):
                         // Validate name
-                        guard peripheral.name == Constants.deviceName else {
+                        guard Constants.deviceNames.contains(peripheral.name!) else {
                             // Treat as error and handle in completion
                             let error = ManagerError("Unexpectedly connected to \(peripheral.name ?? "Unknown").")
                             completion(.failure(error))
@@ -87,12 +87,12 @@ final internal class BluetoothManager: NSObject {
         } else {
             let connectedPeripherals = central.retrieveConnectedPeripherals(withServiceUUIDs: services)
             for peripheral in connectedPeripherals {
-                if peripheral.name == Constants.deviceName {
+                if Constants.deviceNames.contains(peripheral.name!) {
                     peripheral.connect(withTimeout: Constants.connectTimeout) { result in
                         switch result {
                         case .success(let value):
                             // Validate name
-                            guard peripheral.name == Constants.deviceName else {
+                            guard Constants.deviceNames.contains(peripheral.name!) else {
                                 // Treat as error and handle in completion
                                 let error = ManagerError("Unexpectedly connected to \(peripheral.name ?? "Unknown").")
                                 completion(.failure(error))
@@ -129,7 +129,7 @@ final internal class BluetoothManager: NSObject {
                 let peripheral = peripheral
                 
                 // Check if found peripheral is the one we're trying to connect to
-                if peripheral.name == Constants.deviceName {
+                if Constants.deviceNames.contains(peripheral.name!) {
                     // Stop scanning
                     SwiftyBluetooth.stopScan()
                     
@@ -141,7 +141,7 @@ final internal class BluetoothManager: NSObject {
                         switch result {
                         case .success(let value):
                             // Validate name
-                            guard peripheral.name == Constants.deviceName else {
+                            guard Constants.deviceNames.contains(peripheral.name!) else {
                                 // Treat as error and handle in completion
                                 let error = ManagerError("Unexpectedly connected to \(peripheral.name ?? "Unknown").")
                                 completion(.failure(error))
@@ -183,7 +183,7 @@ final internal class BluetoothManager: NSObject {
         // First add any already connected peripherals to our collection
         let connectedPeripherals = central.retrieveConnectedPeripherals(withServiceUUIDs: services)
         for peripheral in connectedPeripherals {
-            if peripheral.name == Constants.deviceName {
+            if Constants.deviceNames.contains(peripheral.name!) {
                 peripherals.append(ZorbDevice(with: peripheral))
             }
         }
@@ -202,7 +202,7 @@ final internal class BluetoothManager: NSObject {
                 let peripheral = peripheral
                 
                 // Check if found peripheral is the one we're trying to connect to
-                if peripheral.name == Constants.deviceName {
+                if Constants.deviceNames.contains(peripheral.name!) {
                     peripherals.append(ZorbDevice(with: peripheral))
                 }
             case .scanStopped(let error):
