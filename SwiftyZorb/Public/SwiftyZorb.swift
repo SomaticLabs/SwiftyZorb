@@ -228,6 +228,10 @@ public func writeJavascript(at url: URL, completion: @escaping WriteRequestCallb
     bluetoothManager.device?.writeJavascript(at: url) { result in completion(result) }
 }
 
+public func writeBytecode(_ bytes: Data, completion: @escaping WriteRequestCallback) {
+    bluetoothManager.device?.writeBytecode(bytes) { result in completion(result) }
+}
+
 /**
  Writes a given string of base64 encoded bytecode to the connected Zorb device.
  
