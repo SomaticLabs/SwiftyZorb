@@ -59,25 +59,45 @@ final public class ZorbDevice {
      - Parameter bytes: Byte representation of the Javascript bytecode to be written
      */
     private func writeBytecode(_ bytes: Data, completion: @escaping WriteRequestCallback) {
-        // If bytes are empty, send only the integer 0
+        // Fill the packet queue appropriately based on `bytes` to be written
         if bytes.count == 0 {
-            let bytes = Data(bytes: [UInt8(0)])
+            // If bytes are empty, send byte-array containing only the integer 0
+            
+            // This indicates to the receiving firmware that an empty message has been sent
+            let uZero = UInt8(0)
+            
+            let bytes = Data(bytes: [uZero])
             packetQueue.enqueue(ArraySlice(bytes))
         } else {
-            // Split data in 20-byte packets and fill packet list
+            // If bytes are not empty, split data in 20-byte packets and fill packet queue
+            
+            // Because we want to include the number of packets as the first byte in our message,
+            // we must add 1 to the count of bytes before calculating the packet count
             let packetCount = Int(ceil(Double(bytes.count + 1) / 20))
+            
+            // We then append a byte containing number of packets to be sent to our byte-array
             let bytes = Data(bytes: [UInt8(packetCount)]) + bytes
+            
+            // For each of the packets that we plan to send, iterate through the byte array and slice off
+            // a 20-byte section of bytes.
             for i in 0..<packetCount {
-                let min = i * 20
-                let max = (((i + 1) * 20) < bytes.count) ? ((i + 1) * 20) : bytes.count
-                let packet = ArraySlice(bytes[min..<max])
+                // Min slice is always (i * 20)
+                let sliceMin = i * 20
+                
+                // Max slice changes conditionally depending on if we within bounds of the end of our byte-array
+                // If we are within bounds, we slice to (i + 1 * 20) otherwise to the end of our byte-array
+                let sliceInBounds = (((i + 1) * 20) < bytes.count)
+                let sliceMax = sliceInBounds ? ((i + 1) * 20) : bytes.count
+                
+                let packet = ArraySlice(bytes[sliceMin..<sliceMax])
                 packetQueue.enqueue(packet)
             }
         }
         
-        // Create recursive writing function
+        // Create recursive function to send Bluetooth packet on successful write of previous packet
         func recursiveWrite(completion: @escaping WriteRequestCallback) {
             DispatchQueue.main.async {
+                // Check if there are still remaining packets in the queue
                 if self.packetQueue.isEmpty {
                     // Handle base case
                     while self.packetQueue.numSets > 0 {
@@ -85,7 +105,7 @@ final public class ZorbDevice {
                         self.packetQueue.numSets -= 1
                     }
                 } else {
-                    // Get data to send
+                    // Get data to send from packet queue
                     guard let packet = self.packetQueue.dequeue() else {
                         return
                     }
