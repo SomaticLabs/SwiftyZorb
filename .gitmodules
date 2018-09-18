@@ -4,3 +4,6 @@
 [submodule "Carthage/Checkouts/SwiftyBluetooth"]
 	path = Carthage/Checkouts/SwiftyBluetooth
 	url = https://github.com/jordanebelanger/SwiftyBluetooth.git
+[submodule "SwiftyZorb/Internal/zorb-protocol"]
+	path = SwiftyZorb/Internal/zorb-protocol
+	url = https://github.com/SomaticLabs/zorb-protocol.git
