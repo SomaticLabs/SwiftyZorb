@@ -58,7 +58,7 @@ final public class ZorbDevice {
      
      - Parameter bytes: Byte representation of the Javascript bytecode to be written
      */
-    private func writeBytecode(_ bytes: Data, completion: @escaping WriteRequestCallback) {
+    public func writeBytecode(_ bytes: Data, completion: @escaping WriteRequestCallback) {
         // Fill the packet queue appropriately based on `bytes` to be written
         if bytes.count == 0 {
             // If bytes are empty, send byte-array containing only the integer 0
