@@ -58,7 +58,7 @@ final public class ZorbDevice {
      
      - Parameter bytes: Byte representation of the Javascript bytecode to be written
      */
-    public func writeBytecode(_ bytes: Data, completion: @escaping WriteRequestCallback) {
+    private func writeBytecode(_ bytes: Data, completion: @escaping WriteRequestCallback) {
         // Fill the packet queue appropriately based on `bytes` to be written
         if bytes.count == 0 {
             // If bytes are empty, send byte-array containing only the integer 0
@@ -419,6 +419,20 @@ final public class ZorbDevice {
                     completion(.failure(error))
                 }
         }
+    }
+    
+    /**
+     Writes a Zorb_Timeline object (as specified by zorb.pb.swift) to the UART RX characteristic.
+     
+     - Parameter timeline: A Zorb_Timeline object (from zorb-protocol)
+     */
+    public func writeTimeline(_ timeline: Zorb_Timeline, completion: @escaping WriteRequestCallback) {
+        // Write a Zorb_Timeline protocol buffer to our device
+        guard let bytes = try? timeline.serializedData() else {
+            completion(.failure(ManagerError("Invalid base64 encoded bytecode string.")))
+            return // Exit
+        }
+        self.writeBytecode(bytes) { result in completion(result) }
     }
     
     /**

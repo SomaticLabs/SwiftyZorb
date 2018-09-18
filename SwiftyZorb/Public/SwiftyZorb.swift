@@ -228,8 +228,8 @@ public func writeJavascript(at url: URL, completion: @escaping WriteRequestCallb
     bluetoothManager.device?.writeJavascript(at: url) { result in completion(result) }
 }
 
-public func writeBytecode(_ bytes: Data, completion: @escaping WriteRequestCallback) {
-    bluetoothManager.device?.writeBytecode(bytes) { result in completion(result) }
+public func writeTimeline(_ timeline: Zorb_Timeline, completion: @escaping WriteRequestCallback) {
+    bluetoothManager.device?.writeTimeline(timeline) { result in completion(result) }
 }
 
 /**
