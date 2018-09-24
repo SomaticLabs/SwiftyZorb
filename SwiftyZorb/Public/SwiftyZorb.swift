@@ -228,6 +228,41 @@ public func writeJavascript(at url: URL, completion: @escaping WriteRequestCallb
     bluetoothManager.device?.writeJavascript(at: url) { result in completion(result) }
 }
 
+/**
+ Writes a Zorb_Timeline object (as specified by zorb.pb.swift) to the UART RX characteristic.
+ 
+ Usage Example:
+ 
+ ```swift
+ // Create Zorb_Timeline and Zorb_Vibration objects using the generated types provided by zorb.pb.swift.
+ var timeline = Zorb_Timeline()
+ var vibration = Zorb_Vibration()
+ 
+ // Populate data in the Zorb_Vibration object.
+ vibration.channels = 0x01
+ vibration.delay = 1000
+ vibration.duration = 2000
+ vibration.position = 0
+ vibration.start = 0
+ vibration.end = 100
+ vibration.easing = 2
+ 
+ // Append the Zorb_Vibration to the Zorb_Timeline.
+ timeline.vibrations.append(vibration)
+ 
+ // Write the bytecode to the UART RX characteristic.
+ SwiftyZorb.writeTimeline(timeline) { result in
+    switch result {
+    case .success:
+        Log.info("Successful write to UART RX characteristic.")
+    case .failure(let error):
+        Log.error("Failed to write to UART RX characteristic:", error.localizedDescription)
+    }
+ }
+ ```
+ 
+ - Parameter timeline: A Zorb_Timeline object (from zorb-protocol)
+ */
 public func writeTimeline(_ timeline: Zorb_Timeline, completion: @escaping WriteRequestCallback) {
     bluetoothManager.device?.writeTimeline(timeline) { result in completion(result) }
 }
