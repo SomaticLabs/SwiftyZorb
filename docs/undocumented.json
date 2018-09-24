@@ -1,6 +1,167 @@
 {
   "warnings": [
     {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/device.pb.swift",
+      "line": 31,
+      "symbol": "ActuatorType.lra",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/device.pb.swift",
+      "line": 32,
+      "symbol": "ActuatorType.lraWideband",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/device.pb.swift",
+      "line": 33,
+      "symbol": "ActuatorType.piezo",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/device.pb.swift",
+      "line": 34,
+      "symbol": "ActuatorType.haptuator",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/device.pb.swift",
+      "line": 35,
+      "symbol": "ActuatorType.UNRECOGNIZED(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/device.pb.swift",
+      "line": 85,
+      "symbol": "Actuator.minimumFrequency",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/device.pb.swift",
+      "line": 87,
+      "symbol": "Actuator.maximumFrequency",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/device.pb.swift",
+      "line": 89,
+      "symbol": "Actuator.optimalFrequency",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/device.pb.swift",
+      "line": 91,
+      "symbol": "Actuator.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/device.pb.swift",
+      "line": 106,
+      "symbol": "Device.hardwareVersion",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/device.pb.swift",
+      "line": 108,
+      "symbol": "Device.bootloaderVersion",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/device.pb.swift",
+      "line": 110,
+      "symbol": "Device.firmwareVersion",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/device.pb.swift",
+      "line": 112,
+      "symbol": "Device.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/device.pb.swift",
+      "line": 114,
+      "symbol": "Device.actuators",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/device.pb.swift",
+      "line": 116,
+      "symbol": "Device.bluetoothID",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/device.pb.swift",
+      "line": 118,
+      "symbol": "Device.usbID",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/zorb.pb.swift",
+      "line": 74,
+      "symbol": "Zorb_Vibration.channels",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/zorb.pb.swift",
+      "line": 76,
+      "symbol": "Zorb_Vibration.delay",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/zorb.pb.swift",
+      "line": 78,
+      "symbol": "Zorb_Vibration.duration",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/zorb.pb.swift",
+      "line": 80,
+      "symbol": "Zorb_Vibration.position",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/zorb.pb.swift",
+      "line": 82,
+      "symbol": "Zorb_Vibration.start",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/zorb.pb.swift",
+      "line": 84,
+      "symbol": "Zorb_Vibration.end",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Internal/zorb-protocol/build/zorb.pb.swift",
+      "line": 86,
+      "symbol": "Zorb_Vibration.easing",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Public/Trigger.swift",
       "line": 19,
       "symbol": "Trigger.🎊",

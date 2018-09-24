@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Trigger Enumeration Reference</title>
+    <title>Actuator Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/Trigger" class="dashAnchor"></a>
-    <a title="Trigger Enumeration Reference"></a>
+    <a name="//apple_ref/swift/Struct/Actuator" class="dashAnchor"></a>
+    <a title="Actuator Structure Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">SwiftyZorb Docs</a> (66% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">SwiftyZorb Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Trigger Enumeration Reference
+        Actuator Structure Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -121,14 +121,15 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Trigger</h1>
+            <h1>Actuator</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Trigger</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Actuator</span></code></pre>
 
                 </div>
               </div>
-            <p>Enumeration of predefined triggerable patterns</p>
+            <p>An actuator can vary in its type and output. This message type describes an
+actuator and its capabilities.</p>
 
           </section>
           <section class="section task-group-section">
@@ -137,9 +138,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftyZorb7TriggerO004ekIhyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/🎊" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftyZorb7TriggerO004ekIhyA2CmF">🎊</a>
+                    <a name="/s:10SwiftyZorb8ActuatorV16minimumFrequencys6UInt32Vvp"></a>
+                    <a name="//apple_ref/swift/Property/minimumFrequency" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyZorb8ActuatorV16minimumFrequencys6UInt32Vvp">minimumFrequency</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -154,7 +155,140 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">🎊</span> <span class="o">=</span> <span class="s">"p"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minimumFrequency</span><span class="p">:</span> <span class="kt">UInt32</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyZorb8ActuatorV16maximumFrequencys6UInt32Vvp"></a>
+                    <a name="//apple_ref/swift/Property/maximumFrequency" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyZorb8ActuatorV16maximumFrequencys6UInt32Vvp">maximumFrequency</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maximumFrequency</span><span class="p">:</span> <span class="kt">UInt32</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyZorb8ActuatorV16optimalFrequencys6UInt32Vvp"></a>
+                    <a name="//apple_ref/swift/Property/optimalFrequency" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyZorb8ActuatorV16optimalFrequencys6UInt32Vvp">optimalFrequency</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">optimalFrequency</span><span class="p">:</span> <span class="kt">UInt32</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyZorb8ActuatorV4typeAA0C4TypeOvp"></a>
+                    <a name="//apple_ref/swift/Property/type" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyZorb8ActuatorV4typeAA0C4TypeOvp">type</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/ActuatorType.html">ActuatorType</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">lra</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13SwiftProtobuf7MessageP13unknownFieldsAA14UnknownStorageVvp"></a>
+                    <a name="//apple_ref/swift/Property/unknownFields" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13SwiftProtobuf7MessageP13unknownFieldsAA14UnknownStorageVvp">unknownFields</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">unknownFields</span> <span class="o">=</span> <span class="kt">SwiftProtobuf</span><span class="o">.</span><span class="nf">UnknownStorage</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13SwiftProtobuf7MessagePxycfc"></a>
+                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13SwiftProtobuf7MessagePxycfc">init()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -168,9 +302,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftyZorb7TriggerO004tpIhyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/👈" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftyZorb7TriggerO004tpIhyA2CmF">👈</a>
+                    <a name="/s:13SwiftProtobuf7MessageP05protoC4NameSSvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/protoMessageName" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13SwiftProtobuf7MessageP05protoC4NameSSvpZ">protoMessageName</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -178,30 +312,25 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">👈</span> <span class="o">=</span> <span class="s">"l"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">protoMessageName</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Actuator"</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftyZorb7TriggerO004upIhyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/👉" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftyZorb7TriggerO004upIhyA2CmF">👉</a>
+                    <a name="/s:13SwiftProtobuf19_ProtoNameProvidingP17_protobuf_nameMapAA01_dH0VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/_protobuf_nameMap" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13SwiftProtobuf19_ProtoNameProvidingP17_protobuf_nameMapAA01_dH0VvpZ">_protobuf_nameMap</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -209,30 +338,25 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">👉</span> <span class="o">=</span> <span class="s">"r"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">_protobuf_nameMap</span><span class="p">:</span> <span class="kt">SwiftProtobuf</span><span class="o">.</span><span class="n">_NameMap</span> <span class="o">=</span> <span class="p">[</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftyZorb7TriggerO004DpJhyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/🤛" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftyZorb7TriggerO004DpJhyA2CmF">🤛</a>
+                    <a name="/s:13SwiftProtobuf7MessageP06decodeC07decoderyqd__z_tKAA7DecoderRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/decodeMessage(decoder:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13SwiftProtobuf7MessageP06decodeC07decoderyqd__z_tKAA7DecoderRd__lF">decodeMessage(decoder:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -240,30 +364,25 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">🤛</span> <span class="o">=</span> <span class="s">"s"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="n">decodeMessage</span><span class="o">&lt;</span><span class="kt">D</span><span class="p">:</span> <span class="kt">SwiftProtobuf</span><span class="o">.</span><span class="kt">Decoder</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">decoder</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">D</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftyZorb7TriggerO004EpJhyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/🤜" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftyZorb7TriggerO004EpJhyA2CmF">🤜</a>
+                    <a name="/s:13SwiftProtobuf7MessageP8traverse7visitoryqd__z_tKAA7VisitorRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/traverse(visitor:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13SwiftProtobuf7MessageP8traverse7visitoryqd__z_tKAA7VisitorRd__lF">traverse(visitor:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -271,30 +390,25 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">🤜</span> <span class="o">=</span> <span class="s">"t"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">traverse</span><span class="o">&lt;</span><span class="kt">V</span><span class="p">:</span> <span class="kt">SwiftProtobuf</span><span class="o">.</span><span class="kt">Visitor</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">visitor</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">V</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftyZorb7TriggerO004kEIhyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/🙌" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftyZorb7TriggerO004kEIhyA2CmF">🙌</a>
+                    <a name="/s:SQ2eeoiySbx_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SQ2eeoiySbx_xtFZ">==(_:_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -302,231 +416,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">🙌</span> <span class="o">=</span> <span class="s">"u"</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:10SwiftyZorb7TriggerO004wpIhyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/👋" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftyZorb7TriggerO004wpIhyA2CmF">👋</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">👋</span> <span class="o">=</span> <span class="s">"a"</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:10SwiftyZorb7TriggerO004qDIhyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/😯" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftyZorb7TriggerO004qDIhyA2CmF">😯</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">😯</span> <span class="o">=</span> <span class="s">"q"</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:10SwiftyZorb7TriggerO004uDIhyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/😳" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftyZorb7TriggerO004uDIhyA2CmF">😳</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">😳</span> <span class="o">=</span> <span class="s">"w"</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:10SwiftyZorb7TriggerO004nDIhyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/😬" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftyZorb7TriggerO004nDIhyA2CmF">😬</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">😬</span> <span class="o">=</span> <span class="s">"f"</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:10SwiftyZorb7TriggerO004oCIhyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/😊" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftyZorb7TriggerO004oCIhyA2CmF">😊</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">😊</span> <span class="o">=</span> <span class="s">"d"</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:10SwiftyZorb7TriggerO004iCIhyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/😄" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftyZorb7TriggerO004iCIhyA2CmF">😄</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">😄</span> <span class="o">=</span> <span class="s">"m"</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:10SwiftyZorb7TriggerO004cqJhyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/🤣" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftyZorb7TriggerO004cqJhyA2CmF">🤣</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">🤣</span> <span class="o">=</span> <span class="s">"k"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">Actuator</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">Actuator</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>

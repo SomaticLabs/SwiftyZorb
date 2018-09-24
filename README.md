@@ -113,12 +113,12 @@ timeline.vibrations.append(vibration)
 
 // Write the bytecode to the UART RX characteristic.
 SwiftyZorb.writeTimeline(timeline) { result in
-switch result {
-case .success:
-Log.info("Successful write to UART RX characteristic.")
-case .failure(let error):
-Log.error("Failed to write to UART RX characteristic:", error.localizedDescription)
-}
+    switch result {
+    case .success:
+        // Write succeeded
+    case .failure(let error):
+        // An error occurred during write
+    }
 }
 ```
 

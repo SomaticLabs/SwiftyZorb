@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Classes  Reference</title>
+    <title>Structures  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,7 +10,7 @@
     
   </head>
   <body>
-    <a title="Classes  Reference"></a>
+    <a title="Structures  Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="index.html">SwiftyZorb Docs</a> (66% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="index.html">SwiftyZorb Reference</a>
         <img id="carat" src="img/carat.png" />
-        Classes  Reference
+        Structures  Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -120,26 +120,19 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Classes</h1>
-            <p>The following classes are available globally.</p>
+            <h1>Structures</h1>
+            <p>The following structures are available globally.</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Zorb%20Device"></a>
-                <a name="//apple_ref/swift/Section/Zorb Device" class="dashAnchor"></a>
-                <a href="#/Zorb%20Device">
-                  <h3 class="section-name">Zorb Device</h3>
-                </a>
-              </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftyZorb0B6DeviceC"></a>
-                    <a name="//apple_ref/swift/Class/ZorbDevice" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftyZorb0B6DeviceC">ZorbDevice</a>
+                    <a name="/s:10SwiftyZorb8ActuatorV"></a>
+                    <a name="//apple_ref/swift/Struct/Actuator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyZorb8ActuatorV">Actuator</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -147,15 +140,121 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Class encapsulating the all necessary functions for a given device peripheral</p>
+                        <p>An actuator can vary in its type and output. This message type describes an
+actuator and its capabilities.</p>
 
-                        <a href="Classes/ZorbDevice.html" class="slightly-smaller">See more</a>
+                        <a href="Structs/Actuator.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">final</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">ZorbDevice</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Actuator</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyZorb6DeviceV"></a>
+                    <a name="//apple_ref/swift/Struct/Device" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyZorb6DeviceV">Device</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A device has several configuration parameters that can be useful to a host that is sending
+it instructions. This message type describes a Zorb device and its capabilities.</p>
+
+                        <a href="Structs/Device.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Device</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyZorb0B9_TimelineV"></a>
+                    <a name="//apple_ref/swift/Struct/Zorb_Timeline" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyZorb0B9_TimelineV">Zorb_Timeline</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A timeline consists of an array of vibrations that can have an arbitrary</p>
+
+<p>length.</p>
+
+                        <a href="Structs/Zorb_Timeline.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Zorb_Timeline</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyZorb0B10_VibrationV"></a>
+                    <a name="//apple_ref/swift/Struct/Zorb_Vibration" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyZorb0B10_VibrationV">Zorb_Vibration</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A vibration consists of:</p>
+
+<p>1) the unsigned integer of LRA channels with which to communicate</p>
+
+<p>2) the delay to apply to the vibration in milliseconds</p>
+
+<p>3) the duration of the vibration in milliseconds</p>
+
+<p>4) the starting position within the vibration (amount to clip off the beginning)</p>
+
+<p>5) the starting amplitude of the vibration</p>
+
+<p>6) the ending amplitude of the vibration</p>
+
+<p>7) the integer index of an easing equation to use in an array of easing functions</p>
+
+                        <a href="Structs/Zorb_Vibration.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Zorb_Vibration</span></code></pre>
 
                         </div>
                       </div>

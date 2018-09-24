@@ -451,9 +451,9 @@ final public class ZorbDevice {
      device.writeTimeline(timeline) { result in
         switch result {
         case .success:
-            Log.info("Successful write to UART RX characteristic.")
+            // Write succeeded
         case .failure(let error):
-            Log.error("Failed to write to UART RX characteristic:", error.localizedDescription)
+            // An error occurred during write
         }
      }
      ```
