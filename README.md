@@ -207,6 +207,12 @@ device.connect { result in
 
 Contributions to this project should conform to the [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/) and [this style guide](https://github.com/github/swift-style-guide).
 
+## Documentation
+
+To learn about code documentation for Swift, check out [this guide](http://nshipster.com/swift-documentation/)
+
+We build our documentation pages with [Jazzy](https://github.com/realm/jazzy), to create docs from your well commented code, just run `jazzy`
+
 ## License
 
 The SwiftyZorb is released under the [GPL license](https://github.com/SomaticLabs/SwiftyZorb/blob/master/LICENSE).
