@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D7946A22151AEEA00DC146C /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7946A12151AEEA00DC146C /* SwiftProtobuf.framework */; };
+		2D794845215966B300DC146C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 2D7946A4215966B300DC146C /* LICENSE */; };
+		2D794980215966B400DC146C /* device.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D79483A215966B300DC146C /* device.pb.swift */; };
+		2D794987215966B400DC146C /* zorb.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D794841215966B300DC146C /* zorb.pb.swift */; };
 		4035C710207F10A5003964B7 /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035C70F207F10A5003964B7 /* Trigger.swift */; };
 		403783F71E5FDAA100B68645 /* SwiftyZorb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403783F61E5FDAA100B68645 /* SwiftyZorb.swift */; };
 		403783FC1E5FDAA900B68645 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403783F81E5FDAA900B68645 /* BluetoothManager.swift */; };
@@ -22,6 +26,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D7946A12151AEEA00DC146C /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = Carthage/Build/iOS/SwiftProtobuf.framework; sourceTree = "<group>"; };
+		2D7946A4215966B300DC146C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		2D79483A215966B300DC146C /* device.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = device.pb.swift; sourceTree = "<group>"; };
+		2D794841215966B300DC146C /* zorb.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = zorb.pb.swift; sourceTree = "<group>"; };
 		4035C70F207F10A5003964B7 /* Trigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
 		403783F61E5FDAA100B68645 /* SwiftyZorb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyZorb.swift; sourceTree = "<group>"; };
 		403783F81E5FDAA900B68645 /* BluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
@@ -50,12 +58,31 @@
 				40CFD8FA1E66852400D001C7 /* SwiftyBluetooth.framework in Frameworks */,
 				40CFD8F81E66852000D001C7 /* Alamofire.framework in Frameworks */,
 				40CFD8F61E66851400D001C7 /* SwiftyJSON.framework in Frameworks */,
+				2D7946A22151AEEA00DC146C /* SwiftProtobuf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D7946A3215966B300DC146C /* zorb-protocol */ = {
+			isa = PBXGroup;
+			children = (
+				2D7946A4215966B300DC146C /* LICENSE */,
+				2D794837215966B300DC146C /* build */,
+			);
+			path = "zorb-protocol";
+			sourceTree = "<group>";
+		};
+		2D794837215966B300DC146C /* build */ = {
+			isa = PBXGroup;
+			children = (
+				2D79483A215966B300DC146C /* device.pb.swift */,
+				2D794841215966B300DC146C /* zorb.pb.swift */,
+			);
+			path = build;
+			sourceTree = "<group>";
+		};
 		4073505C1E5D045000CA2D94 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +117,7 @@
 		4073508A1E5E1A6E00CA2D94 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2D7946A12151AEEA00DC146C /* SwiftProtobuf.framework */,
 				40CFD8F91E66852400D001C7 /* SwiftyBluetooth.framework */,
 				40CFD8F71E66852000D001C7 /* Alamofire.framework */,
 				40CFD8F51E66851400D001C7 /* SwiftyJSON.framework */,
@@ -100,6 +128,7 @@
 		407350921E5E214B00CA2D94 /* Internal */ = {
 			isa = PBXGroup;
 			children = (
+				2D7946A3215966B300DC146C /* zorb-protocol */,
 				403783F81E5FDAA900B68645 /* BluetoothManager.swift */,
 				403783F91E5FDAA900B68645 /* Constants.swift */,
 				403783FA1E5FDAA900B68645 /* Identifiers.swift */,
@@ -190,6 +219,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D794845215966B300DC146C /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D794980215966B400DC146C /* device.pb.swift in Sources */,
 				403783FC1E5FDAA900B68645 /* BluetoothManager.swift in Sources */,
 				403783F71E5FDAA100B68645 /* SwiftyZorb.swift in Sources */,
 				409911771FEDCFFD0079C73C /* ManagerError.swift in Sources */,
@@ -207,6 +238,7 @@
 				409911751FEDCCF60079C73C /* PacketQueue.swift in Sources */,
 				4035C710207F10A5003964B7 /* Trigger.swift in Sources */,
 				403783FD1E5FDAA900B68645 /* Constants.swift in Sources */,
+				2D794987215966B400DC146C /* zorb.pb.swift in Sources */,
 				409911731FEDCC350079C73C /* ZorbDevice.swift in Sources */,
 				403783FF1E5FDAA900B68645 /* Settings.swift in Sources */,
 			);

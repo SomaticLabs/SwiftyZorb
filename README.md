@@ -88,6 +88,40 @@ SwiftyZorb.forget()
 
 Note that simply disconnecting from the device will not forget a stored connection and, likewise, forgetting a connection will not force a disconnect.
 
+### Sending Protocol Buffers
+
+You can send a haptic timeline to the device as a [protocol buffer](https://github.com/SomaticLabs/zorb-protocol).
+
+To send a protocol buffer:
+
+```swift
+// Create Zorb_Timeline and Zorb_Vibration objects using the generated types provided by zorb.pb.swift.
+var timeline = Zorb_Timeline()
+var vibration = Zorb_Vibration()
+
+// Populate data in the Zorb_Vibration object.
+vibration.channels = 0x01
+vibration.delay = 1000
+vibration.duration = 2000
+vibration.position = 0
+vibration.start = 0
+vibration.end = 100
+vibration.easing = 2
+
+// Append the Zorb_Vibration to the Zorb_Timeline.
+timeline.vibrations.append(vibration)
+
+// Write the bytecode to the UART RX characteristic.
+SwiftyZorb.writeTimeline(timeline) { result in
+    switch result {
+    case .success:
+        // Write succeeded
+    case .failure(let error):
+        // An error occurred during write
+    }
+}
+```
+
 ### Sending Javascript
 
 There are two ways to send Javascript to be executed on the device—by embedding it as a `String` in your application, or by passing a `URL` to a hosted file such as a [Github Gist](https://gist.github.com) that contains your code.

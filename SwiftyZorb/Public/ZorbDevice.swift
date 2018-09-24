@@ -422,6 +422,54 @@ final public class ZorbDevice {
     }
     
     /**
+     Writes a Zorb_Timeline object (as specified by zorb.pb.swift) to the UART RX characteristic.
+     
+     Usage Example:
+     
+     ```swift
+     // Create a `ZorbDevice` object for a given Bluetooth peripheral (or this object may have
+     // already been created as in the case of using `retrieveAvailableDevices` method of SDK
+     let device = ZorbDevice(with: peripheral)
+     
+     // Create Zorb_Timeline and Zorb_Vibration objects using the generated types provided by zorb.pb.swift.
+     var timeline = Zorb_Timeline()
+     var vibration = Zorb_Vibration()
+     
+     // Populate data in the Zorb_Vibration object.
+     vibration.channels = 0x01
+     vibration.delay = 1000
+     vibration.duration = 2000
+     vibration.position = 0
+     vibration.start = 0
+     vibration.end = 100
+     vibration.easing = 2
+     
+     // Append the Zorb_Vibration to the Zorb_Timeline.
+     timeline.vibrations.append(vibration)
+     
+     // Write the bytecode to the UART RX characteristic.
+     device.writeTimeline(timeline) { result in
+        switch result {
+        case .success:
+            // Write succeeded
+        case .failure(let error):
+            // An error occurred during write
+        }
+     }
+     ```
+     
+     - Parameter timeline: A Zorb_Timeline object (from zorb-protocol)
+     */
+    public func writeTimeline(_ timeline: Zorb_Timeline, completion: @escaping WriteRequestCallback) {
+        // Write a Zorb_Timeline protocol buffer to our device
+        guard let bytes = try? timeline.serializedData() else {
+            completion(.failure(ManagerError("Invalid base64 encoded bytecode string.")))
+            return // Exit
+        }
+        self.writeBytecode(bytes) { result in completion(result) }
+    }
+    
+    /**
      Writes a given string of base64 encoded bytecode to the given device.
      
      Usage Example:
