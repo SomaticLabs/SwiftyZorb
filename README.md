@@ -250,3 +250,5 @@ We build our documentation pages with [Jazzy](https://github.com/realm/jazzy), t
 ## License
 
 The SwiftyZorb is released under the [GPL license](https://github.com/SomaticLabs/SwiftyZorb/blob/master/LICENSE).
+
+[Contact us](mailto:team@somaticlabs.io) for a commercial license if the GPL does not work well for your use cases.
