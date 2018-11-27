@@ -58,9 +58,9 @@ final internal class BluetoothManager: NSObject {
         uuid = Settings.getZorbPeripheral()
         switch version {
         case .V1:
-            services = Identifiers.AdvertisedServices_V1
+            services = Identifiers.V1.AdvertisedServices
         case .V2:
-            services = Identifiers.AdvertisedServices_V2
+            services = Identifiers.V2.AdvertisedServices
         }
         
         // If we do, try to connect to it
@@ -186,9 +186,9 @@ final internal class BluetoothManager: NSObject {
         let services: [CBUUID]
         switch version {
         case .V1:
-            services = Identifiers.AdvertisedServices_V1
+            services = Identifiers.V1.AdvertisedServices
         case .V2:
-            services = Identifiers.AdvertisedServices_V2
+            services = Identifiers.V2.AdvertisedServices
         }
         
         // First add any already connected peripherals to our collection

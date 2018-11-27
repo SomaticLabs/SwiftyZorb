@@ -66,9 +66,9 @@ final public class ZorbDevice {
         let hapticTimelineServiceUUID: CBUUID
         switch self.hardwareVersion {
         case .V1:
-            hapticTimelineServiceUUID = Identifiers.HapticTimelineServiceUUID_V1
+            hapticTimelineServiceUUID = Identifiers.V1.HapticTimelineServiceUUID
         case .V2:
-            hapticTimelineServiceUUID = Identifiers.HapticTimelineServiceUUID_V2
+            hapticTimelineServiceUUID = Identifiers.V2.HapticTimelineServiceUUID
         }
         
         // Write data to settings characteristic
@@ -347,9 +347,9 @@ final public class ZorbDevice {
         let actuatorCharacteristicUUID: CBUUID
         switch self.hardwareVersion {
         case .V1:
-            actuatorCharacteristicUUID = Identifiers.ActuatorCharacteristicUUID_V1
+            actuatorCharacteristicUUID = Identifiers.V1.ActuatorCharacteristicUUID
         case .V2:
-            actuatorCharacteristicUUID = Identifiers.ActuatorCharacteristicUUID_V2
+            actuatorCharacteristicUUID = Identifiers.V2.ActuatorCharacteristicUUID
         }
         
         // Determine data to send
@@ -558,9 +558,9 @@ final public class ZorbDevice {
         let patternTriggerCharacteristicUUID: CBUUID
         switch self.hardwareVersion {
         case .V1:
-            patternTriggerCharacteristicUUID = Identifiers.PatternTriggerCharacteristicUUID_V1
+            patternTriggerCharacteristicUUID = Identifiers.V1.PatternTriggerCharacteristicUUID
         case .V2:
-            patternTriggerCharacteristicUUID = Identifiers.PatternTriggerCharacteristicUUID_V2
+            patternTriggerCharacteristicUUID = Identifiers.V2.PatternTriggerCharacteristicUUID
         }
         
         // Send byte for associated pattern
