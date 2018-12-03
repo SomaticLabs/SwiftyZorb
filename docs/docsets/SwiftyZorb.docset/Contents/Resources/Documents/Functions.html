@@ -33,6 +33,9 @@
               <li class="nav-group-task">
                 <a href="Classes/ZorbDevice.html">ZorbDevice</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Classes/ZorbDevice/Version.html">– Version</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -47,18 +50,13 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="Extensions.html">Extensions</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Extensions/ActuatorType.html">ActuatorType</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
             <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Functions.html#/s:10SwiftyZorb7connect10completionyy0A9Bluetooth6ResultOyytGc_tF">connect(completion:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:10SwiftyZorb7connect11withVersion10completionyAA0B6DeviceC0E0O_y0A9Bluetooth6ResultOyytGctF">connect(withVersion:completion:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:10SwiftyZorb10disconnectyyF">disconnect()</a>
@@ -77,6 +75,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:10SwiftyZorb24retrieveAvailableDevices10completionyy0A9Bluetooth6ResultOySayAA0B6DeviceCGGc_tF">retrieveAvailableDevices(completion:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:10SwiftyZorb24retrieveAvailableDevices11withVersion10completionyAA0B6DeviceC0G0O_y0A9Bluetooth6ResultOySayAFGGctF">retrieveAvailableDevices(withVersion:completion:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:10SwiftyZorb14triggerPattern_10completionyAA7TriggerO_y0A9Bluetooth6ResultOyytGctF">triggerPattern(_:completion:)</a>
@@ -137,9 +138,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:10SwiftyZorb24retrieveAvailableDevices10completionyy0A9Bluetooth6ResultOySayAA0B6DeviceCGGc_tF"></a>
-                    <a name="//apple_ref/swift/Function/retrieveAvailableDevices(completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:10SwiftyZorb24retrieveAvailableDevices10completionyy0A9Bluetooth6ResultOySayAA0B6DeviceCGGc_tF">retrieveAvailableDevices(completion:)</a>
+                    <a name="/s:10SwiftyZorb24retrieveAvailableDevices11withVersion10completionyAA0B6DeviceC0G0O_y0A9Bluetooth6ResultOySayAFGGctF"></a>
+                    <a name="//apple_ref/swift/Function/retrieveAvailableDevices(withVersion:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyZorb24retrieveAvailableDevices11withVersion10completionyAA0B6DeviceC0G0O_y0A9Bluetooth6ResultOySayAFGGctF">retrieveAvailableDevices(withVersion:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -147,11 +148,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Scans for and retrieves a collection of available Zorb devices.</p>
+                        <p>Scans for and retrieves a collection of available Zorb devices with a given hardware version (either V1 or V2) as enumerated in <code><a href="Classes/ZorbDevice/Version.html">ZorbDevice.Version</a></code>.</p>
 
 <p>Usage Example:</p>
 <pre class="highlight swift"><code><span class="c1">// Retrieves a list all available devices as an array of `ZorbDevice` objects.</span>
-<span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">retrieveAvailableDevices</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+<span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">retrieveAvailableDevices</span><span class="p">(</span><span class="nv">withVersion</span><span class="p">:</span> <span class="o">.</span><span class="kt">V2</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
    <span class="k">switch</span> <span class="nf">result</span> <span class="p">{</span>
    <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">devices</span><span class="p">):</span>
        <span class="c1">// Retrieval succeeded</span>
@@ -169,7 +170,88 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveAvailableDevices</span><span class="p">(</span><span class="n">withVersion</span> <span class="nv">version</span><span class="p">:</span> <span class="kt"><a href="Classes/ZorbDevice.html">ZorbDevice</a></span><span class="o">.</span><span class="kt">Version</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">SwiftyBluetooth</span><span class="o">.</span><span class="kt">Result</span><span class="o">&lt;</span><span class="p">[</span><span class="kt"><a href="Classes/ZorbDevice.html">ZorbDevice</a></span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyZorb24retrieveAvailableDevices10completionyy0A9Bluetooth6ResultOySayAA0B6DeviceCGGc_tF"></a>
+                    <a name="//apple_ref/swift/Function/retrieveAvailableDevices(completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyZorb24retrieveAvailableDevices10completionyy0A9Bluetooth6ResultOySayAA0B6DeviceCGGc_tF">retrieveAvailableDevices(completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Maintaining backwares compatibility, scans for and retrieves a collection of available Zorb devices with V1 hardware.</p>
+
+<p>Usage Example:</p>
+<pre class="highlight swift"><code><span class="c1">// Retrieves a list all available devices as an array of `ZorbDevice` objects.</span>
+<span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">retrieveAvailableDevices</span><span class="p">(</span><span class="nv">withVersion</span><span class="p">:</span> <span class="o">.</span><span class="kt">V2</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+    <span class="k">switch</span> <span class="nf">result</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">devices</span><span class="p">):</span>
+       <span class="c1">// Retrieval succeeded</span>
+       <span class="k">for</span> <span class="n">device</span> <span class="k">in</span> <span class="nf">devices</span> <span class="p">{</span>
+           <span class="c1">// Do something with devices</span>
+       <span class="p">}</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+       <span class="c1">// An error occurred during retrieval</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveAvailableDevices</span><span class="p">(</span><span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">SwiftyBluetooth</span><span class="o">.</span><span class="kt">Result</span><span class="o">&lt;</span><span class="p">[</span><span class="kt"><a href="Classes/ZorbDevice.html">ZorbDevice</a></span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyZorb7connect11withVersion10completionyAA0B6DeviceC0E0O_y0A9Bluetooth6ResultOyytGctF"></a>
+                    <a name="//apple_ref/swift/Function/connect(withVersion:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyZorb7connect11withVersion10completionyAA0B6DeviceC0E0O_y0A9Bluetooth6ResultOyytGctF">connect(withVersion:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initiates a connection to an advertising Zorb device with a given hardware version (either V1 or V2) as enumerated in<code><a href="Classes/ZorbDevice/Version.html">ZorbDevice.Version</a></code>.</p>
+
+<p>Usage Example:</p>
+<pre class="highlight swift"><code><span class="c1">// Attempts connection to an advertising device</span>
+<span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">connect</span><span class="p">(</span><span class="nv">withVersion</span><span class="p">:</span> <span class="o">.</span><span class="kt">V2</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+   <span class="k">switch</span> <span class="nf">result</span> <span class="p">{</span>
+   <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
+       <span class="c1">// Connect succeeded</span>
+   <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+       <span class="c1">// An error occurred during connection</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">connect</span><span class="p">(</span><span class="n">withVersion</span> <span class="nv">version</span><span class="p">:</span> <span class="kt"><a href="Classes/ZorbDevice.html">ZorbDevice</a></span><span class="o">.</span><span class="kt">Version</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">ConnectPeripheralCallback</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -189,7 +271,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initiates a connection to an advertising Zorb device.</p>
+                        <p>Maintaining backwares compatibility, initiates a connection to an advertising Zorb device with V1 hardware.</p>
 
 <p>Usage Example:</p>
 <pre class="highlight swift"><code><span class="c1">// Attempts connection to an advertising device</span>
@@ -824,7 +906,7 @@ Using this method requires internet connection, which is used to compile the Jav
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://somaticlabs.io" target="_blank" rel="external">Somatic Labs</a>. All rights reserved. (Last updated: 2018-09-24)</p>
+          <p>&copy; 2018 <a class="link" href="https://somaticlabs.io" target="_blank" rel="external">Somatic Labs</a>. All rights reserved. (Last updated: 2018-11-16)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

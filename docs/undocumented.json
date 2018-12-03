@@ -251,6 +251,20 @@
       "symbol": "Trigger.🤣",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Public/ZorbDevice.swift",
+      "line": 25,
+      "symbol": "ZorbDevice.Version.V1",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb/SwiftyZorb/Public/ZorbDevice.swift",
+      "line": 28,
+      "symbol": "ZorbDevice.Version.V2",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
     }
   ],
   "source_directory": "/Users/jakerockland/Code/somatic/_ios/SwiftyZorb"

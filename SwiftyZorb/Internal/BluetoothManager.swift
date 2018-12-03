@@ -49,14 +49,19 @@ final internal class BluetoothManager: NSObject {
     /**
      Called to initiate connection with Zorb peripheral, handles reconnection process based on this logical diagram: ![Reconnection flow chart](https://developer.apple.com/library/content/documentation/NetworkingInternetWeb/Conceptual/CoreBluetooth_concepts/Art/ReconnectingToAPeripheral_2x.png "Reconnection workflow")
      */
-    func connect(completion: @escaping ConnectPeripheralCallback) {
+    func connect(withVersion version: ZorbDevice.Version, completion: @escaping ConnectPeripheralCallback) {
         // Identifier and services for device of interest
         var uuid: UUID?
         let services: [CBUUID]
         
         // Check if we have connected to this peripheral before, and get it's UUID and associated services
         uuid = Settings.getZorbPeripheral()
-        services = Identifiers.AdvertisedServices
+        switch version {
+        case .V1:
+            services = Identifiers.V1.AdvertisedServices
+        case .V2:
+            services = Identifiers.V2.AdvertisedServices
+        }
         
         // If we do, try to connect to it
         if let uuid = uuid {
@@ -75,7 +80,7 @@ final internal class BluetoothManager: NSObject {
                         }
                         
                         // Update internal `ZorbDevice` and handle in completion
-                        self.device = ZorbDevice(with: peripheral)
+                        self.device = ZorbDevice(with: peripheral, andVersion: version)
                         completion(.success(value))
                     case .failure(let error):
                         // Treat as error and handle in completion
@@ -104,7 +109,7 @@ final internal class BluetoothManager: NSObject {
                             Settings.saveZorbPeripheral(with: peripheral.identifier)
                             
                             // Update internal `ZorbDevice` and handle in completion
-                            self.device = ZorbDevice(with: peripheral)
+                            self.device = ZorbDevice(with: peripheral, andVersion: version)
                             completion(.success(value))
                         case .failure(let error):
                             // Treat as error and handle in completion
@@ -150,7 +155,7 @@ final internal class BluetoothManager: NSObject {
                             }
                             
                             // Update internal `ZorbDevice` and handle in completion
-                            self.device = ZorbDevice(with: peripheral)
+                            self.device = ZorbDevice(with: peripheral, andVersion: version)
                             completion(.success(value))
                         case .failure(let error):
                             // Treat as error and handle in completion
@@ -173,18 +178,24 @@ final internal class BluetoothManager: NSObject {
     /**
      Scans for and retrieves a collection of available Zorb devices
     */
-    func retrieveAvailableDevices(completion: @escaping (Result<[ZorbDevice]>) -> Void) {
+    func retrieveAvailableDevices(withVersion version: ZorbDevice.Version, completion: @escaping (Result<[ZorbDevice]>) -> Void) {
         // Initialize collection of available peripherals
         var peripherals: [ZorbDevice] = []
         
         // Get associated Zorb device services
-        let services = Identifiers.AdvertisedServices
+        let services: [CBUUID]
+        switch version {
+        case .V1:
+            services = Identifiers.V1.AdvertisedServices
+        case .V2:
+            services = Identifiers.V2.AdvertisedServices
+        }
         
         // First add any already connected peripherals to our collection
         let connectedPeripherals = central.retrieveConnectedPeripherals(withServiceUUIDs: services)
         for peripheral in connectedPeripherals {
             if Constants.deviceNames.contains(peripheral.name ?? "Unknown") {
-                peripherals.append(ZorbDevice(with: peripheral))
+                peripherals.append(ZorbDevice(with: peripheral, andVersion: version))
             }
         }
 
@@ -203,7 +214,7 @@ final internal class BluetoothManager: NSObject {
                 
                 // Check if found peripheral is the one we're trying to connect to
                 if Constants.deviceNames.contains(peripheral.name ?? "Unknown") {
-                    peripherals.append(ZorbDevice(with: peripheral))
+                    peripherals.append(ZorbDevice(with: peripheral, andVersion: version))
                 }
             case .scanStopped(let error):
                 // The scan stopped, an error is passed if the scan stopped unexpectedly

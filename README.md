@@ -46,12 +46,12 @@ $ brew install carthage
 To integrate SwiftyZorb into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "SomaticLabs/SwiftyZorb" ~> 2.0
+github "SomaticLabs/SwiftyZorb" ~> 3.0
 ```
 
 Run `carthage update` to build the framework and drag the built `SwiftyZorb.framework` into your Xcode project.
 
-You must also drag the built dependencies `Alamofire.framework`, `SwiftyBluetooth.framework`, and `SwiftyJSON.framework` into your project.
+You must also drag the built dependencies `Alamofire.framework`, `SwiftyBluetooth.framework`,  `SwiftyJSON.framework`, and `SwiftProtobuf.framework` into your project.
 
 ## Single Device Usage
 
@@ -59,12 +59,14 @@ There are two ways to use this libary. If you intend to connect and reconnect to
 
 ### Connecting
 
-Before being able to communicate with a Zorb peripheral device, you must establish a Bluetooth LE connection with your device.
+Before being able to communicate with a Zorb peripheral device, you must establish a Bluetooth LE connection with your device. 
+
+The `withVersion` parameter is used to specify which version of Zorb hardware you are using. If you are unsure which hardware you have, please [contact us](mailto:developers@somaticlabs.io).
 
 ```swift
 import SwiftyZorb
 
-SwiftyZorb.connect { result in
+SwiftyZorb.connect(withVersion: .V2) { result in
     switch result {
     case .success:
         // Connected succeeded
@@ -193,7 +195,7 @@ If you would like to manage connections with multiple Zorb peripheral devices, y
 
 ```swift
 // Retrieves a list all available devices as an array of `ZorbDevice` objects.
-SwiftyZorb.retrieveAvailableDevices { result in
+SwiftyZorb.retrieveAvailableDevices(withVersion: .V2) { result in
     switch result {
     case .success(let devices):
         // Retrieval succeeded

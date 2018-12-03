@@ -17,6 +17,17 @@ import Alamofire
  */
 final public class ZorbDevice {
     
+    // MARK: - Version Enumeration
+    
+    /// Differentiates between different hardware versions
+    public enum Version: Int {
+        // First hardware iteration
+        case V1 = 1
+        
+        // Second hardware iteration
+        case V2 = 2
+    }
+    
     // MARK: - Class Properties
     
     /// `SwiftyBluetooth` peripheral for device
@@ -25,16 +36,20 @@ final public class ZorbDevice {
     /// `PacketQueue` for storing Javascript packets to be sent
     private var packetQueue: PacketQueue
     
+    /// `Version` of hardware for a given device
+    private let hardwareVersion: Version
+    
     // MARK: - Initialization
     
     /**
-     Public initializer, only requires peripheral associated with given device
+     Internal initializer, only requires peripheral associated with given device
      
      - Parameter peripheral: 
      */
-    internal init(with peripheral: Peripheral) {
+    internal init(with peripheral: Peripheral, andVersion version: Version) {
         self.peripheral = peripheral
         self.packetQueue = PacketQueue()
+        self.hardwareVersion = version
     }
     
     // MARK: - Private Connection Management Methods
@@ -47,8 +62,17 @@ final public class ZorbDevice {
      - Parameter characteristic: The `UUID` of the characteristic being written to
      */
     private func writeBytes(_ bytes: Data, to characteristic: CBUUID, completion: @escaping WriteRequestCallback) {
+        // Get appropriate CBUUID
+        let hapticTimelineServiceUUID: CBUUID
+        switch self.hardwareVersion {
+        case .V1:
+            hapticTimelineServiceUUID = Identifiers.V1.HapticTimelineServiceUUID
+        case .V2:
+            hapticTimelineServiceUUID = Identifiers.V2.HapticTimelineServiceUUID
+        }
+        
         // Write data to settings characteristic
-        peripheral.writeValue(ofCharacWithUUID: characteristic, fromServiceWithUUID: Identifiers.HapticTimelineServiceUUID, value: bytes) { result in
+        peripheral.writeValue(ofCharacWithUUID: characteristic, fromServiceWithUUID: hapticTimelineServiceUUID, value: bytes) { result in
             completion(result)
         }
     }
@@ -319,13 +343,22 @@ final public class ZorbDevice {
      - Parameter bottomRight: Intensity, in a range from 0 to 100, for the bottom right actuator to be set at.
      */
     public func writeActuators(duration: UInt16, topLeft: UInt8, topRight: UInt8, bottomLeft: UInt8, bottomRight: UInt8, completion: @escaping WriteRequestCallback) {
+        // Get appropriate CBUUID
+        let actuatorCharacteristicUUID: CBUUID
+        switch self.hardwareVersion {
+        case .V1:
+            actuatorCharacteristicUUID = Identifiers.V1.ActuatorCharacteristicUUID
+        case .V2:
+            actuatorCharacteristicUUID = Identifiers.V2.ActuatorCharacteristicUUID
+        }
+        
         // Determine data to send
         let duration0: UInt8 = UInt8(duration & 0x00FF)
         let duration1: UInt8 = UInt8(duration >> 8)
         let data = Data(bytes: [duration0, duration1, topLeft, topRight, bottomLeft, bottomRight])
         
         // Write actuator data to Zorb device
-        self.writeBytes(data, to: Identifiers.ActuatorCharacteristicUUID) { result in completion(result) }
+        self.writeBytes(data, to: actuatorCharacteristicUUID) { result in completion(result) }
     }
     
     /**
@@ -521,8 +554,18 @@ final public class ZorbDevice {
      - Parameter pattern: The `Trigger` enumeration option of the given preloaded pattern to trigger
     */
     public func triggerPattern(_ pattern: Trigger, completion: @escaping WriteRequestCallback) {
+        // Get appropriate CBUUID
+        let patternTriggerCharacteristicUUID: CBUUID
+        switch self.hardwareVersion {
+        case .V1:
+            patternTriggerCharacteristicUUID = Identifiers.V1.PatternTriggerCharacteristicUUID
+        case .V2:
+            patternTriggerCharacteristicUUID = Identifiers.V2.PatternTriggerCharacteristicUUID
+        }
+        
+        // Send byte for associated pattern
         let byte = Data(pattern.rawValue.utf8.map{ UInt8($0) })
-        self.writeBytes(byte, to: Identifiers.PatternTriggerCharacteristicUUID) {
+        self.writeBytes(byte, to: patternTriggerCharacteristicUUID) {
             result in completion(result)
         }
     }

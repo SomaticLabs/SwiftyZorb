@@ -13,13 +13,13 @@ import SwiftyJSON
 // MARK: Bluetooth Management Methods
 
 /**
- Scans for and retrieves a collection of available Zorb devices.
+ Scans for and retrieves a collection of available Zorb devices with a given hardware version (either V1 or V2) as enumerated in `ZorbDevice.Version`.
  
  Usage Example:
  
  ```swift
  // Retrieves a list all available devices as an array of `ZorbDevice` objects.
- SwiftyZorb.retrieveAvailableDevices { result in
+ SwiftyZorb.retrieveAvailableDevices(withVersion: .V2) { result in
     switch result {
     case .success(let devices):
         // Retrieval succeeded
@@ -32,12 +32,58 @@ import SwiftyJSON
  }
  ```
  */
-public func retrieveAvailableDevices(completion: @escaping (SwiftyBluetooth.Result<[ZorbDevice]>) -> Void) {
-    bluetoothManager.retrieveAvailableDevices { result in completion(result) }
+public func retrieveAvailableDevices(withVersion version: ZorbDevice.Version, completion: @escaping (SwiftyBluetooth.Result<[ZorbDevice]>) -> Void) {
+    bluetoothManager.retrieveAvailableDevices(withVersion: version) { result in completion(result) }
 }
 
 /**
- Initiates a connection to an advertising Zorb device.
+ Maintaining backwares compatibility, scans for and retrieves a collection of available Zorb devices with V1 hardware.
+ 
+ Usage Example:
+ 
+ ```swift
+ // Retrieves a list all available devices as an array of `ZorbDevice` objects.
+ SwiftyZorb.retrieveAvailableDevices(withVersion: .V2) { result in
+     switch result {
+     case .success(let devices):
+        // Retrieval succeeded
+        for device in devices {
+            // Do something with devices
+        }
+     case .failure(let error):
+        // An error occurred during retrieval
+     }
+ }
+ ```
+ */
+@available(*, deprecated, message: "Please specify hardware version with `withVersion` parameter.")
+public func retrieveAvailableDevices(completion: @escaping (SwiftyBluetooth.Result<[ZorbDevice]>) -> Void) {
+    bluetoothManager.retrieveAvailableDevices(withVersion: .V1) { result in completion(result) }
+}
+
+/**
+ Initiates a connection to an advertising Zorb device with a given hardware version (either V1 or V2) as enumerated in` ZorbDevice.Version`.
+ 
+ Usage Example:
+ 
+ ```swift
+ // Attempts connection to an advertising device
+ SwiftyZorb.connect(withVersion: .V2) { result in
+    switch result {
+    case .success:
+        // Connect succeeded
+    case .failure(let error):
+        // An error occurred during connection
+    }
+ }
+ ```
+ */
+public func connect(withVersion version: ZorbDevice.Version, completion: @escaping ConnectPeripheralCallback) {
+    bluetoothManager.connect(withVersion: version) { result in completion(result) }
+}
+
+/**
+ Maintaining backwares compatibility, initiates a connection to an advertising Zorb device with V1 hardware.
  
  Usage Example:
  
@@ -53,8 +99,9 @@ public func retrieveAvailableDevices(completion: @escaping (SwiftyBluetooth.Resu
  }
  ```
  */
+@available(*, deprecated, message: "Please specify hardware version with `withVersion` parameter.")
 public func connect(completion: @escaping ConnectPeripheralCallback) {
-    bluetoothManager.connect { result in completion(result) }
+    bluetoothManager.connect(withVersion: .V1) { result in completion(result) }
 }
 
 /**

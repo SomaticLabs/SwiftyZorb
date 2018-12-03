@@ -33,6 +33,9 @@
               <li class="nav-group-task">
                 <a href="Classes/ZorbDevice.html">ZorbDevice</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Classes/ZorbDevice/Version.html">– Version</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -47,18 +50,13 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="Extensions.html">Extensions</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Extensions/ActuatorType.html">ActuatorType</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
             <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Functions.html#/s:10SwiftyZorb7connect10completionyy0A9Bluetooth6ResultOyytGc_tF">connect(completion:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:10SwiftyZorb7connect11withVersion10completionyAA0B6DeviceC0E0O_y0A9Bluetooth6ResultOyytGctF">connect(withVersion:completion:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:10SwiftyZorb10disconnectyyF">disconnect()</a>
@@ -77,6 +75,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:10SwiftyZorb24retrieveAvailableDevices10completionyy0A9Bluetooth6ResultOySayAA0B6DeviceCGGc_tF">retrieveAvailableDevices(completion:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:10SwiftyZorb24retrieveAvailableDevices11withVersion10completionyAA0B6DeviceC0G0O_y0A9Bluetooth6ResultOySayAFGGctF">retrieveAvailableDevices(withVersion:completion:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:10SwiftyZorb14triggerPattern_10completionyAA7TriggerO_y0A9Bluetooth6ResultOyytGctF">triggerPattern(_:completion:)</a>
@@ -164,21 +165,23 @@
 </code></pre>
 
 <p>To integrate SwiftyZorb into your Xcode project using Carthage, specify it in your <code>Cartfile</code>:</p>
-<pre class="highlight plaintext"><code>github "SomaticLabs/SwiftyZorb" ~&gt; 2.0
+<pre class="highlight plaintext"><code>github "SomaticLabs/SwiftyZorb" ~&gt; 3.0
 </code></pre>
 
 <p>Run <code>carthage update</code> to build the framework and drag the built <code>SwiftyZorb.framework</code> into your Xcode project.</p>
 
-<p>You must also drag the built dependencies <code>Alamofire.framework</code>, <code>SwiftyBluetooth.framework</code>, and <code>SwiftyJSON.framework</code> into your project.</p>
+<p>You must also drag the built dependencies <code>Alamofire.framework</code>, <code>SwiftyBluetooth.framework</code>,  <code>SwiftyJSON.framework</code>, and <code>SwiftProtobuf.framework</code> into your project.</p>
 <h2 id='single-device-usage' class='heading'>Single Device Usage</h2>
 
 <p>There are two ways to use this libary. If you intend to connect and reconnect to one Zorb peripheral device, use the following methods.</p>
 <h3 id='connecting' class='heading'>Connecting</h3>
 
-<p>Before being able to communicate with a Zorb peripheral device, you must establish a Bluetooth LE connection with your device.</p>
+<p>Before being able to communicate with a Zorb peripheral device, you must establish a Bluetooth LE connection with your device. </p>
+
+<p>The <code>withVersion</code> parameter is used to specify which version of Zorb hardware you are using. If you are unsure which hardware you have, please <a href="mailto:developers@somaticlabs.io">contact us</a>.</p>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">SwiftyZorb</span>
 
-<span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">connect</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+<span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">connect</span><span class="p">(</span><span class="nv">withVersion</span><span class="p">:</span> <span class="o">.</span><span class="kt">V2</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
     <span class="k">switch</span> <span class="nf">result</span> <span class="p">{</span>
     <span class="k">case</span> <span class="o">.</span><span class="nv">success</span><span class="p">:</span>
         <span class="c1">// Connected succeeded</span>
@@ -288,7 +291,7 @@
 
 <p>If you would like to manage connections with multiple Zorb peripheral devices, you may do so by first retrieving a list of the available devices:</p>
 <pre class="highlight swift"><code><span class="c1">// Retrieves a list all available devices as an array of `ZorbDevice` objects.</span>
-<span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">retrieveAvailableDevices</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+<span class="kt">SwiftyZorb</span><span class="o">.</span><span class="nf">retrieveAvailableDevices</span><span class="p">(</span><span class="nv">withVersion</span><span class="p">:</span> <span class="o">.</span><span class="kt">V2</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
     <span class="k">switch</span> <span class="nf">result</span> <span class="p">{</span>
     <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">devices</span><span class="p">):</span>
         <span class="c1">// Retrieval succeeded</span>
@@ -341,10 +344,12 @@
 
 <p>The SwiftyZorb is released under the <a href="https://github.com/SomaticLabs/SwiftyZorb/blob/master/LICENSE">GPL license</a>.</p>
 
+<p><a href="mailto:team@somaticlabs.io">Contact us</a> for a commercial license if the GPL does not work well for your use cases.</p>
+
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://somaticlabs.io" target="_blank" rel="external">Somatic Labs</a>. All rights reserved. (Last updated: 2018-09-24)</p>
+          <p>&copy; 2018 <a class="link" href="https://somaticlabs.io" target="_blank" rel="external">Somatic Labs</a>. All rights reserved. (Last updated: 2018-11-16)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
